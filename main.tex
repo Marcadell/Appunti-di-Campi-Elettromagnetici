@@ -1,8 +1,9 @@
 \documentclass{book}
-\usepackage[pdfauthor={}, pdftitle={}, pdfproduce={}, pdfcreator={}]{hyperref}
+\usepackage{hyperref}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsfonts}
 \usepackage{amsmath}
+\usepackage{xr}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{pxfonts}
@@ -11,6 +12,12 @@
 \author{Marco C}
 \date{A.A. 24/25}
 
+\hypersetup{
+pdftitle = '',
+pdfauthor ='' '',
+pdfcreator = '',
+pdfproducer = ''
+}
 \begin{document}
 \maketitle
 
@@ -1239,20 +1246,20 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         (\ref{eqn:Poynting_integrale_tempo}) il suo significato fisico. \\
         Partiamo dall'espressione della forza di Lorentz esercitata su di una carica $q$:
         \begin{equation}
-            \underline{F}= q \underline{e}+\rho \underline{r} \times \underline{b}
+            \underline{F}= q \underline{e}+q \underline{r} \times \underline{b}
         \end{equation}
         La forza di Lorentz è un approccio macroscopico al problema della forza esercitata su di una carica immersa in un campo elettromagnetico, perché compare la densità di carica
         elettrica $\rho$, dunque le cariche vengono immaginate come un continuo nello spazio. Consideriamo allora un volumetto $\Delta V$ con all'interno carica $\Delta q$.
         Calcolando la forza di Lorentz esercitata su tale volumetto di carica:
         \begin{equation}
-            \Delta \underline{F} = \Delta q\underline{e}+\Delta \rho \underline{r}\times \underline{b}
+            \Delta \underline{F} = \Delta q\underline{e}+\Delta q \underline{r}\times \underline{b}
         \end{equation}
         Passiamo alla densità di forza, (misurata in $N/m^{3}$) dividendo per $\Delta V$ e facendo il limite per $\Delta V \to 0$:
         \begin{equation}
-            \label{eqn:densitàForza}
+            \label{eqn:densitaForza}
             \lim_{\Delta V \to \infty} \frac{\Delta \underline{F}}{\Delta V} = \underline{f}(\underline{r},t) = \rho(\underline{r},t)\underline{e}(\underline{r},t)+\rho(\underline{r},t)\underline{v}\times \underline{b}(\underline{r},t)
         \end{equation}
-        Il primo addendo della (\ref{eqn:densitàForza}) deriva direttamente della definizione di densità di carica, semplicemente il limite del rapporto $\Delta q/\Delta V$.
+        Il primo addendo della (\ref{eqn:densitaForza}) deriva direttamente della definizione di densità di carica, semplicemente il limite del rapporto $\Delta q/\Delta V$.
         Per capire che significato abbia il secondo addendo, consideriamo una superficie con piana orientata lungo l'asse $x$, cioè con $\underline{i}_{n} = \underline{i}_{x}$:
         \begin{figure}[h!]
             \includegraphics[width=0.6\linewidth]{img/Chapter_one/Chapt1img9.png}
@@ -1332,6 +1339,141 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             \implies dU-\delta Q = \delta L \implies dU = \delta Q + \delta L
         \end{equation}
+    Affrontiamo ora il discorso sul significato del vettore di Poynting e sul perché abbiamo potuto ignorarlo finora.
+    Quando il campo elettromagnetico attraversa la frontiera $\partial V$ del dominio $V$, lo fa trasportando energia. Ciò
+    che tiene conto di tale quantità è il flusso del vettore di Poynting, che corrisponde alla potenza istantanea uscente
+    trasportata dal campo elettromagnetico attraverso la frontiera del volume. Dunque $\underline{s}$ ha le dimensioni
+    di una densità superficiale di potenza, misurata in $W/m^{2}$. \\
+    Il motivo per il quale abbiamo potuto trascurarlo è che, considerato un volume abbastanza grande per cui
+    la sua superficie cade in un intorno dell'infinito, per sorgenti di campo attivate ad istanti finiti\footnote{cioè non accese da $-\infty$, altrimenti
+    il ragionamento crolla} il campo si può considerare nullo alla superficie e dunque anche il trasferimento di potenza istantanea su di essa.
+    \subsection{Teorema di Poynting nel dominio dei fasori}
+        Nel dominio dei fasori il teorema di Poynting è più generale, perché non è richiesta l'ipotesi di dispersività
+        temporale.\footnote{Se il mezzo è non dispersivo, la relazione costitutiva è una convoluzione temporale, la quale diventa il prodotto
+        in frequenza che abbiamo visto nel paragrafo 1.5.3} All'interno di questa sezione, come prima, il nostro interesse
+        è ricavare il significato fisico dei pezzi che compongono l'identità di Poynting in frequenza. 
+        \\ \\ Partiamo con il giustificare la definizione:
+        \begin{equation}
+            \underline{S} = \frac{1}{2}\underline{E} \times \underline{H}^{*}
+        \end{equation} \\
+        Consideriamo un bipolo all'interno di un circuito a regime sinusoidale con corrente\footnote{qui ho messo il cappello ai fasori, ci vorrebbe anche
+        quando scrivo i fasori dei campi, che avendo già il sottolineato per i vettori ometto per bellezza} $\overline{I}$
+        e tensione $\overline{V}$. Nel tempo, la potenza assorbita/dissipata dal bipolo è data da:
+        \begin{equation}
+            p(t) = v(t)i(t)=V_{m}\cos{(\omega t + \varphi_{v})}I_{m}\cos{(\omega t + \varphi_{i})}
+        \end{equation}
+        Utilizzando le formule di Werner, $\cos{(a)}\cos{(b)} = \frac{1}{2}[\cos{(a+b)}+\cos{a-b}]$:
+        \begin{equation}
+            p(t) = \frac{1}{2}V_{m}I_{m}[\cos{(2\omega t + \varphi_{v}+\varphi_{i})}+\cos{( \varphi_{v}-\varphi_{i})}]
+        \end{equation}
+        Calcoliamo allora la potenza media:
+        \begin{equation}
+            <p(t)> = \frac{1}{T} \int_{0} ^{T} \frac{1}{2}V_{m}I_{m}[\cos{(2\omega t + \varphi_{v}+\varphi_{i})}+\cos{( \varphi_{v}-\varphi_{i})}] dt
+        \end{equation}
+        Il primo coseno si annulla sul periodo $T$ perché è periodico di $T/2$, mentre il secondo è costante rispetto ad $\omega$. In definitiva:
+        \begin{equation}
+            <p(t)>=\frac{1}{2}V_{m}I_{m}\cos{(\varphi_{v}-\varphi_{i})} = \frac{1}{2}V_{m}I_{m}\Re[e^{j(\varphi_{v}-\varphi_{i})}] = \Re[\frac{1}{2}V_{m}e^{j\varphi_{v}}I_{m}e^{-j\varphi_{i}}]
+        \end{equation}
+        Il termine $\overline{V}=V_{m}e^{j \varphi_{v}}$ è il fasore associato a $v(t)$, mentre $\overline{I}^{*}=I_{m}e^{-j\varphi_{i}}$ è il
+        coniugato del fasore associato ad $i(t)$. Dunque possiamo scrivere la potenza \textbf{media} come la parte reale di:
+        \begin{equation}
+                <p(t)>=\Re[\frac{1}{2}\overline{V} \ \overline{I^{*}}]
+        \end{equation}
+        Definiamo allora la potenza complessa:
+        \begin{equation}
+            \label{eqn:potenza_media}
+            \hat{P} = \frac{1}{2}\overline{V} \ \overline{I^{*}} = P+jQ
+        \end{equation}
+        dove $P$ è la potenza attiva, corrispondente alla potenza media, mentre $Q$ è la potenza reattiva,
+        la quale non ha significato fisico. La potenza reattiva è un indicatore della qualità dello scambio energetico.
+        Se infatti scriviamo la \ref{eqn:potenza_media} come parte reale di un numero complesso:
+        \begin{equation}
+            P=\frac{1}{2}|\overline{V}||\overline{I}|\cos{(\Delta \varphi)}
+        \end{equation}
+        con $\Delta \varphi = \varphi_{v}-\varphi_{i}$, ci si rende conto che $|I|\cos{(\Delta \varphi)}$ non è altro
+        che la proiezione di $I$ sul piano reale. Al variare del modulo di $I$, la potenza media rimane la stessa, perché varia
+        allo stesso tempo $\varphi_{i}$ e dunque lo sfasamento "controbilancia" il modulo. Tuttavia, se la potenza media è sempre la stessa,
+        a noi interessa che il modulo della corrente sia il più piccolo possibile, perché se c'è più corrente sulla
+        linea viene dissipata più potenza. Dunque una potenza reattiva $Q=0$ corrisponde a trasferimento di potenza massimo sulla linea. \\ \\
+        Tutto ciò che abbiamo detto per tensione e corrente si può generalizzare per confronto con il prodotto di due quantità sinusodiali
+        qualsiasi, nel nostro caso $\underline{e}$ ed $\underline{h}$ e i relativi fasori $\underline{E}$ ed $\underline{H}$.
+        Riprendiamo di nuovo l'identità di Poynting  inetgrale nel tempo per un mezzo normale ma non necessariamente dispersivo:
+        \begin{equation}
+            \oiint_{\partial V} \underline{i}_{n}dS = \iiint_{V} (\underline{h}\cdot \frac{\partial}{\partial t}\underline{b}+\underline{e}\cdot \frac{\partial}{\partial t}\underline{d})dV+
+            \iiint_{V} \sigma |\underline{e}|^{2}dV = - \iiint_{V} \underline{e} \cdot \underline{j}_{0}dV
+        \end{equation}
+        Confrontiamo pezzo per pezzo con la sua controparte fasoriale. Le quantità:
+        \begin{equation}
+            \sigma |e^{2}| = \underline{e} \cdot \underline{j} \qquad \underline{e}\cdot \underline{j}_{0}
+        \end{equation}
+        sappiamo essere rispettivamente le densità di potenza dissipata per le indotte e fornita dalle impresse.
+        In modo analogo a (\ref{eqn:potenza_media}) possiamo scrivere:
+        \begin{equation}
+             \underline{e} \cdot \underline{j} = \Re [\frac{1}{2}\underline{E}\cdot \underline{J}^{*}] 
+             \qquad \underline{e}\cdot \underline{j}_{0} = \Re [\frac{1}{2}\underline{E}\cdot \underline{J}^{*}_{0}]
+        \end{equation} 
+        cioè come le parti reali di di densità di potenze medie. In modo simile, il pezzo:
+        \begin{equation}
+            \omega\frac{\mu ''}{2}|\underline{H}|^{2}+\omega \frac{\varepsilon ''}{2}|E|^{2}
+        \end{equation}
+        Se calcoliamo il valore medio di $\underline{h} \cdot \frac{\partial}{\partial t} \underline{b}$ otteniamo di nuovo espressioni
+        come parti reali di densità di potenza:
+        \begin{equation}
+            <\underline{h} \cdot \frac{\partial}{\partial t} \underline{b}> = \frac{1}{2}\Re[\underline{H} \cdot (j \omega \underline{B})^{*}] =
+            \frac{\omega}{2}\Re[-j \underline{H} \cdot (\mu \underline{H})^{*}] 
+        \end{equation}
+        \begin{equation}
+            = \frac{\omega}{2}\Re[-\mu^{*}j \underline{H} \cdot \underline{H}^{*}] = - \frac{\omega}{2}|\underline{H}|^{2}\Re[j \mu^{*}]
+            =\frac{\omega}{2}\mu '' |\underline{H}|^{2}
+        \end{equation}
+        Allo stesso modo:
+        \begin{equation}
+            <\underline{e} \cdot \frac{\partial}{ \partial t} \underline{d}> = \frac{\omega}{2}\varepsilon '' |\underline{H}|^{2}
+        \end{equation}
+        Il termine:
+        \begin{equation}
+            \iiint_{V} (\underline{h} \cdot \frac{\partial}{\partial t} \underline{b} + \underline{e} \cdot \frac{\partial}{\partial t} \underline{d}) dV
+        \end{equation}
+        tiene conto sia della variazione dell'energia immagazzinata $\frac{d}{dt}W(t)$ che della potenza dissipata per altri motivi
+        oltre all'effetto Joule $p_{d}(t)$. Ma in regime sinusoidale:
+        \begin{equation}
+            <\frac{d}{dt}W(t)> = \frac{1}{T} \int_{0} ^{T} \frac{d}{dt}W(t)dt = \frac{1}{T}[W(T)-W(0)] = 0
+        \end{equation}
+        perché l'energia è anch'essa una funzione sinusoidale di periodo $T/2$. Allora quel termine nel dominio dei fasori coincide con:
+        \begin{equation}
+            \iiint_{V} \omega \frac{\mu ''}{2} |\underline{H}|^{2}+\omega \frac{\varepsilon ''}{2}|\underline{E}|^{2}dV = <p_{d}(t)>
+        \end{equation}
+        che è la \textbf{potenza media dissipata per isteresi elettrica e magnetica}, la quale è associato alle parti immaginarie 
+        $\mu ''$ e $\varepsilon ''$. \\
+        Per la parte immaginaria abbiamo sotto l'ipotesi di non dispersività spaziale, per la quale $\varepsilon=\varepsilon'$ e $\mu = \mu'$:
+        \begin{equation}
+            \label{eqn:parte_img_poynting}
+            2 \omega \iiint_{V} \frac{\mu}{4}|\underline{H}|^{2}-\frac{\varepsilon}{4}|\underline{E}|^{2}dV = -\text{Im}[\iiint_{V} \underline{E} \cdot \underline{J}_{0} ^{*}]
+        \end{equation}
+        Possiamo scrivere la densità di energia elettrica come:
+        \begin{equation}
+                \displaystyle w_{e} = \frac{\varepsilon}{2}|\underline{e}|^{2} = \frac{\varepsilon}{2}\underline{e} \cdot \underline{e}^{*}
+                 = \frac{\varepsilon}{2} \frac{1}{2}\Re[\underline{E}\cdot\underline{E}^{*}] = \frac{\varepsilon}{4}|E|^{2}
+        \end{equation}
+        ed in modo analogo:
+        \begin{equation}
+            w_{m} = \frac{\mu}{2}\frac{1}{2}\Re[\underline{H} \cdot \underline{H}^{*}] = \frac{\mu}{4}|\underline{H}|^{2}
+        \end{equation}
+        Dunque la quantità:
+        \begin{equation}
+            \label{eqn:diff_media_magnetica_elettrica}
+            \frac{\mu}{4}|\underline{H}|^{2}-\frac{\varepsilon}{4}|\underline{E}|^{2} = \overline{W}_{M}-\overline{W}_{E}
+        \end{equation}
+        è la differenza di energia magnetica media ed energia elettrica media. Allora la (\ref{eqn:parte_img_poynting})
+        dice che la differenza (\ref{eqn:diff_media_magnetica_elettrica}), che moltiplicata per $2 \omega$ da la potenza media, è
+        pari alla potenza reattiva media fornita dalle sorgenti impresse al campo.
+        \\ Ciò che abbiamo ricavato è in accordo con le precedenti considerazioni: per mezzi non dispersivi nel tempo
+        non ci sono perdite, le quali sono legate alle parti immaginarie di $\mu$ e $\sigma$. Ma la non dispersività implica la
+        non dipendenza da $t$ nel tempo e da $\sigma$ in frequenza per $\mu$ e $\sigma$, che dunque hanno trasformate reali e, di conseguenza,
+        parte immaginaria nulla.
+        
+
+
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
