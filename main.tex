@@ -1628,6 +1628,127 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         dove $V(z)$ e $I(z)$ sono dette \textbf{funzioni scalari di modo} e $\underline{e}(\underline{r}_{t})$ ed $\underline{h}(\underline{r}_{t})$ funzioni 
         vettoriali di modo. Per i modi TEM vedremo che $V(z)$ e $I(z)$ corrispondono a tensione e corrente, ma in generale non è vero.
+
+    \section{Caratterizzazione delle guide d'onda}
+        In un problema elettromagnetico, i campi incogniti sono $\underline{E}(\underline{r}_{t}, z)$ ed $\underline{H}(\underline{r}_{t}, z)$.
+        Per i modi TEM risulta:
+        \begin{equation}
+            \begin{cases}
+                \underline{E}_{t}(\underline{r}_{t},z)=V(z)\underline{e}(\underline{r}_{t}) \\
+                \underline{H}_{t}(\underline{r}_{t},z)=I(z)\underline{h}(\underline{r}_{t})
+            \end{cases}
+        \end{equation}
+        con $V(z)$ ed $I(z)$ tensione e corrente in corrispondenza della coordinata $z$. Una volta noti $\underline{e}(\underline{r}_{t}, t)$
+        ed $\underline{h}(\underline{r}_{t},z)$ occorre ricavare $V(z)$ ed $I(z)$. Partiamo da due equazioni che legano tensioni e corrente:
+        \begin{equation}
+            \label{eqn:eq_tensione_corrente}
+            \begin{cases}
+                \frac{d}{dz}V(z)=-j k Z_{0}I(z) \\
+                \frac{d}{dz}I(z) = -j k Z_{0}V(z)
+            \end{cases}
+        \end{equation}
+        dove $k$ è la costante di propagazione e $Z_{0}$ l'impedenza caratteristica della linea:
+        \begin{equation}
+            \begin{cases}
+                Z_{0} = \displaystyle \frac{1}{A} \sqrt{\frac{\mu}{\varepsilon}} \\
+                K(\omega)= \omega \sqrt{\varepsilon \mu}
+            \end{cases}
+        \end{equation}
+        dove $A$ è una certa costante\footnote{serve solo ad evidenziare che l'impedenza caratteristica è proporzionale alla radice del rapporto
+        fra permittività elettrica e permeabilità magnetica}. In generale la costante di propagazione è un numero complesso $K=\beta -j \alpha$. Quando
+        avremo bisogno di ipotizzare che $k \in \mathbb{R}$, scriveremo semplicemente $k=\beta$. \\
+        Ipotizziamo che $Z_{0}$ e $k$ siano reali. Per un mezzo omogeneo troviamo la soluzione generale di $V(z)$ ed $I(z)$ risolvendo il sistema
+        (\ref{eqn:eq_tensione_corrente}). Derivando in $z$ la prima equazione:
+        \begin{equation}
+            \frac{d^{2}}{dz^{2}}V(z)=-jkZ_{0}\frac{d}{dz}I(z)=-jkZ_{0}(-j\frac{k}{Z_{0}}V(z))= -k^{2}V(z)
+        \end{equation}
+        ottenendo un equazione analoga a quella di un oscillatore armonico:
+        \begin{equation}
+            \frac{d^{2}}{dz^{2}}V(z)+k^{2}V(z)=0
+        \end{equation}
+        la quale avrà integrale generale:
+        \begin{equation}
+            \label{eqn:prima_exp_V}
+            V(z)=V^{+}e^{-j k z}+V^{-}e^{jkz}=V^{+}(z)+V^{-}(z) \qquad V^{+},V^{-} \in \mathbb{C}
+        \end{equation}
+        La (\ref{eqn:prima_exp_V}) è scritta come somma di due termini: un'onda \textbf{progressiva} con coefficiente
+        $V^{+}$ ed una \textbf{regressiva} con coefficiente $V^{-}$. Per interpretarne il significato fisico, torniamo nel dominio 
+        del tempo ricavando l'espressione dell'onda progressiva:
+        \begin{align}
+            v(z, t)= \Re[V^{+}(z)e^{j \omega t}] = \Re(V^{+}e^{-jkz}e^{j \omega t}) =
+            \\ \Re[|V^{+}|e^{j \varphi_{v} ^{+}}e^{-j k z}e^{j \omega t}] = |V^{+}|\cos(\omega t-kz+\varphi^{+}_{v})
+        \end{align}
+        Assumendo $\varphi^{+}_{v} = 0$, un'onda progressiva ha la forma:
+        \begin{equation}
+            \label{eqn:eq_onda_prog}
+            V^{+}(z, t) = |V^{+}|\cos(\omega t-kz)
+        \end{equation}
+        Fissato $t=0$\footnote{Vale $\forall t$ a meno di un contributo di fase} e sfruttando $k=\beta$ otteniamo nello spazio una cosinusoide:
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos(\beta z)
+        \end{equation}
+        la quale ha periodo $\displaystyle \lambda = \frac{2 \pi}{\beta}$, che è la \textbf{lunghezza d'onda}. Si noti che
+        è stato possibile definire la lunghezza d'onda perché $k$ è reale, ma tutte le altre considerazioni hanno valore generale.
+        \newpage
+        Riscrivendo la (\ref{eqn:eq_onda_prog}):
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos{(\beta (z - \frac{\omega}{\beta}))t}
+        \end{equation}
+        Facendo un'nalisi dimensionale:
+        \begin{equation}
+            [\frac{\omega}{\beta} = \frac{\omega}{\omega \sqrt{\varepsilon \mu}}] = [\frac{1}{\sqrt{\varepsilon \mu}}] = m/s
+        \end{equation}
+        dunque $\omega/\beta=v$ è una velocità, per cui:
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos(\beta(z-vt)) = f(z-vt)
+        \end{equation}
+        Graficamente, se la funzione $f$ viene traslata di $\Delta t$, l'onda sarà traslata di $v \Delta t$ in avanti. Da qui
+        la definizione di onda progressiva: è un'onda che si propaga nella direzione delle $z$ positive.
+        Se $k \in \mathbb{C}$, cioè se ci sono perdite, sostituendo $k=\beta-j\alpha$ nell'espressione di prima:
+        \begin{equation}
+            V^{+}(z,t)=\Re[|V^{+}|e^{j \varphi_{v} ^{+}}e^{-j \beta z}e^{-\alpha z}e^{j \omega t}]= |V^{+}|e^{-\alpha z}\cos(\beta z-\omega t)
+        \end{equation}
+        otteniamo un'espressione identica a prima a meno di un fattore di attenuazione $e^{-\alpha z}$, il quale rappresenta le perdite del mezzo. In sintesi,
+        un mezzo reale con perdite ha parte immaginaria non nulla che più è grande più attenua la propagazione. Questa cosa è vera solo se $\beta$ è lineare con $\omega$.
+        \\ 
+        Per le onde regressive il ragionamento è identico e si ottiene:
+        \begin{equation}
+            V^{-}(z,t)=|V^{-}|\cos(\beta(+vt))=f(z+vt)
+        \end{equation}
+        da cui la definizione di onda regressiva: è un'onda che si muove nella direzione negativa dell'asse $z$.
+        \\ \\
+        Finora abbiamo trattato la soluzione  in tensione, ma a noi occorre anche quella in corrente. Conoscendo
+        $V(z)$ possiamo sostituire la (\ref{eqn:prima_exp_V}) nella (\ref{eqn:eq_tensione_corrente}):
+        \begin{equation}
+            \frac{d}{dz}V(z)=-jkZ_{0}I(z) \implies I(z)=\frac{j}{kZ_{0}}\frac{d}{dz}V(z)
+        \end{equation}
+        \begin{equation}
+            = \frac{j}{kZ_{0}}[-j k V^{+}e^{-jkz}+jkV^{-}e^{jkz}] = \frac{V^{+}}{Z_{0}}e^{-jkz}-\frac{V^{-}}{Z_{0}}e^{jkz}
+        \end{equation}
+        \begin{equation}
+            = \frac{V^{+}(z)}{Z_{0}}+(-\frac{V^{-}(z)}{Z_{0}})=I^{+}(z)+I^{-}(z)
+        \end{equation}
+        In definitiva, per risolvere il problema elettromagnetico in questo caso basta trovare le due costanti  $V^{+}$ e $V^{-}$, ammesso che si conosca 
+        $k$ ed $\omega$. Una soluzione di questo tipo si chiama \textbf{ad onda viaggiante}.
+        La stessa soluzione si può esprimere nella \textbf{rappresentazione di onda stazionaria}, cioè tramite seni e coseni.
+        \begin{equation}
+            V(z)=V^{+}e^{-jkz}+V^{-}e^{jkz}=V^{+}(\cos(kz)-j\sin(kz))+V^{-}(\cos(kz)+j\sin(kz))
+        \end{equation}
+        \begin{equation}
+            =(V^{+}+V^{-})\cos(kz)-j(V^{+}-V^{-})\sin(kz)
+        \end{equation}
+        Notiamo che:
+        \begin{align}
+            I(0)=\frac{V^{+}}{Z_{0}}e^{0}-\frac{V^{-}}{Z_{0}e^{0}} \implies V^{+}-V^{-}=Z_{0}I(0) \\
+            V(0)=V^{+}e^{0}+V^{-}e^{0}=V^{+}+V^{-}
+        \end{align}
+        dunque:
+        \begin{equation}
+            V(z)=V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)
+        \end{equation}
+        e a noi questa cosa piace perché vuol dire che conoscendo corrente e tensione all'inizio della linea, cioè per
+        $z=0$, possiamo conoscerne il valore ovunque sulla stessa linea.
+        
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
