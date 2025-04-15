@@ -1471,9 +1471,163 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         non ci sono perdite, le quali sono legate alle parti immaginarie di $\mu$ e $\sigma$. Ma la non dispersività implica la
         non dipendenza da $t$ nel tempo e da $\sigma$ in frequenza per $\mu$ e $\sigma$, che dunque hanno trasformate reali e, di conseguenza,
         parte immaginaria nulla.
-        
 
-
+\chapter{Propagazione guidata}
+        \section{Introduzione alle guide d'onda}
+            Il campo elettromagnetico cattura il nostro interesse perché, muovendosi nello spazio,
+            questo trasporta energia ed informazione. Definiamo \textbf{guidata} la propagazione del campo attraverso
+            una struttura che la instrada attraverso un percorso specifico. Tale struttura prende il nome di \textbf{guida d'onda}. \\
+            In contrapposizione alla propagazione guidata c'è la \textbf{propagazione libera}, che si ha quando il campo si
+            propaga nello spazio libero. \\ \\
+            È utile riscrivere le equazioni di Maxwell in una forma più congeniale a quello che andremo a fare dopo.
+            Partiamo dalle relazioni di Maxwell nel dominio della frequenza per un mezzo normale:
+            \begin{equation}
+                \begin{cases}
+                \nabla \times \underline{E} = - j \omega \mu \underline{H} \\
+                \nabla \times \underline{H} = j \omega \varepsilon \underline{E}+\sigma \underline{E}+\underline{J}_{0} \\
+                \nabla \cdot (\varepsilon \underline{E}) = \rho + \rho_{0} \\
+                \nabla \cdot (\mu \underline{H}) = 0
+                \end{cases}
+            \end{equation}
+            Riscriviamo la seconda equazione di Maxwell raccogliendo $j \omega \varepsilon$ a secondo membro:
+            \begin{equation}
+                \nabla \cdot \underline{H} = j \omega \varepsilon(1 - j \frac{\sigma}{\varepsilon \omega})\underline{E}+\underline{J}_{0} = j \omega\varepsilon_{eq}\underline{E}+\underline{J}_{0}
+            \end{equation}
+            avendo definito $\displaystyle  \varepsilon_{eq} = \varepsilon(1 - j \frac{\sigma}{\varepsilon \omega})$, il cui nome è 
+            \textbf{permettività elettrica equivalente}. Utilizzando la permettività elettrica equivalente inglobiamo l'influenza di $\sigma$ nella
+            permettività. Per renderci conto dell'effeto di $\sigma$, notiamo che nell'espressione di $\varepsilon_{eq}$, se $\sigma \neq 0$, c'è un polo 
+            per $\omega = 0$. \\
+            Per quanto concerne la terza equazione, consideriamo l'equazione di continuità in frequenza:
+            \begin{equation}
+                \nabla \cdot \underline{j}+\frac{\partial}{\partial t}\rho = 0 \iff \nabla \cdot \underline{J}+j \omega \rho = 0
+            \end{equation}
+            da cui ricaviamo:
+            \begin{equation}
+                \rho = -\frac{\nabla \cdot \underline{J}}{j\omega}
+            \end{equation}
+            Sostituendo nella terza equazione di Maxwell:
+            \begin{equation}
+                \nabla \cdot (\varepsilon \underline{E}) = - \frac{\nabla \cdot \underline{J}}{j \omega}+\rho_{0}
+            \end{equation}
+            da cui\footnote{tenere conto che $-j \frac{\sigma}{\omega} = \frac{\sigma}{j \omega}$}:
+            \begin{equation}
+                \nabla \cdot (\underline{E}(\varepsilon+ \frac{\sigma}{j \omega})) = \rho_{0} \implies \nabla \cdot (\underline{E}\varepsilon_{eq})= \rho_{0}
+            \end{equation}
+        In definitiva otteniamo una nuova espressione, più compatta, delle equazioni di Maxwell:
+        \begin{equation}
+            \begin{cases}
+            \nabla \times \underline{E} = -j \omega \underline{H} \\
+            \nabla \times \underline{H} = j \omega \varepsilon_{{eq}}\underline{E}+\underline{J}_{0} \\
+            \nabla \cdot (\varepsilon \underline{E}) = \rho_{0} \\
+            \nabla \cdot (\mu \underline{H}) = 0
+            \end{cases}
+        \end{equation}
+        Da qui in avanti scriveremo la permittività elettrica equivalente senza pedice, ovvero come $\varepsilon$, tenendo
+        a mente che la vera permittività elettrica del materiale è contenuta in quella equivalente assieme alla $\sigma$. \\ \\
+        La permittività elettrica equivalente ci permette di quantificare la bontà di un conduttore. Un mezzo è un buon conduttore se
+        risulta:
+        \begin{equation}
+            |\frac{\sigma}{\omega \varepsilon}| \implies\varepsilon_{eq} = \varepsilon(1-j \frac{\sigma}{\omega \varepsilon}) \simeq -j \frac{\sigma}{\omega}
+        \end{equation}
+        Nelle nostre applicazioni consideriamo, per semplicità, un conduttore elettrico perfetto (CEP). Un CEP è una
+        brutale idealizzazione di quelli che nella realtà sono ottimi conduttori.  \\ 
+        Per un CEP, $\sigma \to \infty$. Ma se riprendiamo l'espressione della potenza dissipata per effetto Joule:
+        \begin{equation}
+            \iiint_{V} \frac{\sigma}{2}|\underline{E}|^{2}dV
+        \end{equation}
+        dovremmo aspettarci che diverge, a meno che il modulo del campo elettrico non vada a zero. Si dimostra che all'interno
+        di un CEP il modulo del campo elettrico è nullo, dunque quel termine non diverge. Vedremo fra pochissimo come questa proprietà
+        ci sarà di grande utilità. È bene notare che se $\underline{E}$ è nullo lo è anche $\underline{H}$\footnote{per la prima equazione di Maxwell}.\\
+        Per un buon conduttore questo si traduce nel fatto che il campo elettrico riesce a penetrare il conduttore
+        solo per un certo strato di profondità, oltre il quale viene schermato. Questo fenomeno prende il nome di \textbf{effetto pelle}.
+        All'aumentare di $\sigma$, lo spessore dello strato penetrato dal campo si assottiglia sempre di più fino ad azzerarsi nel caso del CEP.
+        Seppur lo strato penetrato ha spessore nullo, c'è comunque densità di corrente superficiale indotta sulla superficie del CEP pari proprio a 
+        $\underline{J}=\sigma \underline{E}$. Ricapitolando:
+        \begin{equation}
+            \textrm{CEP} \implies 
+            \begin{cases}
+                \underline{E, H} \qquad \textrm{nullo all'interno del conduttore} \\
+                \underline{J} \qquad \textrm{presente sulla superficie}    
+            \end{cases}
+        \end{equation}
+        il che è equivalente a dire che un buon conduttore \textbf{scherma il campo elettromagnetico}.
+        \\ \\
+        Noi studieremo principalmente guide metalliche. Consideriamo la situazione standard con un trasmettitore (TX),
+        ovvero un generatore di segnale di tensione o corrente, collegato attraverso una guida d'onda ad un ricevitore (RX).
+        Il problema elettromagnetico in questo caso è esterno al dominio che ha come frontiera la superficie laterale della
+        guida d'onda:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img1.png}
+        \end{figure}
+        La superficie è orientata con normale $\underline{i}_{n}$. Lo spazio interno al CEP è segnato con (1), mentre quello esterno con
+        (2). È di nostro interesse ricavare le equazioni di raccordo relative alla superficie laterale e alla base. Per le prime:
+        \begin{equation}
+            \label{eqn:raccordo_guida}
+            \underline{i}_{n}\times (\underline{E}_{2}-\underline{E}_{1})\implies \underline{i}_{n}\times \underline{E}_{2}=\underline{i}_{n} \times \underline{E}_{1} = 0
+        \end{equation}
+        avendo sfruttato $\underline{E}_{1}=0$. Non possiamo utilizzare quella per il campo magnetico perché, seppur conosciamo $\underline{H}_{1}=0$ risulta:
+        \begin{equation}
+            \underline{i}_{n} \times (\underline{H}_{2}-\underline{H}_{1}) = \underline{J}_{S}
+        \end{equation}
+        Non conosciao l'espressione della corrente superficiale perché è indotta dal campo, dunque è un incognita del problema che 
+        sarà nota solo quando lo saranno le sorgenti. Allora come condizione al raccordo utilizziamo la (\ref{eqn:raccordo_guida}). \\
+        Mancano le condizioni alla base, che dipendono dal ricevente e dal trasmittente. Poiché è impensabile risolvere il problema elettromagnetico 
+        per ogni possibile sorgente, scegliamo di non considerarle e trovare la soluzione generale del problema, che non avendo ancora informazioni su Rx e Tx ammette più soluzioni.
+        Una volta trovata, aggiungiamo i generatori ed il carico per trovare la situazione unica. \\ \\
+        Supponiamo ora di avere un mezzo normale ed omogeneo. In assenza di sorgenti impresse, di cui è responsabile il generatore che abbiamo staccato, le equazioni di Maxwell
+        assumono la forma:
+        \begin{equation}
+            \begin{cases}
+                \nabla \times \underline{E} = -j \omega \mu \underline{H} \\
+                \nabla \times \underline{H} =j \omega \varepsilon \underline{E} \\
+                \nabla \cdot (\varepsilon \underline{E}) = 0 \\
+                \nabla \cdot (\mu\underline{H})
+            \end{cases}
+        \end{equation}
+        Ipotizziamo inoltra che la struttura guidata sia \textbf{invariante per traslazione rispetto ad una direzione dello spazio}, ovvero
+        che questa abbia \textbf{simmetria cilindrica}:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img2.png}
+        \end{figure} \\
+        L'asse lungo la quale la guida ha simmetria cilindrica si chiama \textbf{asse z}. È sbagliato dire che
+        è l'asse lungo la quale c'è la propagazione, seppur in futuro faremo vedere che è proprio così. \\
+        Cerchiamo delle soluzioni particolari di campo. Faremo vedere che tutte le possibili soluzioni
+        potranno essere scritte come combinazioni di queste. Tali soluzioni particolari sono classificate in base
+        alle condizioni sulle componenti longitudinali di $\underline{E}$ ed $\underline{H}$:
+        \begin{center}
+            \begin{tabular}{|| c | c | c ||}
+                \hline
+                TE & TM & TEM \\
+                 \hline
+                $\begin{matrix} E_{z}=0 \\ H_{z} \neq 0 \end{matrix}$ &
+                $\begin{matrix} E_{z} \neq 0 \\ H_{z} = 0 \end{matrix}$ &
+                $\begin{matrix} E_{z}=0 \\ H_{z} = 0 \end{matrix}$  \\
+                \hline
+            \end{tabular}
+        \end{center} \newpage
+        Per capire di cosa si sta parlando, facciamo presente che nella nostra convenzione per le guide dìonda, la componente $z$ identifica una sezione della guida, mentre
+        la coordinata $\underline{r}_{t}=(x,y)$ un punto sulla sezione:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img3.png}
+        \end{figure} \\
+        Alle tre soluzioni TE, TM e TEM, che stanno rispettivamente per Trasverso Elettrico, Magnetico ed ElettroMagnetico,
+        sono associati i rispettivi modi TE, TM e TEM. Premesso che:
+        \begin{equation}
+            \underline{E} = \underline{E}_{t}+E_{z}\underline{i}_{z} \qquad \underline{H} = \underline{H}_{t}+H_{z}\underline{i}_{z}
+        \end{equation}
+        I modi corrispondono a soluzioni per cui l'espressione delle componenti longitudinali del campo 
+        elettrico e magnetico si possono fattorizzare come il prodotto di una funzione scalare per una funzione vettoriale:
+        \begin{equation}
+            \begin{cases}
+                \underline{E}_{t}(\underline{r}_{t},z)=V(z)\underline{e}(\underline{r}_{t}) \\
+                \underline{H}_{t}(\underline{r}_{t},z)=I(z)\underline{h}(\underline{r}_{t})
+            \end{cases}
+        \end{equation}
+        dove $V(z)$ e $I(z)$ sono dette \textbf{funzioni scalari di modo} e $\underline{e}(\underline{r}_{t})$ ed $\underline{h}(\underline{r}_{t})$ funzioni 
+        vettoriali di modo. Per i modi TEM vedremo che $V(z)$ e $I(z)$ corrispondono a tensione e corrente, ma in generale non è vero.
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
