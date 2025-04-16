@@ -1747,8 +1747,88 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             V(z)=V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)
         \end{equation}
         e a noi questa cosa piace perché vuol dire che conoscendo corrente e tensione all'inizio della linea, cioè per
-        $z=0$, possiamo conoscerne il valore ovunque sulla stessa linea.
-        
+        $z=0$, possiamo conoscerne il valore ovunque sulla stessa linea. Tramite lo 
+        stesso procedimento ricaviamo un'espressione simile per la corrente, ottenendo le \textbf{formule del trasporto}:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle I(z) = I(0)\cos(kz)-j\frac{V(0)}{Z_{0}}\sin(kz) \\
+                V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)
+            \end{cases}
+        \end{equation}
+        \\ 
+        A livello circuitale, una linea di trasmissione è rappresentata da una coppia di rettangoli, il cui 
+        spessore sottolinea il fatto che c'è fenomeno propagativo. Una linea di trasmissione è caratterizzata dalla sua lunghezza $l$,
+        la sua costante di propagazione $k$ e l'impedenza caratteristica $Z_{0}$. 
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img4.png}
+        \end{figure}
+        \\
+        Tensione e corrente sono funzioni periodiche di $\lambda$, dunque ci aspettiamo che l'impedenza lungo la linea sia anch'essa 
+        una funzione periodica:
+        \begin{equation}
+            Z(z) = \frac{V(z)}{I(z)} = \frac{\displaystyle I(z) = I(0)\cos(kz)-j\frac{V(0)}{Z_{0}}\sin(kz)}{V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)}
+        \end{equation}
+        Raccogliendo $I(0)\cos(kz)$ sia a numeratore che denominatore otteniamo:
+        \begin{equation}
+            \label{eqn:trasporto_impedenza}
+            Z(z)=\displaystyle \frac{\displaystyle \frac{V(0)}{I(0)}-jZ_{0}\tan(kz)}{1-\displaystyle \frac{V(0)}{I(0)}\frac{1}{Z_{0}}\tan(kz)} = 
+            \frac{Z(0)-jZ_{0}\tan(kz)}{\displaystyle Z_{0}-Z(0)\tan(kz)}\cdot Z_{0}
+        \end{equation}
+        dove $Z(0)$ è l'impedenza valutata all'inizio della linea. Nella pratica è comodo utilizzare la
+        (\ref{eqn:trasporto_impedenza}) per $z=-d$, cioè per distanze negative, perché la tangente viene con il segno positivo\footnote{e le arcotangenti sono immediate da calcolare}.
+        Per l'ammettenza:
+        \begin{equation}
+            Y(z)=\frac{Y_{0}-Y(0)\tan(kz)}{Y(0)-Y_{0}\tan(kz)}
+        \end{equation}
+        avendo posto $Y(0)=1/Z(0)$ e $Y_{0}=1/Z_{0}$. Sia l'ammettenza che l'impedenza sono periodiche di $\lambda/2$, perché
+        sono espresse tramite $\tan(kz)$. \\
+        Un altro parametro significativo delle linee di trasmissione è il \textbf{coefficiente di riflessione} $\Gamma$:
+        \begin{equation}
+            \Gamma (z) = \frac{V^{-}(z)}{V^{+}(z)} = \frac{V^{-}}{V^{+}}\exp(j2kz)
+        \end{equation}
+        definito come il rapporto fra l'onda regressiva e quella progressiva. Può essere definito anche in corrente, differendo dalla
+        definizione in tensione di un segno meno. Il coefficiente di riflessione ha significato fisico: quantifica di quanto l'onda che si 
+        propaga sulla linea viene riflessa in corrispondenza della coordinata $z$. Notiamo che:
+        \begin{equation}
+            \Gamma(0)=\frac{V^{+}}{V^{-}} \implies \Gamma(z) = \Gamma(0)\exp(j2kz)
+        \end{equation}
+        Il coefficiente di riflessione ha lo stesso periodo $\lambda/2$ che ha pure l'impedenza. Queste due 
+        infatti sono legate:
+        \begin{equation}
+            Z(z)=\frac{V(z)}{I(z)}=\displaystyle \frac{V^{+}(z)+V^{-}(z)}{\displaystyle \frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}}
+            = Z_{0}\frac{V^{+}(z)}{V^{+}(z)}[\frac{1+\Gamma(z)}{1-\Gamma(z)}] = \frac{1+\Gamma(z)}{1-\Gamma(z)} 
+        \end{equation}
+        Viceversa:
+        \begin{equation}
+            \Gamma(z)=\frac{Z(z)-Z_{0}}{Z(z)+Z_{0}} = \frac{Y(0)-Y(z)}{Y(0)+Y(z)}
+        \end{equation}
+        \begin{equation}
+            Y(z)=\frac{1-\Gamma(z)}{1+\Gamma(z)}
+        \end{equation}
+        Se la rete è senza perdite e dunque $k=\beta$, il coefficiente di riflessione vale:
+        \begin{equation}
+            \Gamma (z)=\Gamma (0)\exp(2 \beta z) \implies \begin{cases}
+                |\Gamma(z)|=|\Gamma(0)| \\
+                \angle \Gamma(z) = 2 \beta z
+            \end{cases}
+        \end{equation}
+        cioè il modulo è costante e la fase è lineare in $z$, per cui nel piano complesso descrive una circonferenza. Poiché 
+        il modulo non può essere negativo e l'onda riflessa può essere al massimo pari a quella propagata:
+        \begin{equation}
+            0 \leq \Gamma(z) \leq 1
+        \end{equation}
+        \\ Definiamo ora la potenza attraverso una sezione\footnote{Qui per la potenza media $\overline{P}$ ho messo il cappello, che non ho messo in precedenza. Da qua in poi sarà sempre segnata col cappello.}:
+        \begin{equation}
+            P(z)=\frac{1}{2}V(z)I^{*}(z) = \overline{P}+jQ(z)
+        \end{equation}
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img5.png}
+        \end{figure}
+        La potenza media attraverso la superficie del dominio è data dal flusso del vettore di Poynting, dunque $\overline{P}$ è 
+        la potenza che attraversa la sezione\footnote{L'area identificata dall'intersezione tra il piano dei punti di longitudine $z$ e la guida d'onda} alla longitudine $z$. Similmente, $Q$ è la potenza reattiva che attraversa la sezione alla longitudine $z$.
+
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
