@@ -1471,9 +1471,599 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         non ci sono perdite, le quali sono legate alle parti immaginarie di $\mu$ e $\sigma$. Ma la non dispersività implica la
         non dipendenza da $t$ nel tempo e da $\sigma$ in frequenza per $\mu$ e $\sigma$, che dunque hanno trasformate reali e, di conseguenza,
         parte immaginaria nulla.
-        
 
+\chapter{Propagazione guidata}
+        \section{Introduzione alle guide d'onda}
+            Il campo elettromagnetico cattura il nostro interesse perché, muovendosi nello spazio,
+            questo trasporta energia ed informazione. Definiamo \textbf{guidata} la propagazione del campo attraverso
+            una struttura che la instrada attraverso un percorso specifico. Tale struttura prende il nome di \textbf{guida d'onda}. \\
+            In contrapposizione alla propagazione guidata c'è la \textbf{propagazione libera}, che si ha quando il campo si
+            propaga nello spazio libero. \\ \\
+            È utile riscrivere le equazioni di Maxwell in una forma più congeniale a quello che andremo a fare dopo.
+            Partiamo dalle relazioni di Maxwell nel dominio della frequenza per un mezzo normale:
+            \begin{equation}
+                \begin{cases}
+                \nabla \times \underline{E} = - j \omega \mu \underline{H} \\
+                \nabla \times \underline{H} = j \omega \varepsilon \underline{E}+\sigma \underline{E}+\underline{J}_{0} \\
+                \nabla \cdot (\varepsilon \underline{E}) = \rho + \rho_{0} \\
+                \nabla \cdot (\mu \underline{H}) = 0
+                \end{cases}
+            \end{equation}
+            Riscriviamo la seconda equazione di Maxwell raccogliendo $j \omega \varepsilon$ a secondo membro:
+            \begin{equation}
+                \nabla \cdot \underline{H} = j \omega \varepsilon(1 - j \frac{\sigma}{\varepsilon \omega})\underline{E}+\underline{J}_{0} = j \omega\varepsilon_{eq}\underline{E}+\underline{J}_{0}
+            \end{equation}
+            avendo definito $\displaystyle  \varepsilon_{eq} = \varepsilon(1 - j \frac{\sigma}{\varepsilon \omega})$, il cui nome è 
+            \textbf{permettività elettrica equivalente}. Utilizzando la permettività elettrica equivalente inglobiamo l'influenza di $\sigma$ nella
+            permettività. Per renderci conto dell'effeto di $\sigma$, notiamo che nell'espressione di $\varepsilon_{eq}$, se $\sigma \neq 0$, c'è un polo 
+            per $\omega = 0$. \\
+            Per quanto concerne la terza equazione, consideriamo l'equazione di continuità in frequenza:
+            \begin{equation}
+                \nabla \cdot \underline{j}+\frac{\partial}{\partial t}\rho = 0 \iff \nabla \cdot \underline{J}+j \omega \rho = 0
+            \end{equation}
+            da cui ricaviamo:
+            \begin{equation}
+                \rho = -\frac{\nabla \cdot \underline{J}}{j\omega}
+            \end{equation}
+            Sostituendo nella terza equazione di Maxwell:
+            \begin{equation}
+                \nabla \cdot (\varepsilon \underline{E}) = - \frac{\nabla \cdot \underline{J}}{j \omega}+\rho_{0}
+            \end{equation}
+            da cui\footnote{tenere conto che $-j \frac{\sigma}{\omega} = \frac{\sigma}{j \omega}$}:
+            \begin{equation}
+                \nabla \cdot (\underline{E}(\varepsilon+ \frac{\sigma}{j \omega})) = \rho_{0} \implies \nabla \cdot (\underline{E}\varepsilon_{eq})= \rho_{0}
+            \end{equation}
+        In definitiva otteniamo una nuova espressione, più compatta, delle equazioni di Maxwell:
+        \begin{equation}
+            \begin{cases}
+            \nabla \times \underline{E} = -j \omega \underline{H} \\
+            \nabla \times \underline{H} = j \omega \varepsilon_{{eq}}\underline{E}+\underline{J}_{0} \\
+            \nabla \cdot (\varepsilon \underline{E}) = \rho_{0} \\
+            \nabla \cdot (\mu \underline{H}) = 0
+            \end{cases}
+        \end{equation}
+        Da qui in avanti scriveremo la permittività elettrica equivalente senza pedice, ovvero come $\varepsilon$, tenendo
+        a mente che la vera permittività elettrica del materiale è contenuta in quella equivalente assieme alla $\sigma$. \\ \\
+        La permittività elettrica equivalente ci permette di quantificare la bontà di un conduttore. Un mezzo è un buon conduttore se
+        risulta:
+        \begin{equation}
+            |\frac{\sigma}{\omega \varepsilon}| \implies\varepsilon_{eq} = \varepsilon(1-j \frac{\sigma}{\omega \varepsilon}) \simeq -j \frac{\sigma}{\omega}
+        \end{equation}
+        Nelle nostre applicazioni consideriamo, per semplicità, un conduttore elettrico perfetto (CEP). Un CEP è una
+        brutale idealizzazione di quelli che nella realtà sono ottimi conduttori.  \\ 
+        Per un CEP, $\sigma \to \infty$. Ma se riprendiamo l'espressione della potenza dissipata per effetto Joule:
+        \begin{equation}
+            \iiint_{V} \frac{\sigma}{2}|\underline{E}|^{2}dV
+        \end{equation}
+        dovremmo aspettarci che diverge, a meno che il modulo del campo elettrico non vada a zero. Si dimostra che all'interno
+        di un CEP il modulo del campo elettrico è nullo, dunque quel termine non diverge. Vedremo fra pochissimo come questa proprietà
+        ci sarà di grande utilità. È bene notare che se $\underline{E}$ è nullo lo è anche $\underline{H}$\footnote{per la prima equazione di Maxwell}.\\
+        Per un buon conduttore questo si traduce nel fatto che il campo elettrico riesce a penetrare il conduttore
+        solo per un certo strato di profondità, oltre il quale viene schermato. Questo fenomeno prende il nome di \textbf{effetto pelle}.
+        All'aumentare di $\sigma$, lo spessore dello strato penetrato dal campo si assottiglia sempre di più fino ad azzerarsi nel caso del CEP.
+        Seppur lo strato penetrato ha spessore nullo, c'è comunque densità di corrente superficiale indotta sulla superficie del CEP pari proprio a 
+        $\underline{J}=\sigma \underline{E}$. Ricapitolando:
+        \begin{equation}
+            \textrm{CEP} \implies 
+            \begin{cases}
+                \underline{E, H} \qquad \textrm{nullo all'interno del conduttore} \\
+                \underline{J} \qquad \textrm{presente sulla superficie}    
+            \end{cases}
+        \end{equation}
+        il che è equivalente a dire che un buon conduttore \textbf{scherma il campo elettromagnetico}.
+        \\ \\
+        Noi studieremo principalmente guide metalliche. Consideriamo la situazione standard con un trasmettitore (TX),
+        ovvero un generatore di segnale di tensione o corrente, collegato attraverso una guida d'onda ad un ricevitore (RX).
+        Il problema elettromagnetico in questo caso è esterno al dominio che ha come frontiera la superficie laterale della
+        guida d'onda:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img1.png}
+        \end{figure}
+        La superficie è orientata con normale $\underline{i}_{n}$. Lo spazio interno al CEP è segnato con (1), mentre quello esterno con
+        (2). È di nostro interesse ricavare le equazioni di raccordo relative alla superficie laterale e alla base. Per le prime:
+        \begin{equation}
+            \label{eqn:raccordo_guida}
+            \underline{i}_{n}\times (\underline{E}_{2}-\underline{E}_{1})\implies \underline{i}_{n}\times \underline{E}_{2}=\underline{i}_{n} \times \underline{E}_{1} = 0
+        \end{equation}
+        avendo sfruttato $\underline{E}_{1}=0$. Non possiamo utilizzare quella per il campo magnetico perché, seppur conosciamo $\underline{H}_{1}=0$ risulta:
+        \begin{equation}
+            \underline{i}_{n} \times (\underline{H}_{2}-\underline{H}_{1}) = \underline{J}_{S}
+        \end{equation}
+        Non conosciao l'espressione della corrente superficiale perché è indotta dal campo, dunque è un incognita del problema che 
+        sarà nota solo quando lo saranno le sorgenti. Allora come condizione al raccordo utilizziamo la (\ref{eqn:raccordo_guida}). \\
+        Mancano le condizioni alla base, che dipendono dal ricevente e dal trasmittente. Poiché è impensabile risolvere il problema elettromagnetico 
+        per ogni possibile sorgente, scegliamo di non considerarle e trovare la soluzione generale del problema, che non avendo ancora informazioni su Rx e Tx ammette più soluzioni.
+        Una volta trovata, aggiungiamo i generatori ed il carico per trovare la situazione unica. \\ \\
+        Supponiamo ora di avere un mezzo normale ed omogeneo. In assenza di sorgenti impresse, di cui è responsabile il generatore che abbiamo staccato, le equazioni di Maxwell
+        assumono la forma:
+        \begin{equation}
+            \begin{cases}
+                \nabla \times \underline{E} = -j \omega \mu \underline{H} \\
+                \nabla \times \underline{H} =j \omega \varepsilon \underline{E} \\
+                \nabla \cdot (\varepsilon \underline{E}) = 0 \\
+                \nabla \cdot (\mu\underline{H})
+            \end{cases}
+        \end{equation}
+        Ipotizziamo inoltra che la struttura guidata sia \textbf{invariante per traslazione rispetto ad una direzione dello spazio}, ovvero
+        che questa abbia \textbf{simmetria cilindrica}:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img2.png}
+        \end{figure} \\
+        L'asse lungo la quale la guida ha simmetria cilindrica si chiama \textbf{asse z}. È sbagliato dire che
+        è l'asse lungo la quale c'è la propagazione, seppur in futuro faremo vedere che è proprio così. \\
+        Cerchiamo delle soluzioni particolari di campo. Faremo vedere che tutte le possibili soluzioni
+        potranno essere scritte come combinazioni di queste. Tali soluzioni particolari sono classificate in base
+        alle condizioni sulle componenti longitudinali di $\underline{E}$ ed $\underline{H}$:
+        \begin{center}
+            \begin{tabular}{|| c | c | c ||}
+                \hline
+                TE & TM & TEM \\
+                 \hline
+                $\begin{matrix} E_{z}=0 \\ H_{z} \neq 0 \end{matrix}$ &
+                $\begin{matrix} E_{z} \neq 0 \\ H_{z} = 0 \end{matrix}$ &
+                $\begin{matrix} E_{z}=0 \\ H_{z} = 0 \end{matrix}$  \\
+                \hline
+            \end{tabular}
+        \end{center} \newpage
+        Per capire di cosa si sta parlando, facciamo presente che nella nostra convenzione per le guide dìonda, la componente $z$ identifica una sezione della guida, mentre
+        la coordinata $\underline{r}_{t}=(x,y)$ un punto sulla sezione:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img3.png}
+        \end{figure} \\
+        Alle tre soluzioni TE, TM e TEM, che stanno rispettivamente per Trasverso Elettrico, Magnetico ed ElettroMagnetico,
+        sono associati i rispettivi modi TE, TM e TEM. Premesso che:
+        \begin{equation}
+            \underline{E} = \underline{E}_{t}+E_{z}\underline{i}_{z} \qquad \underline{H} = \underline{H}_{t}+H_{z}\underline{i}_{z}
+        \end{equation}
+        I modi corrispondono a soluzioni per cui l'espressione delle componenti longitudinali del campo 
+        elettrico e magnetico si possono fattorizzare come il prodotto di una funzione scalare per una funzione vettoriale:
+        \begin{equation}
+            \label{eqn:fattorizzazione_modi}
+            \begin{cases}
+                \underline{E}_{t}(\underline{r}_{t},z)=V(z)\underline{e}(\underline{r}_{t}) \\
+                \underline{H}_{t}(\underline{r}_{t},z)=I(z)\underline{h}(\underline{r}_{t})
+            \end{cases}
+        \end{equation}
+        dove $V(z)$ e $I(z)$ sono dette \textbf{funzioni scalari di modo} e $\underline{e}(\underline{r}_{t})$ ed $\underline{h}(\underline{r}_{t})$ funzioni 
+        vettoriali di modo. Per i modi TEM vedremo che $V(z)$ e $I(z)$ corrispondono a tensione e corrente, ma in generale non è vero.
+    \section{Modi TEM}
+    Quando fattorizziamo le funzioni scalari e vettoriali di modo sono definite a meno di una costante moltiplicativa, quindi non sono determinate.
+    Apparentemente questo è un problema perché per le componenti trasversali dei campi abbiamo due equazioni in tre incognite ciascuna al posto delle due sole
+    componenti trasversali.\\
+    Per risolvere il problema utilizziamo le \textbf{equazioni di Markuvitz-Schwinger}, che sono nient'altro 
+    che una riscrittura delle equazioni di Maxwell:
+    \begin{equation}
+        \label{eqn:eq_Markuvitz-Schwinger}
+        \begin{cases}
+            \displaystyle -\frac{\partial}{\partial t}\underline{E}_{t}=j \omega \mu [\underline{H}_{t}\times \underline{i}_{z}+\displaystyle \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot (\underline{H}_{z}) \times \underline{i}_{z}] \\
+            \displaystyle - \frac{\partial}{\partial t}\underline{H}_{t}=j\omega \varepsilon [\underline{i}_{z} \times \underline{E}_{t}+ \displaystyle \frac{1}{k^{2}}\nabla_{t} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})] \\
+            j \omega \mu H_{z} = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) \\
+            j \omega \varepsilon E_{z}=\nabla_{t}\cdot (\underline{H}_{t} \times \underline{i}_{z})
+        \end{cases}
+    \end{equation}
+    dove $\nabla_{t} = \nabla - \frac{\partial}{\partial z} \underline{i}_{z}$ è il \textbf{nabla trasverso}, che agisce solo
+    sulle componenti trasverse, mentre $k$ è la \textbf{costante di propagazione} e vale $k=\omega \sqrt{\varepsilon \mu}$, misurata in $m^{-1}$.
+    \\ Le equazioni di Markuvitz-Schwinger separano la parte trasversa, che si trova  da sola nelle prime due equazioni, da quella longitudinale.
+    Allora ci si ricava la parte trasversa e poi le longitudinali.
+    In questa sezione cerchiamo le \textbf{soluzioni TEM}, dunque partiamo dal ricavarci l'espressione delle (\ref{eqn:eq_Markuvitz-Schwinger}) per questo caso particolare. Utilizziamo ultime due equazioni e sfruttiamo il fatto che le componenti longitudinali 
+    $H_{z}$ ed $E_{z}$ sono nulle per i modi TEM:
+    \begin{equation}
+        \begin{cases}
+            j \omega \mu H_{z} = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})  \implies \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) = 0 \\
+            j \omega \varepsilon E_{z} = \nabla_{t} \cdot (\underline{H} \times \underline{i}_{z})  \implies \nabla_{t} \cdot (\underline{H} \times \underline{i}_{z}) = 0
+        \end{cases}
+    \end{equation}
+    Sostituendo nella prima e seconda equazione di Markuvitz-Schwinger
+    \begin{align}
+        -\frac{\partial}{\partial t} \underline{E}_{t} = j \omega \mu [\underline{H}_{t} \times \underline{i}_{z} - \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot 0] = j \omega \mu(\underline{H}_{t} \times \underline{i}_{z}) \\
+        -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon [\underline{i}_{z}\times \underline{E}_{t}+\frac{1}{k^{2}}\nabla_{t}\nabla_{t} \cdot 0] = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t})
+    \end{align}
+    In sintesi, per i modi TEM, le equazioni di Markuvitz-Schwinger hanno questa forma:
+    \begin{equation}
+        \label{eqn:MS_TEM}
+        \begin{cases}
+            -\frac{\partial}{\partial t}\underline{E}_{t} = j \omega \mu (\underline{H}_{t} \times \underline{i}_{z}) \\
+            -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t}) \\
+            \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) = 0 \\
+            \nabla_{t} \cdot (\underline{H}_{t} \times \underline{i}_{z}) = 0
+        \end{cases}
+    \end{equation}
+    Fatto ciò, sostituiamo le espressioni fattorizzate (\ref{eqn:fattorizzazione_modi}) nella prima equazione delle (\ref{eqn:MS_TEM}):
+    \begin{equation}
+        -\frac{\partial}{\partial t}(V(z)\underline{e}(\underline{r}_{t})) = - \underline{e}(\underline{r}_{t})V(z) = j \omega \mu I(z)\underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+    \end{equation}
+    tenendo a mente che nella derivata del prodotto quella di $V(z)$ rispetto a $t$ è nulla, perchè indipendente dalle componenti trasversali.
+    Manipoliamo l'espressione dividendo per $j \omega \mu$ ottenendo:
+    \begin{equation}
+        \label{eqn:mi_serve}
+        \underline{e}(\underline{r}_{t}) \cdot [-\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}] = \underline{e}(\underline{r}_{t}) \cdot \frac{1}{A}= \underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+    \end{equation}
+    avendo posto:
+    \begin{equation}
+         A = -\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}
+    \end{equation}
+    Sotto l'ipotesi di mezzo omogeneo $\mu$ non dipende dallo spazio e quindi, apparentemente, $A$ soltanto da $z$. Ma se osserviamo
+    la relazione (\ref{eqn:mi_serve}), notiamo che il secondo membro dipende soltanto dalle coordinate trasversali, per cui la relazione per valere deve 
+    dipendere anche a sinistra solo da $\underline{r}_{t}$.
+    Condensando il tutto, otteniamo la \textbf{prima equazione dei telegrafisti}\footnote{È solo il primo pezzo, il secondo è una conseguenza di Markuvitz-Schwinger così come il primo}:
+    \begin{equation}
+        \label{eqn:prima_eq_telegrafisti}
+        \begin{cases}
+            \displaystyle \frac{dV}{dz} = \frac{j \omega \mu I}{A} \\
+            \underline{e}(\underline{r}_{t}) = A \underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+        \end{cases}
+    \end{equation}
+    Inoltre $\underline{e}$ è ricavabile da $\underline{h}$ e viceversa. Manipoliamo 
+    il secondo pezzo dell'equazione dei telegrafisti premoltiplicando vettorialmente per $\underline{i}_{z}$:
+    \begin{equation}
+        \underline{i}_{z} \times \underline{e} = A \underline{i}_{z}(\underline{h} \times \underline{i}_{z}) = A (\underline{i}_{z} \times \underline{h}) \times \underline{i}_{z}
+    \end{equation}
+    Utilizziamo l'identità vettoriale notevole:
+    \begin{equation}
+        = A [(\underline{i}_{z} \cdot \underline{i}_{z})\underline{h}-(\underline{h}\cdot \underline{i}_{z})\underline{i}_{z}]
+        = A[|\underline{i}_{z}|^{2}\underline{h}-0] = A\underline{h}
+    \end{equation}
+    dove abbiamo sfruttato il fatto che $\underline{h} \cdot \underline{i}_{z} = 0$.\footnote{perché $\underline{h}$ è totalmente trasversale}
+    In definitiva la relazione fra la componente longitudinale di $\underline{e}$ ed $\underline{h}$ è:
+    \begin{equation}
+        \label{eqn:mi_serve2}
+        \underline{i}_{z} \times \underline{e} = A \underline{h}
+    \end{equation}
+    Per la seconda equazione di Markuvitz-Schwinger il procedimento è analogo a quello fatto finora: sostituiamo l'espressione fattorizzata nella
+    seconda equazione e ricaviamo:
+    \begin{equation}
+        -\underline{h}(\underline{r}_{t}) \frac{d}{dz}I(z)= j \omega \varepsilon V(z) \underline{i}_{t} \times \underline{e}(\underline{r}_{t})
+    \end{equation}
+    sostituendo la (\ref{eqn:mi_serve2}) che abbiamo appena ricavato
+    \begin{equation}
+        \implies -\underline{h}(\underline{r}_{t}) \frac{d}{dz}I(z) = j \omega AV(z)\underline{h}(\underline{r}_{t})
+        \implies [\frac{d}{dz}I(z)+j\omega \varepsilon A V(z)]\underline{h} = 0
+    \end{equation}
+    poiché a noi non interessano le soluzioni banali per $\underline{h} = 0$, l'espressione è nulla se è nullo l'altro termine del prodotto, da
+    cui otteniamo la \textbf{seconda equazione dei telegrafisti}:
+    \begin{equation}
+        -\frac{d}{dz}I(z) = j \omega A V(z)
+    \end{equation}
 
+    Non ci resta che determinare $\underline{e}$ ed $\underline{h}$. Sfruttiamo la terza equazione di Markuvitz-Schwinger
+    e sostituiamo l'espressione fattorizzata:
+    \begin{equation}
+        0 = \nabla_{t} (\underline{i}_{z} \times \underline{E}_{t})= V(z)\nabla_{t} \cdot (\underline{i}_{z} \times \underline{e}) = V(z) \nabla_{t} \cdot(A\underline{h})
+    \end{equation}
+    Se $A=0$ oppure $V(z)=0$ c'è la soluzione banale, dunque non ci interessa. Ricaviamo allora:
+    \begin{equation}
+        \nabla_{t} \cdot \underline{h} = 0
+    \end{equation}
+    ovvero che $\underline{h}$ è un campo indivergente. Se però esprimiamo la terza equazione come identità notevole:
+    \begin{equation}
+        0 = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) =V(z)[(\nabla_{t} \times \underline{i}_{z})\underline{e} - \underline{i}_{z} \cdot \nabla_{t} \times \underline{e}] = 0
+    \end{equation}
+    ma $\nabla_{t} \times \underline{i}_{z}$ perchè $\underline{i}_{z}$ è un versore e non dipende da $t$. Inoltre $V(z)$ si può cancellare ambo membri ottenendo:
+    \begin{equation}
+        \underline{i}_{z} \cdot \nabla_{t} \times \underline{e} = 0
+    \end{equation}
+    cioè che il rotore di $\underline{e}$ è perpendicolare all'asse $z$. Calcolando il rotore di $\underline{e}$:
+    \begin{equation}
+        \nabla_{t} \times \underline{e} = 
+        \begin{vmatrix} 
+            \underline{i}_{x} & \underline{i}_{y} & \underline{i}_{z} \\
+            \displaystyle \frac{\partial}{\partial x} & \displaystyle \frac{\partial}{\partial y} & 0 \\
+            e_{x} & e_{y} & 0
+        \end{vmatrix} = \underline{i}_{z} \cdot (\frac{\partial}{\partial x}e_{y}-\frac{\partial}{\partial y}e_{x}) = 0
+    \end{equation}
+    cioè il rotore dipende solo dalla componente longitudinale, che è nulla, per cui il rotore è di $\underline{e}$ è nullo. 
+    Allora $\underline{e}$ è un campo irrotazionale. Facendo gli stessi calcoli con la quarta equazione di Markuvitz-Scwhinger si ricava che $\underline{h}$ è irrotazionale
+    ed $\underline{e}$ è indivergente. IN definitiva otteniamo
+    \begin{equation}
+        \begin{cases}
+            \nabla \cdot \underline{e} = 0 \qquad \nabla \times \underline{e} = 0
+            \\ \nabla \cdot \underline{h} = 0 \qquad \nabla \times \underline{h} = 0
+        \end{cases}
+    \end{equation}
+    che equivale a dire che $\underline{e}$ ed $\underline{h}$ sono \textbf{campi armonici}.\footnote{ovvero sia indivergenti che irrotazionali}
+    \\ \\
+    Il fatto che $\underline{e}$ ed $\underline{h}$ siano armonici ci porta a pensare che potrebbero avere un potenziale scalare, questo 
+    perché un campo irrotazionale è anche conservativo se è semplicemente connesso\footnote{cioè se si può deformare nel dominio una curva con continuità senza uscire dal dominio}
+    Già considerando la sezione di un cavo coassiale, ci si rende conto che non è un domino semplciemente connesso (per verificarlo basta prendere una curva che circonda l'anima 
+    e comprimerla, uscirà fuori dal dominio dove è interposto il dielettrico).
+    \newpage
+    \begin{figure}[h!]
+        \center 
+        \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img6.png}
+    \end{figure} 
+    Tuttavia, se $C$ è una curva che sta nel dominio identificato tra l'anima (il cerchio in mezzo) e la calza
+    (il cerchio esterno) ed $S_{c}$ la superficie che ha $C$ come bordo, possiamo applicare la prima legge di Maxwell:
+    \begin{equation}
+        \oint_{C} \underline{E} \cdot \underline{i}_{n}dS = j \omega \mu \iint_{S_{C}}\underline{H}\cdot \underline{i}_{n}dS
+    \end{equation}
+    Per la sezione del cavo coassiale, così come per tutte le guide d'onda, la normale alla superficie $S_{c}$ è l'asse $z$, dunque $\underline{i}_{n}=\underline{i}_{z}$.
+    Per cui $\underline{H} \cdot \underline{i}_{z}=H_{z}$, che è nulla per i modi TEM. Allora:
+    \begin{equation}
+        \oint_{C} \underline{E} \cdot \underline{i}_{n}dS = j \omega \mu \iiint_{S_{C}} \underline{H} \cdot \underline{i}_{z} dS = 0
+    \end{equation}
+    che è proprio la definizione di campo conservativo. In sintesi, per i modi TEM il campo elettrico è conservativo.
+    \section{Caratterizzazione delle guide d'onda}
+        In un problema elettromagnetico, i campi incogniti sono $\underline{E}(\underline{r}_{t}, z)$ ed $\underline{H}(\underline{r}_{t}, z)$.
+        Per i modi TEM risulta:
+        \begin{equation}
+            \begin{cases}
+                \underline{E}_{t}(\underline{r}_{t},z)=V(z)\underline{e}(\underline{r}_{t}) \\
+                \underline{H}_{t}(\underline{r}_{t},z)=I(z)\underline{h}(\underline{r}_{t})
+            \end{cases}
+        \end{equation}
+        con $V(z)$ ed $I(z)$ tensione e corrente in corrispondenza della coordinata $z$. Una volta noti $\underline{e}(\underline{r}_{t}, t)$
+        ed $\underline{h}(\underline{r}_{t},z)$ occorre ricavare $V(z)$ ed $I(z)$. Partiamo da due equazioni che legano tensioni e corrente:
+        \begin{equation}
+            \label{eqn:eq_tensione_corrente}
+            \begin{cases}
+                \frac{d}{dz}V(z)=-j k Z_{0}I(z) \\
+                \frac{d}{dz}I(z) = -j k Z_{0}V(z)
+            \end{cases}
+        \end{equation}
+        dove $k$ è la costante di propagazione e $Z_{0}$ l'impedenza caratteristica della linea:
+        \begin{equation}
+            \begin{cases}
+                Z_{0} = \displaystyle \frac{1}{A} \sqrt{\frac{\mu}{\varepsilon}} \\
+                K(\omega)= \omega \sqrt{\varepsilon \mu}
+            \end{cases}
+        \end{equation}
+        dove $A$ è una certa costante\footnote{serve solo ad evidenziare che l'impedenza caratteristica è proporzionale alla radice del rapporto
+        fra permittività elettrica e permeabilità magnetica}. In generale la costante di propagazione è un numero complesso $K=\beta -j \alpha$. Quando
+        avremo bisogno di ipotizzare che $k \in \mathbb{R}$, scriveremo semplicemente $k=\beta$. \\
+        Ipotizziamo che $Z_{0}$ e $k$ siano reali. Per un mezzo omogeneo troviamo la soluzione generale di $V(z)$ ed $I(z)$ risolvendo il sistema
+        (\ref{eqn:eq_tensione_corrente}). Derivando in $z$ la prima equazione:
+        \begin{equation}
+            \frac{d^{2}}{dz^{2}}V(z)=-jkZ_{0}\frac{d}{dz}I(z)=-jkZ_{0}(-j\frac{k}{Z_{0}}V(z))= -k^{2}V(z)
+        \end{equation}
+        ottenendo un equazione analoga a quella di un oscillatore armonico:
+        \begin{equation}
+            \frac{d^{2}}{dz^{2}}V(z)+k^{2}V(z)=0
+        \end{equation}
+        la quale avrà integrale generale:
+        \begin{equation}
+            \label{eqn:prima_exp_V}
+            V(z)=V^{+}e^{-j k z}+V^{-}e^{jkz}=V^{+}(z)+V^{-}(z) \qquad V^{+},V^{-} \in \mathbb{C}
+        \end{equation}
+        La (\ref{eqn:prima_exp_V}) è scritta come somma di due termini: un'onda \textbf{progressiva} con coefficiente
+        $V^{+}$ ed una \textbf{regressiva} con coefficiente $V^{-}$. Per interpretarne il significato fisico, torniamo nel dominio 
+        del tempo ricavando l'espressione dell'onda progressiva:
+        \begin{align}
+            v(z, t)= \Re[V^{+}(z)e^{j \omega t}] = \Re(V^{+}e^{-jkz}e^{j \omega t}) =
+            \\ \Re[|V^{+}|e^{j \varphi_{v} ^{+}}e^{-j k z}e^{j \omega t}] = |V^{+}|\cos(\omega t-kz+\varphi^{+}_{v})
+        \end{align}
+        Assumendo $\varphi^{+}_{v} = 0$, un'onda progressiva ha la forma:
+        \begin{equation}
+            \label{eqn:eq_onda_prog}
+            V^{+}(z, t) = |V^{+}|\cos(\omega t-kz)
+        \end{equation}
+        Fissato $t=0$\footnote{Vale $\forall t$ a meno di un contributo di fase} e sfruttando $k=\beta$ otteniamo nello spazio una cosinusoide:
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos(\beta z)
+        \end{equation}
+        la quale ha periodo $\displaystyle \lambda = \frac{2 \pi}{\beta}$, che è la \textbf{lunghezza d'onda}. Si noti che
+        è stato possibile definire la lunghezza d'onda perché $k$ è reale, ma tutte le altre considerazioni hanno valore generale.
+        \newpage
+        Riscrivendo la (\ref{eqn:eq_onda_prog}):
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos{(\beta (z - \frac{\omega}{\beta}))t}
+        \end{equation}
+        Facendo un'nalisi dimensionale:
+        \begin{equation}
+            [\frac{\omega}{\beta} = \frac{\omega}{\omega \sqrt{\varepsilon \mu}}] = [\frac{1}{\sqrt{\varepsilon \mu}}] = m/s
+        \end{equation}
+        dunque $\omega/\beta=v$ è una velocità, per cui:
+        \begin{equation}
+            V^{+}(z)=|V^{+}|\cos(\beta(z-vt)) = f(z-vt)
+        \end{equation}
+        Graficamente, se la funzione $f$ viene traslata di $\Delta t$, l'onda sarà traslata di $v \Delta t$ in avanti. Da qui
+        la definizione di onda progressiva: è un'onda che si propaga nella direzione delle $z$ positive.
+        Se $k \in \mathbb{C}$, cioè se ci sono perdite, sostituendo $k=\beta-j\alpha$ nell'espressione di prima:
+        \begin{equation}
+            V^{+}(z,t)=\Re[|V^{+}|e^{j \varphi_{v} ^{+}}e^{-j \beta z}e^{-\alpha z}e^{j \omega t}]= |V^{+}|e^{-\alpha z}\cos(\beta z-\omega t)
+        \end{equation}
+        otteniamo un'espressione identica a prima a meno di un fattore di attenuazione $e^{-\alpha z}$, il quale rappresenta le perdite del mezzo. In sintesi,
+        un mezzo reale con perdite ha parte immaginaria non nulla che più è grande più attenua la propagazione. Questa cosa è vera solo se $\beta$ è lineare con $\omega$.
+        \\ 
+        Per le onde regressive il ragionamento è identico e si ottiene:
+        \begin{equation}
+            V^{-}(z,t)=|V^{-}|\cos(\beta(+vt))=f(z+vt)
+        \end{equation}
+        da cui la definizione di onda regressiva: è un'onda che si muove nella direzione negativa dell'asse $z$.
+        \\ \\
+        Finora abbiamo trattato la soluzione  in tensione, ma a noi occorre anche quella in corrente. Conoscendo
+        $V(z)$ possiamo sostituire la (\ref{eqn:prima_exp_V}) nella (\ref{eqn:eq_tensione_corrente}):
+        \begin{equation}
+            \frac{d}{dz}V(z)=-jkZ_{0}I(z) \implies I(z)=\frac{j}{kZ_{0}}\frac{d}{dz}V(z)
+        \end{equation}
+        \begin{equation}
+            = \frac{j}{kZ_{0}}[-j k V^{+}e^{-jkz}+jkV^{-}e^{jkz}] = \frac{V^{+}}{Z_{0}}e^{-jkz}-\frac{V^{-}}{Z_{0}}e^{jkz}
+        \end{equation}
+        \begin{equation}
+            = \frac{V^{+}(z)}{Z_{0}}+(-\frac{V^{-}(z)}{Z_{0}})=I^{+}(z)+I^{-}(z)
+        \end{equation}
+        In definitiva, per risolvere il problema elettromagnetico in questo caso basta trovare le due costanti  $V^{+}$ e $V^{-}$, ammesso che si conosca 
+        $k$ ed $\omega$. Una soluzione di questo tipo si chiama \textbf{ad onda viaggiante}.
+        La stessa soluzione si può esprimere nella \textbf{rappresentazione di onda stazionaria}, cioè tramite seni e coseni.
+        \begin{equation}
+            V(z)=V^{+}e^{-jkz}+V^{-}e^{jkz}=V^{+}(\cos(kz)-j\sin(kz))+V^{-}(\cos(kz)+j\sin(kz))
+        \end{equation}
+        \begin{equation}
+            =(V^{+}+V^{-})\cos(kz)-j(V^{+}-V^{-})\sin(kz)
+        \end{equation}
+        Notiamo che:
+        \begin{align}
+            I(0)=\frac{V^{+}}{Z_{0}}e^{0}-\frac{V^{-}}{Z_{0}e^{0}} \implies V^{+}-V^{-}=Z_{0}I(0) \\
+            V(0)=V^{+}e^{0}+V^{-}e^{0}=V^{+}+V^{-}
+        \end{align}
+        dunque:
+        \begin{equation}
+            V(z)=V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)
+        \end{equation}
+        e a noi questa cosa piace perché vuol dire che conoscendo corrente e tensione all'inizio della linea, cioè per
+        $z=0$, possiamo conoscerne il valore ovunque sulla stessa linea. Tramite lo 
+        stesso procedimento ricaviamo un'espressione simile per la corrente, ottenendo le \textbf{formule del trasporto}:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle I(z) = I(0)\cos(kz)-j\frac{V(0)}{Z_{0}}\sin(kz) \\
+                V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)
+            \end{cases}
+        \end{equation}
+        \\ 
+        A livello circuitale, una linea di trasmissione è rappresentata da una coppia di rettangoli, il cui 
+        spessore sottolinea il fatto che c'è fenomeno propagativo. Una linea di trasmissione è caratterizzata dalla sua lunghezza $l$,
+        la sua costante di propagazione $k$ e l'impedenza caratteristica $Z_{0}$. 
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img4.png}
+        \end{figure}
+        \\
+        Tensione e corrente sono funzioni periodiche di $\lambda$, dunque ci aspettiamo che l'impedenza lungo la linea sia anch'essa 
+        una funzione periodica:
+        \begin{equation}
+            Z(z) = \frac{V(z)}{I(z)} = \frac{\displaystyle I(z) = I(0)\cos(kz)-j\frac{V(0)}{Z_{0}}\sin(kz)}{V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)}
+        \end{equation}
+        Raccogliendo $I(0)\cos(kz)$ sia a numeratore che denominatore otteniamo:
+        \begin{equation}
+            \label{eqn:trasporto_impedenza}
+            Z(z)=\displaystyle \frac{\displaystyle \frac{V(0)}{I(0)}-jZ_{0}\tan(kz)}{1-\displaystyle \frac{V(0)}{I(0)}\frac{1}{Z_{0}}\tan(kz)} = 
+            \frac{Z(0)-jZ_{0}\tan(kz)}{\displaystyle Z_{0}-Z(0)\tan(kz)}\cdot Z_{0}
+        \end{equation}
+        dove $Z(0)$ è l'impedenza valutata all'inizio della linea. Nella pratica è comodo utilizzare la
+        (\ref{eqn:trasporto_impedenza}) per $z=-d$, cioè per distanze negative, perché la tangente viene con il segno positivo\footnote{e le arcotangenti sono immediate da calcolare}.
+        Per l'ammettenza:
+        \begin{equation}
+            Y(z)=\frac{Y_{0}-Y(0)\tan(kz)}{Y(0)-Y_{0}\tan(kz)}
+        \end{equation}
+        avendo posto $Y(0)=1/Z(0)$ e $Y_{0}=1/Z_{0}$. Sia l'ammettenza che l'impedenza sono periodiche di $\lambda/2$, perché
+        sono espresse tramite $\tan(kz)$. \\
+        Un altro parametro significativo delle linee di trasmissione è il \textbf{coefficiente di riflessione} $\Gamma$:
+        \begin{equation}
+            \Gamma (z) = \frac{V^{-}(z)}{V^{+}(z)} = \frac{V^{-}}{V^{+}}\exp(j2kz)
+        \end{equation}
+        definito come il rapporto fra l'onda regressiva e quella progressiva. Può essere definito anche in corrente, differendo dalla
+        definizione in tensione di un segno meno. Il coefficiente di riflessione ha significato fisico: quantifica di quanto l'onda che si 
+        propaga sulla linea viene riflessa in corrispondenza della coordinata $z$. Notiamo che:
+        \begin{equation}
+            \Gamma(0)=\frac{V^{+}}{V^{-}} \implies \Gamma(z) = \Gamma(0)\exp(j2kz)
+        \end{equation}
+        Il coefficiente di riflessione ha lo stesso periodo $\lambda/2$ che ha pure l'impedenza. Queste due 
+        infatti sono legate:
+        \begin{equation}
+            Z(z)=\frac{V(z)}{I(z)}=\displaystyle \frac{V^{+}(z)+V^{-}(z)}{\displaystyle \frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}}
+            = Z_{0}\frac{V^{+}(z)}{V^{+}(z)}[\frac{1+\Gamma(z)}{1-\Gamma(z)}] = \frac{1+\Gamma(z)}{1-\Gamma(z)} 
+        \end{equation}
+        Viceversa:
+        \begin{equation}
+            \Gamma(z)=\frac{Z(z)-Z_{0}}{Z(z)+Z_{0}} = \frac{Y(0)-Y(z)}{Y(0)+Y(z)}
+        \end{equation}
+        \begin{equation}
+            Y(z)=\frac{1-\Gamma(z)}{1+\Gamma(z)}
+        \end{equation}
+        Se la rete è senza perdite e dunque $k=\beta$, il coefficiente di riflessione vale:
+        \begin{equation}
+            \Gamma (z)=\Gamma (0)\exp(2 \beta z) \implies \begin{cases}
+                |\Gamma(z)|=|\Gamma(0)| \\
+                \angle \Gamma(z) = 2 \beta z
+            \end{cases}
+        \end{equation}
+        cioè il modulo è costante e la fase è lineare in $z$, per cui nel piano complesso descrive una circonferenza. Poiché 
+        il modulo non può essere negativo e l'onda riflessa può essere al massimo pari a quella propagata:
+        \begin{equation}
+            0 \leq \Gamma(z) \leq 1
+        \end{equation}
+        È utile esprimere, per il futuro, i termini di coefficiente di riflessione i valori di
+        tensione e corrente:
+        \begin{align}
+            V(z)=V^{+}(z)+V^{-}(z)=V^{+}(1+\Gamma (z))  \\
+            I(z)=I^{+}(z)+I^{-}(z)=I^{+}(z)(1-\Gamma (z))
+        \end{align}
+        \\ Definiamo ora la potenza attraverso una sezione\footnote{Qui per la potenza media $\overline{P}$ ho messo il cappello, che non ho messo in precedenza. Da qua in poi sarà sempre segnata col cappello.}:
+        \begin{equation}
+            P(z)=\frac{1}{2}V(z)I^{*}(z) = \overline{P}+jQ(z)
+        \end{equation}
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img5.png}
+        \end{figure}
+        La potenza media attraverso la superficie del dominio è data dal flusso del vettore di Poynting, dunque $\overline{P}$ è 
+        la potenza che attraversa la sezione\footnote{L'area identificata dall'intersezione tra il piano dei punti di longitudine $z$ e la guida d'onda} alla longitudine $z$. Similmente, $Q$ è la potenza reattiva che attraversa la sezione alla longitudine $z$.
+         \newpage
+        Consideriamo ora una linea di trasmissione ed il suo equivalente fisico:
+        \begin{figure}
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img7.png}
+        \end{figure}
+        Stiamo considerando, in particolare, un cavo coassiale, ma le stesse considerazioni valgono
+        per qualsiasi linea di trasmissione. Chiamiamo $\Sigma_{1}$ e $\Sigma_{2}$ le superfici delle "basi" del cilindro,
+        orientate rispettivamente con $\underline{i}_{n1}$ ed $\underline{i}_{n2}$, $\Sigma_{int}$ la superficie laterale del cilindro interno,
+        che corrisponde all'anima del cavo coassiale, e $\Sigma_{ext}$ la superficie laterale del cilindro esterno.
+        Allora applichiamo Poynting alla superficie data dall'unione di queste quattro. Il flusso attraverso le due superfici laterali è nullo,
+        perché stiamo considerando un conduttore elettrico perfetto. In virtù del fatto che $\underline{i}_{n1}=-\underline{i}_{n}$ e 
+        $\underline{i}_{n2}=\underline{i}_{n}$, per come le abbiamo scelte, risulta:
+        \begin{equation}
+            \label{eqn:mi_serve3}
+            \Phi(\underline{S}) = \Phi(\underline{S})_{\Sigma_{2}}-\Phi(\underline{S})_{\Sigma_{2}}
+        \end{equation}
+        Per la parte reale:
+        \begin{equation}
+            \Re[\Phi(\underline{S})]+\frac{\varepsilon '' \omega}{2}\iiint_{V} |\underline{E}|^{2}dV+\frac{\mu '' \omega}{2} \iiint_{V} |\underline{H}|^{2}dV
+            +\frac{\sigma}{2}\iiint_{V}|\underline{E}|dV = - P_{g}
+        \end{equation}
+        dove $P_{g}$ è la potenza fornita dalle sorgenti interne. Nel nostro caso, sorgenti interne non ce ne sono e $\sigma, \mu'', \varepsilon'' = 0$ perché
+        supponiamo che non ci siano perdite, ottenendo:
+        \begin{equation}
+            \Re[\Phi(\underline{S})]=0
+        \end{equation}
+        Dalla (\ref{eqn:mi_serve3}) risulta:
+        \begin{equation}
+            \Re[\Phi(\underline{S})] = \Re[\iint_{\Sigma_{2}} \frac{1}{2}\underline{H} \times \underline{E}\cdot \underline{i}_{n}
+            -\iint_{\Sigma_{1}} \frac{1}{2}\underline{H} \times \underline{E}\cdot \underline{i}_{n}] = 0
+        \end{equation}
+        Ma la parte reale del flusso del vettore di Poynting è la potenza attiva media, per cui:
+        \begin{equation}
+            P(z_{2})-P(z_{1}) = 0 \implies P(z_{2})=P(z_{1})
+        \end{equation}
+        cioè per una rete senza perdite e senza sorgenti interne la potenza media si conserva.
+        \\ La stessa cosa non vale per la potenza reattiva. Infatti:
+        \begin{equation}
+            \textrm{Im}(\Phi(\underline{S})) +2 \omega \textrm{Im}[\iiint_{V} \overline{W}_{m}-\overline{W}_{e}] = - \textrm{Im}(-P_{g}) = 0
+        \end{equation}
+        ovvero:
+        \begin{equation}
+            Q(z_{2})-Q(z_{1})=2 \omega (\overline{W}_{m}-\overline{W}_{e})
+        \end{equation}
+        che generalmente è una quantità diversa da zero. In altre parole, la varizione del flusso di potenza reattiva
+        dipende dal dislivello di energia elettrica e magnetica.
+    \section{Risoluzione elementare di linee di trasmissione omogenee}
+        Consideriamo in questa sezione solo linee di trasmissione omogenee, cioè con le stesse grandezze 
+        caratteristiche su tutta la linea. In seguito vedremo quelle non omogenee, cioè composte da più linee diverse.
+        Per risolvere il problema elettromagnetico per le linee di trasmissione occorre ricavare i parametri
+        $V^{+}$ e $V^{-}$. Tali parametri sono univocamente determinati dal generatore e dall'impedenza.
+        Consideriamo una generica linea di trasmissione:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img8.png}
+        \end{figure}
+        \\ Conosciamo l'impedenza di carico $Z_{C}$, indi per cui è conveniente posizionare l'origine in corrispondenza
+        in corrispondenza della sezione finale, quella "vista" dall'impedenza $Z_{C}$. A questo punto possiamo
+        applicare la formula del trasporto per calcolare l'impedenza vista all'ingresso, che corrisponderà alla sezione 
+        alla longitudine $z=-l$.
+        \begin{equation}
+            Z(-l)  = Z_{0} \frac{Z_{C}+jZ_{0}\tan(k l)}{Z_{0}+j Z_{C}\tan(kl)}
+        \end{equation}
+        che è espressione di tutti parametri ($Z_{C}, Z_{0}, k, l$) che vengono forniti, per cui
+        $Z(-l) = Z_{AA'}$ (impedenza vista alla sezione $AA'$) è nota.
+        A questo punto possiamo ricavare $V(0)$ ed $I(0)$ tramite un partitore d'impedenza all'ingresso. Posizioniamo
+        l'origine in corrispondenza dell'inizio della linea (sezione $AA'$) e ricaviamo:
+        \begin{equation}
+            V_{AA'}=V(0)=v_{g}\frac{Z_{AA'}}{Z_{AA'}+Z_{g}} = V^{+}+V^{-}  
+        \end{equation}
+        \begin{equation}
+            I_{AA'}=I(0)=\frac{v_{g}}{Z_{AA'}+Z_{g}}=\frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}
+        \end{equation}
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
@@ -1502,4 +2092,8 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \begin{equation}
         \underline{a} \cdot \underline{b}^{*} = (\underline{b} \cdot\underline{a}^{*})^{*}
     \end{equation}
+    \section*{Note sui campi}
+        Un campo si dice \textbf{conservativo} se l'integrale di linea percorso da due punti $A$ e $B$
+        è invariante rispetto alla curva $\gamma$ che collega $A$ e $B$. È equivalente dire che un campo è conservativo
+        se l'integrale di linea lungo qualsiasi curva chiusa è nullo. 
 \end{document} 
