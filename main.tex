@@ -1621,6 +1621,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         I modi corrispondono a soluzioni per cui l'espressione delle componenti longitudinali del campo 
         elettrico e magnetico si possono fattorizzare come il prodotto di una funzione scalare per una funzione vettoriale:
         \begin{equation}
+            \label{eqn:fattorizzazione_modi}
             \begin{cases}
                 \underline{E}_{t}(\underline{r}_{t},z)=V(z)\underline{e}(\underline{r}_{t}) \\
                 \underline{H}_{t}(\underline{r}_{t},z)=I(z)\underline{h}(\underline{r}_{t})
@@ -1628,7 +1629,162 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         dove $V(z)$ e $I(z)$ sono dette \textbf{funzioni scalari di modo} e $\underline{e}(\underline{r}_{t})$ ed $\underline{h}(\underline{r}_{t})$ funzioni 
         vettoriali di modo. Per i modi TEM vedremo che $V(z)$ e $I(z)$ corrispondono a tensione e corrente, ma in generale non è vero.
+    \section{Modi TEM}
+    Quando fattorizziamo le funzioni scalari e vettoriali di modo sono definite a meno di una costante moltiplicativa, quindi non sono determinate.
+    Apparentemente questo è un problema perché per le componenti trasversali dei campi abbiamo due equazioni in tre incognite ciascuna al posto delle due sole
+    componenti trasversali.\\
+    Per risolvere il problema utilizziamo le \textbf{equazioni di Markuvitz-Schwinger}, che sono nient'altro 
+    che una riscrittura delle equazioni di Maxwell:
+    \begin{equation}
+        \label{eqn:eq_Markuvitz-Schwinger}
+        \begin{cases}
+            \displaystyle -\frac{\partial}{\partial t}\underline{E}_{t}=j \omega \mu [\underline{H}_{t}\times \underline{i}_{z}+\displaystyle \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot (\underline{H}_{z}) \times \underline{i}_{z}] \\
+            \displaystyle - \frac{\partial}{\partial t}\underline{H}_{t}=j\omega \varepsilon [\underline{i}_{z} \times \underline{E}_{t}+ \displaystyle \frac{1}{k^{2}}\nabla_{t} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})] \\
+            j \omega \mu H_{z} = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) \\
+            j \omega \varepsilon E_{z}=\nabla_{t}\cdot (\underline{H}_{t} \times \underline{i}_{z})
+        \end{cases}
+    \end{equation}
+    dove $\nabla_{t} = \nabla - \frac{\partial}{\partial z} \underline{i}_{z}$ è il \textbf{nabla trasverso}, che agisce solo
+    sulle componenti trasverse, mentre $k$ è la \textbf{costante di propagazione} e vale $k=\omega \sqrt{\varepsilon \mu}$, misurata in $m^{-1}$.
+    \\ Le equazioni di Markuvitz-Schwinger separano la parte trasversa, che si trova  da sola nelle prime due equazioni, da quella longitudinale.
+    Allora ci si ricava la parte trasversa e poi le longitudinali.
+    In questa sezione cerchiamo le \textbf{soluzioni TEM}, dunque partiamo dal ricavarci l'espressione delle (\ref{eqn:eq_Markuvitz-Schwinger}) per questo caso particolare. Utilizziamo ultime due equazioni e sfruttiamo il fatto che le componenti longitudinali 
+    $H_{z}$ ed $E_{z}$ sono nulle per i modi TEM:
+    \begin{equation}
+        \begin{cases}
+            j \omega \mu H_{z} = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})  \implies \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) = 0 \\
+            j \omega \varepsilon E_{z} = \nabla_{t} \cdot (\underline{H} \times \underline{i}_{z})  \implies \nabla_{t} \cdot (\underline{H} \times \underline{i}_{z}) = 0
+        \end{cases}
+    \end{equation}
+    Sostituendo nella prima e seconda equazione di Markuvitz-Schwinger
+    \begin{align}
+        -\frac{\partial}{\partial t} \underline{E}_{t} = j \omega \mu [\underline{H}_{t} \times \underline{i}_{z} - \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot 0] = j \omega \mu(\underline{H}_{t} \times \underline{i}_{z}) \\
+        -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon [\underline{i}_{z}\times \underline{E}_{t}+\frac{1}{k^{2}}\nabla_{t}\nabla_{t} \cdot 0] = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t})
+    \end{align}
+    In sintesi, per i modi TEM, le equazioni di Markuvitz-Schwinger hanno questa forma:
+    \begin{equation}
+        \label{eqn:MS_TEM}
+        \begin{cases}
+            -\frac{\partial}{\partial t}\underline{E}_{t} = j \omega \mu (\underline{H}_{t} \times \underline{i}_{z}) \\
+            -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t}) \\
+            \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) = 0 \\
+            \nabla_{t} \cdot (\underline{H}_{t} \times \underline{i}_{z}) = 0
+        \end{cases}
+    \end{equation}
+    Fatto ciò, sostituiamo le espressioni fattorizzate (\ref{eqn:fattorizzazione_modi}) nella prima equazione delle (\ref{eqn:MS_TEM}):
+    \begin{equation}
+        -\frac{\partial}{\partial t}(V(z)\underline{e}(\underline{r}_{t})) = - \underline{e}(\underline{r}_{t})V(z) = j \omega \mu I(z)\underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+    \end{equation}
+    tenendo a mente che nella derivata del prodotto quella di $V(z)$ rispetto a $t$ è nulla, perchè indipendente dalle componenti trasversali.
+    Manipoliamo l'espressione dividendo per $j \omega \mu$ ottenendo:
+    \begin{equation}
+        \label{eqn:mi_serve}
+        \underline{e}(\underline{r}_{t}) \cdot [-\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}] = \underline{e}(\underline{r}_{t}) \cdot \frac{1}{A}= \underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+    \end{equation}
+    avendo posto:
+    \begin{equation}
+         A = -\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}
+    \end{equation}
+    Sotto l'ipotesi di mezzo omogeneo $\mu$ non dipende dallo spazio e quindi, apparentemente, $A$ soltanto da $z$. Ma se osserviamo
+    la relazione (\ref{eqn:mi_serve}), notiamo che il secondo membro dipende soltanto dalle coordinate trasversali, per cui la relazione per valere deve 
+    dipendere anche a sinistra solo da $\underline{r}_{t}$.
+    Condensando il tutto, otteniamo la \textbf{prima equazione dei telegrafisti}\footnote{È solo il primo pezzo, il secondo è una conseguenza di Markuvitz-Schwinger così come il primo}:
+    \begin{equation}
+        \label{eqn:prima_eq_telegrafisti}
+        \begin{cases}
+            \displaystyle \frac{dV}{dz} = \frac{j \omega \mu I}{A} \\
+            \underline{e}(\underline{r}_{t}) = A \underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+        \end{cases}
+    \end{equation}
+    Inoltre $\underline{e}$ è ricavabile da $\underline{h}$ e viceversa. Manipoliamo 
+    il secondo pezzo dell'equazione dei telegrafisti premoltiplicando vettorialmente per $\underline{i}_{z}$:
+    \begin{equation}
+        \underline{i}_{z} \times \underline{e} = A \underline{i}_{z}(\underline{h} \times \underline{i}_{z}) = A (\underline{i}_{z} \times \underline{h}) \times \underline{i}_{z}
+    \end{equation}
+    Utilizziamo l'identità vettoriale notevole:
+    \begin{equation}
+        = A [(\underline{i}_{z} \cdot \underline{i}_{z})\underline{h}-(\underline{h}\cdot \underline{i}_{z})\underline{i}_{z}]
+        = A[|\underline{i}_{z}|^{2}\underline{h}-0] = A\underline{h}
+    \end{equation}
+    dove abbiamo sfruttato il fatto che $\underline{h} \cdot \underline{i}_{z} = 0$.\footnote{perché $\underline{h}$ è totalmente trasversale}
+    In definitiva la relazione fra la componente longitudinale di $\underline{e}$ ed $\underline{h}$ è:
+    \begin{equation}
+        \label{eqn:mi_serve2}
+        \underline{i}_{z} \times \underline{e} = A \underline{h}
+    \end{equation}
+    Per la seconda equazione di Markuvitz-Schwinger il procedimento è analogo a quello fatto finora: sostituiamo l'espressione fattorizzata nella
+    seconda equazione e ricaviamo:
+    \begin{equation}
+        -\underline{h}(\underline{r}_{t}) \frac{d}{dz}I(z)= j \omega \varepsilon V(z) \underline{i}_{t} \times \underline{e}(\underline{r}_{t})
+    \end{equation}
+    sostituendo la (\ref{eqn:mi_serve2}) che abbiamo appena ricavato
+    \begin{equation}
+        \implies -\underline{h}(\underline{r}_{t}) \frac{d}{dz}I(z) = j \omega AV(z)\underline{h}(\underline{r}_{t})
+        \implies [\frac{d}{dz}I(z)+j\omega \varepsilon A V(z)]\underline{h} = 0
+    \end{equation}
+    poiché a noi non interessano le soluzioni banali per $\underline{h} = 0$, l'espressione è nulla se è nullo l'altro termine del prodotto, da
+    cui otteniamo la \textbf{seconda equazione dei telegrafisti}:
+    \begin{equation}
+        -\frac{d}{dz}I(z) = j \omega A V(z)
+    \end{equation}
 
+    Non ci resta che determinare $\underline{e}$ ed $\underline{h}$. Sfruttiamo la terza equazione di Markuvitz-Schwinger
+    e sostituiamo l'espressione fattorizzata:
+    \begin{equation}
+        0 = \nabla_{t} (\underline{i}_{z} \times \underline{E}_{t})= V(z)\nabla_{t} \cdot (\underline{i}_{z} \times \underline{e}) = V(z) \nabla_{t} \cdot(A\underline{h})
+    \end{equation}
+    Se $A=0$ oppure $V(z)=0$ c'è la soluzione banale, dunque non ci interessa. Ricaviamo allora:
+    \begin{equation}
+        \nabla_{t} \cdot \underline{h} = 0
+    \end{equation}
+    ovvero che $\underline{h}$ è un campo indivergente. Se però esprimiamo la terza equazione come identità notevole:
+    \begin{equation}
+        0 = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) =V(z)[(\nabla_{t} \times \underline{i}_{z})\underline{e} - \underline{i}_{z} \cdot \nabla_{t} \times \underline{e}] = 0
+    \end{equation}
+    ma $\nabla_{t} \times \underline{i}_{z}$ perchè $\underline{i}_{z}$ è un versore e non dipende da $t$. Inoltre $V(z)$ si può cancellare ambo membri ottenendo:
+    \begin{equation}
+        \underline{i}_{z} \cdot \nabla_{t} \times \underline{e} = 0
+    \end{equation}
+    cioè che il rotore di $\underline{e}$ è perpendicolare all'asse $z$. Calcolando il rotore di $\underline{e}$:
+    \begin{equation}
+        \nabla_{t} \times \underline{e} = 
+        \begin{vmatrix} 
+            \underline{i}_{x} & \underline{i}_{y} & \underline{i}_{z} \\
+            \displaystyle \frac{\partial}{\partial x} & \displaystyle \frac{\partial}{\partial y} & 0 \\
+            e_{x} & e_{y} & 0
+        \end{vmatrix} = \underline{i}_{z} \cdot (\frac{\partial}{\partial x}e_{y}-\frac{\partial}{\partial y}e_{x}) = 0
+    \end{equation}
+    cioè il rotore dipende solo dalla componente longitudinale, che è nulla, per cui il rotore è di $\underline{e}$ è nullo. 
+    Allora $\underline{e}$ è un campo irrotazionale. Facendo gli stessi calcoli con la quarta equazione di Markuvitz-Scwhinger si ricava che $\underline{h}$ è irrotazionale
+    ed $\underline{e}$ è indivergente. IN definitiva otteniamo
+    \begin{equation}
+        \begin{cases}
+            \nabla \cdot \underline{e} = 0 \qquad \nabla \times \underline{e} = 0
+            \\ \nabla \cdot \underline{h} = 0 \qquad \nabla \times \underline{h} = 0
+        \end{cases}
+    \end{equation}
+    che equivale a dire che $\underline{e}$ ed $\underline{h}$ sono \textbf{campi armonici}.\footnote{ovvero sia indivergenti che irrotazionali}
+    \\ \\
+    Il fatto che $\underline{e}$ ed $\underline{h}$ siano armonici ci porta a pensare che potrebbero avere un potenziale scalare, questo 
+    perché un campo irrotazionale è anche conservativo se è semplicemente connesso\footnote{cioè se si può deformare nel dominio una curva con continuità senza uscire dal dominio}
+    Già considerando la sezione di un cavo coassiale, ci si rende conto che non è un domino semplciemente connesso (per verificarlo basta prendere una curva che circonda l'anima 
+    e comprimerla, uscirà fuori dal dominio dove è interposto il dielettrico).
+    \newpage
+    \begin{figure}[h!]
+        \center 
+        \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img6.png}
+    \end{figure} 
+    Tuttavia, se $C$ è una curva che sta nel dominio identificato tra l'anima (il cerchio in mezzo) e la calza
+    (il cerchio esterno) ed $S_{c}$ la superficie che ha $C$ come bordo, possiamo applicare la prima legge di Maxwell:
+    \begin{equation}
+        \oint_{C} \underline{E} \cdot \underline{i}_{n}dS = j \omega \mu \iint_{S_{C}}\underline{H}\cdot \underline{i}_{n}dS
+    \end{equation}
+    Per la sezione del cavo coassiale, così come per tutte le guide d'onda, la normale alla superficie $S_{c}$ è l'asse $z$, dunque $\underline{i}_{n}=\underline{i}_{z}$.
+    Per cui $\underline{H} \cdot \underline{i}_{z}=H_{z}$, che è nulla per i modi TEM. Allora:
+    \begin{equation}
+        \oint_{C} \underline{E} \cdot \underline{i}_{n}dS = j \omega \mu \iiint_{S_{C}} \underline{H} \cdot \underline{i}_{z} dS = 0
+    \end{equation}
+    che è proprio la definizione di campo conservativo. In sintesi, per i modi TEM il campo elettrico è conservativo.
     \section{Caratterizzazione delle guide d'onda}
         In un problema elettromagnetico, i campi incogniti sono $\underline{E}(\underline{r}_{t}, z)$ ed $\underline{H}(\underline{r}_{t}, z)$.
         Per i modi TEM risulta:
@@ -1857,4 +2013,8 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \begin{equation}
         \underline{a} \cdot \underline{b}^{*} = (\underline{b} \cdot\underline{a}^{*})^{*}
     \end{equation}
+    \section*{Note sui campi}
+        Un campo si dice \textbf{conservativo} se l'integrale di linea percorso da due punti $A$ e $B$
+        è invariante rispetto alla curva $\gamma$ che collega $A$ e $B$. È equivalente dire che un campo è conservativo
+        se l'integrale di linea lungo qualsiasi curva chiusa è nullo. 
 \end{document} 
