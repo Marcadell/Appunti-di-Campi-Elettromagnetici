@@ -1974,6 +1974,12 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             0 \leq \Gamma(z) \leq 1
         \end{equation}
+        È utile esprimere, per il futuro, i termini di coefficiente di riflessione i valori di
+        tensione e corrente:
+        \begin{align}
+            V(z)=V^{+}(z)+V^{-}(z)=V^{+}(1+\Gamma (z))  \\
+            I(z)=I^{+}(z)+I^{-}(z)=I^{+}(z)(1-\Gamma (z))
+        \end{align}
         \\ Definiamo ora la potenza attraverso una sezione\footnote{Qui per la potenza media $\overline{P}$ ho messo il cappello, che non ho messo in precedenza. Da qua in poi sarà sempre segnata col cappello.}:
         \begin{equation}
             P(z)=\frac{1}{2}V(z)I^{*}(z) = \overline{P}+jQ(z)
@@ -1984,7 +1990,80 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{figure}
         La potenza media attraverso la superficie del dominio è data dal flusso del vettore di Poynting, dunque $\overline{P}$ è 
         la potenza che attraversa la sezione\footnote{L'area identificata dall'intersezione tra il piano dei punti di longitudine $z$ e la guida d'onda} alla longitudine $z$. Similmente, $Q$ è la potenza reattiva che attraversa la sezione alla longitudine $z$.
-
+         \newpage
+        Consideriamo ora una linea di trasmissione ed il suo equivalente fisico:
+        \begin{figure}
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img7.png}
+        \end{figure}
+        Stiamo considerando, in particolare, un cavo coassiale, ma le stesse considerazioni valgono
+        per qualsiasi linea di trasmissione. Chiamiamo $\Sigma_{1}$ e $\Sigma_{2}$ le superfici delle "basi" del cilindro,
+        orientate rispettivamente con $\underline{i}_{n1}$ ed $\underline{i}_{n2}$, $\Sigma_{int}$ la superficie laterale del cilindro interno,
+        che corrisponde all'anima del cavo coassiale, e $\Sigma_{ext}$ la superficie laterale del cilindro esterno.
+        Allora applichiamo Poynting alla superficie data dall'unione di queste quattro. Il flusso attraverso le due superfici laterali è nullo,
+        perché stiamo considerando un conduttore elettrico perfetto. In virtù del fatto che $\underline{i}_{n1}=-\underline{i}_{n}$ e 
+        $\underline{i}_{n2}=\underline{i}_{n}$, per come le abbiamo scelte, risulta:
+        \begin{equation}
+            \label{eqn:mi_serve3}
+            \Phi(\underline{S}) = \Phi(\underline{S})_{\Sigma_{2}}-\Phi(\underline{S})_{\Sigma_{2}}
+        \end{equation}
+        Per la parte reale:
+        \begin{equation}
+            \Re[\Phi(\underline{S})]+\frac{\varepsilon '' \omega}{2}\iiint_{V} |\underline{E}|^{2}dV+\frac{\mu '' \omega}{2} \iiint_{V} |\underline{H}|^{2}dV
+            +\frac{\sigma}{2}\iiint_{V}|\underline{E}|dV = - P_{g}
+        \end{equation}
+        dove $P_{g}$ è la potenza fornita dalle sorgenti interne. Nel nostro caso, sorgenti interne non ce ne sono e $\sigma, \mu'', \varepsilon'' = 0$ perché
+        supponiamo che non ci siano perdite, ottenendo:
+        \begin{equation}
+            \Re[\Phi(\underline{S})]=0
+        \end{equation}
+        Dalla (\ref{eqn:mi_serve3}) risulta:
+        \begin{equation}
+            \Re[\Phi(\underline{S})] = \Re[\iint_{\Sigma_{2}} \frac{1}{2}\underline{H} \times \underline{E}\cdot \underline{i}_{n}
+            -\iint_{\Sigma_{1}} \frac{1}{2}\underline{H} \times \underline{E}\cdot \underline{i}_{n}] = 0
+        \end{equation}
+        Ma la parte reale del flusso del vettore di Poynting è la potenza attiva media, per cui:
+        \begin{equation}
+            P(z_{2})-P(z_{1}) = 0 \implies P(z_{2})=P(z_{1})
+        \end{equation}
+        cioè per una rete senza perdite e senza sorgenti interne la potenza media si conserva.
+        \\ La stessa cosa non vale per la potenza reattiva. Infatti:
+        \begin{equation}
+            \textrm{Im}(\Phi(\underline{S})) +2 \omega \textrm{Im}[\iiint_{V} \overline{W}_{m}-\overline{W}_{e}] = - \textrm{Im}(-P_{g}) = 0
+        \end{equation}
+        ovvero:
+        \begin{equation}
+            Q(z_{2})-Q(z_{1})=2 \omega (\overline{W}_{m}-\overline{W}_{e})
+        \end{equation}
+        che generalmente è una quantità diversa da zero. In altre parole, la varizione del flusso di potenza reattiva
+        dipende dal dislivello di energia elettrica e magnetica.
+    \section{Risoluzione elementare di linee di trasmissione omogenee}
+        Consideriamo in questa sezione solo linee di trasmissione omogenee, cioè con le stesse grandezze 
+        caratteristiche su tutta la linea. In seguito vedremo quelle non omogenee, cioè composte da più linee diverse.
+        Per risolvere il problema elettromagnetico per le linee di trasmissione occorre ricavare i parametri
+        $V^{+}$ e $V^{-}$. Tali parametri sono univocamente determinati dal generatore e dall'impedenza.
+        Consideriamo una generica linea di trasmissione:
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img8.png}
+        \end{figure}
+        \\ Conosciamo l'impedenza di carico $Z_{C}$, indi per cui è conveniente posizionare l'origine in corrispondenza
+        in corrispondenza della sezione finale, quella "vista" dall'impedenza $Z_{C}$. A questo punto possiamo
+        applicare la formula del trasporto per calcolare l'impedenza vista all'ingresso, che corrisponderà alla sezione 
+        alla longitudine $z=-l$.
+        \begin{equation}
+            Z(-l)  = Z_{0} \frac{Z_{C}+jZ_{0}\tan(k l)}{Z_{0}+j Z_{C}\tan(kl)}
+        \end{equation}
+        che è espressione di tutti parametri ($Z_{C}, Z_{0}, k, l$) che vengono forniti, per cui
+        $Z(-l) = Z_{AA'}$ (impedenza vista alla sezione $AA'$) è nota.
+        A questo punto possiamo ricavare $V(0)$ ed $I(0)$ tramite un partitore d'impedenza all'ingresso. Posizioniamo
+        l'origine in corrispondenza dell'inizio della linea (sezione $AA'$) e ricaviamo:
+        \begin{equation}
+            V_{AA'}=V(0)=v_{g}\frac{Z_{AA'}}{Z_{AA'}+Z_{g}} = V^{+}+V^{-}  
+        \end{equation}
+        \begin{equation}
+            I_{AA'}=I(0)=\frac{v_{g}}{Z_{AA'}+Z_{g}}=\frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}
+        \end{equation}
 \chapter*{Appendice A - Note di carattere matematico}
     \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
