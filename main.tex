@@ -1977,6 +1977,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         È utile esprimere, per il futuro, i termini di coefficiente di riflessione i valori di
         tensione e corrente:
         \begin{align}
+            \label{eqn:eq_VI_Gamma}
             V(z)=V^{+}(z)+V^{-}(z)=V^{+}(1+\Gamma (z))  \\
             I(z)=I^{+}(z)+I^{-}(z)=I^{+}(z)(1-\Gamma (z))
         \end{align}
@@ -2037,11 +2038,62 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         che generalmente è una quantità diversa da zero. In altre parole, la varizione del flusso di potenza reattiva
         dipende dal dislivello di energia elettrica e magnetica.
+        \\ 
+        È utile esprimere la potenza complessa in altre forme per ricavare risultati interessanti. In termini 
+        di tensione e ammettenza oppure corrente e impedenza:
+        \begin{align}
+            P = \frac{1}{2}Z(z)|I(z)|^{2} \\
+            P= \frac{1}{2}Y(z)|V(z)|^{2}
+        \end{align}
+        Oppure esprimendo tensioni e corrente tramite coefficiente di riflessione (\ref{eqn:eq_VI_Gamma}):
+        \begin{equation}
+            P(z)=\frac{1}{2}\frac{|V^{+}|^{2}}{Z_{0}} (1+\Gamma(z)-\Gamma(z)^{*}-|\Gamma(z)|^{2})
+        \end{equation}
+        Ipotizziamo che l'impedenza sia reale, ma tutto ciò è generalizzabile. In una linea senza perdite il modulo di $\Gamma(z) = \Gamma$ è costante, mentre la differenza fra un numero complesso e 
+        la sua parte immaginaria ritorna $2j\textrm{Im}(z)$, per cui si può scrivere:
+        \begin{equation}
+            \label{eqn:potenza_attiva}
+            P(z)=\frac{1}{2}\frac{|V^{+}|^{2}}{Z_{0}}(1+2j\textrm{Im}(\Gamma(z))-|\Gamma|^{2}) =
+            P^{+}(1+2j\Gamma (z)-|\Gamma|^{2})
+        \end{equation}
+        Per capire il significato dell'espressione di sopra, ipotizziamo di avere solo onda progressiva. La potenza
+        sarà:
+        \begin{equation}
+            P(z)= \frac{1}{2}V^{+}(z)(I^{+}(z))^{*} = \frac{1}{2}\frac{|V^{+}|^{2}}{Z_{0}}=P^{+}
+        \end{equation}
+        La parte reale della (\ref{eqn:potenza_attiva}):
+        \begin{equation} 
+            \label{eqn:mi_serve4}
+            \Re[P(z)]=P^{+}-|\Gamma|^{2}P^{+} = P^{+}-P^{-}
+        \end{equation}
+        È la differenza fra la potenza in ingresso e quella riflessa, che è data dal prodotto fra il modulo quadro 
+        del coefficiente di riflessione\footnote{La potenza va con il quadrato, perché si riflette la tensione al quadrato} e
+        la parte reale della potenza.
+        Il termine immaginario ci dice quanta potenza reattiva fluisce alla longitudine $z$. \\
+        La (\ref{eqn:mi_serve4}) assume pienamente senso calcolando la potenza associata ad un'onda puramente regressiva:
+        \begin{equation}
+            P^{-}=\frac{1}{2}V^{-}(I^{-})^{*}=-\frac{1}{2}\frac{|V^{-}|^{2}}{Z_{0}} = 
+            -\frac{1}{2Z_{0}}|\Gamma V^{+}|^{2} = - P^{+}|\Gamma|^{2}
+        \end{equation}
+        \\ Esprimiamo ora l'impedenza come somma di resistenza e reattanza:
+        \begin{equation}
+            P(z)=\frac{1}{2}Z(z)|I(z)|^{2} = \frac{1}{2}R(z)|I(z)|^{2}+j\frac{X(z)}{2}|I(z)|^{2}
+        \end{equation}
+        od in intermini di conduttanza e suscettanza:
+        \begin{equation}
+            P(z)=\frac{1}{2}G(z)|V(z)|^{2}+j\frac{1}{2}B(z)|V(z)|^{2}
+        \end{equation}
+        Da queste relazioni si evince che, visto che la potenza media si conserva, se c'è resistenza nulla in un punto non c'è flusso 
+        di potenza attiva in nessun punto. Viceversa, la resistenza non può annullarsi se c'è flusso di potenza almeno in un punto.
     \section{Risoluzione elementare di linee di trasmissione omogenee}
         Consideriamo in questa sezione solo linee di trasmissione omogenee, cioè con le stesse grandezze 
         caratteristiche su tutta la linea. In seguito vedremo quelle non omogenee, cioè composte da più linee diverse.
         Per risolvere il problema elettromagnetico per le linee di trasmissione occorre ricavare i parametri
         $V^{+}$ e $V^{-}$. Tali parametri sono univocamente determinati dal generatore e dall'impedenza.
+        Per risolvere gli esercizi sposteremo l'origine di continuo per facilitare il calcolo tramite le equazioni di trasporto.
+        Questo non ci da problemi finché si tiene traccia di cosa stiamo calcolando: se per esempio calcoliamo l'impedenza all'ingresso e 
+        continuiamo a chiamarla $Z(0)$ faremo inevitabilmente casino in altri sistemi di riferimento, per cui è buona norma dagli 
+        nomi "unici". \\
         Consideriamo una generica linea di trasmissione:
         \begin{figure}[h!]
             \center 
@@ -2064,8 +2116,71 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             I_{AA'}=I(0)=\frac{v_{g}}{Z_{AA'}+Z_{g}}=\frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}
         \end{equation}
-\chapter*{Appendice A - Note di carattere matematico}
-    \section*{Vettori complessi}
+         Nello stesso esercizio, potremmo dover calcolare il coefficiente di riflessione 
+        corrispondente alla longitudine $d$ rispetto alla sezione d'uscita
+        \begin{figure}[h!]
+            \center 
+            \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img9.png}
+        \end{figure} \\
+        Fissata di nuovo l'origine alla sezione d'uscita, applichiamo semplicemente la formula per 
+        ricavare il coefficiente di riflessione all'uscita:
+        \begin{equation}
+            \Gamma(0) = \Gamma_{OUT} = \frac{Z_{0}-Z_{C}}{Z_{C}+Z_{0}}
+        \end{equation}
+        in quanto $Z(0)=Z_{C}$. A questo punto possiamo calcolarlo in un punto generico della linea:
+        \begin{equation}
+            \Gamma(-d) = \Gamma(0)e^{-j 2 \beta d}
+        \end{equation}
+        Con la stessa formula potremmo ricavare $\Gamma_{AA'}$, il coefficiente di riflessione alla sezione 
+        d'ingresso AA' e di conseguenza $Z_{AA'}$. Dunque si può partire sia da $\Gamma$ che da $Z$ a seconda 
+        di come ci conviene!
+
+    \subsection*{Carico puramente reattivo}
+        Primo di tre casi particolari che studieremo. Per il carico puramente reattivo, $Z_{C}=jX_{c}$, dunque 
+        non c'è flusso di potenza attiva.
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img10.png}
+        \end{figure} \\
+        Calcoliamo l'impedenza in un punto a distanza $d$ rispetto alla sezione d'uscita:
+        \begin{equation}
+            Z(-d) = Z_{0} \frac{jX_{C}+jZ_{0}\tan(\beta d)}{Z_{0}+j^{2}X_{C}\tan(\beta d)} = jZ_{0} \frac{X_{C}+Z_{0}\tan(\beta d)}{Z_{0}-X\tan(\beta d)}
+        \end{equation}
+        Cioè per un carico puramente reattivo si ha trasporto puramente reattivo. Per quanto concerne il coefficiente 
+        di riflessione:
+        \begin{equation}
+            \Gamma (0) = \frac{jX_{C}-Z_{0}}{jX_{C}+Z_{0}} \implies \Gamma(-d) \frac{jX_{C}-Z_{0}}{jX_{C}+Z_{0}}e^{-j2\beta d}
+        \end{equation}
+        \begin{equation}
+            \implies |\Gamma (-d)| = \frac{|jX_{C}-Z_{0}|}{jX_{C}+Z_{0}} = 1
+        \end{equation}
+        Per un carico puramente riflessivo c'è riflessione totale.
+    \subsection*{Carico in corto circuito}
+        Facciamo riferimento al disegno per il carico puramente reattivo da ora in avanti.
+        Per un corto circuito $Z_{C}=0$, dunque non c'è né potenza reattiva né potenza attiva propagata.
+        Calcolando il trasporto d'impedenza lungo la linea:
+        \begin{equation}
+            Z(-d ) = Z_{0}\frac{0 +jZ_{0}\tan(\beta d)}{Z_{0}+0} = jZ_{0}\tan(\beta d)
+        \end{equation}
+        cioè viene trasportata in modulo la stessa impedenza, quella caratteristica della linea, che cambia fase 
+        in funzione di $d$. Il coefficiente di riflessione è immediato:
+        \begin{align}
+            |\Gamma|=|\frac{0-Z_{0}}{0+Z_{0}}|=1 \\
+            \angle \Gamma = \angle \frac{-Z_{0}}{Z_{0}} = \pi
+        \end{align}
+        Dunque il corto parte da $\Gamma(0)=e^{-\pi} = -1$ e varia sulla linea come $\Gamma(-d) = -e^{-j2\beta d}$
+    \subsection*{Carico in circuito aperto}
+        Per un circuito aperto conviene lavorare con le ammettenze, 
+        che in questo caos è $Y_{C}=0$ al carico, pertanto:
+        \begin{align}
+            Y(-d) = j y_{0}\tan(\beta d) \\
+            |\Gamma| = 1 \\
+            \angle \Gamma = 1
+        \end{align}
+        Dunque il circuito aperto parte con $\Gamma(0)=1$ e varia sulla linea come $\Gamma(-d)=e^{-j2 \beta d}$
+        \chapter*{Appendice A - Note di carattere matematico}
+    
+        \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
         \begin{itemize}
             \item $(\underline{a} | \underline{b}) \geq 0$ \\
