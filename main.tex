@@ -2178,9 +2178,60 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \angle \Gamma = 1
         \end{align}
         Dunque il circuito aperto parte con $\Gamma(0)=1$ e varia sulla linea come $\Gamma(-d)=e^{-j2 \beta d}$
-        \chapter*{Appendice A - Note di carattere matematico}
+    \newpage 
+    \section{Andamento di tensione e corrente}
+    Continuiamo il discorso per le linee di trasmissione omogenee
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img11.png}
+    \end{figure}
+    Consideriamo le quantità:
+    \begin{equation}
+        |\frac{V_{C}}{V^{+}}| = |1+\Gamma_{C}| \qquad |\frac{I_{C}}{I^{+}}| = |1-\Gamma_{C}|
+    \end{equation}
+    Allora per un corto ($Z_{C}=0$) poiché $\Gamma_{C}=-1$:
+    \begin{equation}
+        |\frac{V_{C}}{V^{+}}| = 0 \qquad |\frac{I_{C}}{I^{+}}|=2
+    \end{equation}
+    come ci aspettavamo, il modulo della tensione è nulla, cioè il minimo valore possibile sulla linea, 
+    mentre ha il massimo valore di modulo di tensione sulle linea pari a $|V_{C}|=2|V^{+}|$. Per un aperto 
+    ($Y_{C}=0$) c'è $\Gamma = 1$ e dunque:
+    \begin{equation}
+        |\frac{V_{C}}{V^{+}}|=2 \qquad |\frac{I_{C}}{I^{+}}|=0
+    \end{equation}
+    Per l'aperto si ha il modulo massimo della tensione pari a $2V^{+}$ e minimo valore del modulo di corrente. 
+    \\ Consideriamo ora un carico generico $Z_{C}=R_{C}+jX_{C}$. In questo caso c'è il flusso di potenza 
+    attiva $\overline{P}_{C}$:
+    \begin{equation}
+        \overline{P}_{C}=\overline{P}^{+}(1-|\Gamma_{C}|^{2}) > 0
+    \end{equation}    
+    Normalizziamo perché tanto il concetto vale a meno di una costante:
+    \begin{equation}
+        |\frac{\overline{P}}{P^{+}}| = 1-|\Gamma_{C}|^{2}
+    \end{equation}
+    Infatti si può dimostrare che per una linea con carico con parte reale maggiore di zero $\Gamma_{C}<1$.
+    Se ci si mette nel piano complesso e si disegna il vettore $|1+\Gamma_{C}$, ci si rende conto che questo ha modulo 
+    massimo quando $1$ e $\Gamma_{C}$ sono in fase, cioè quando $2\beta d + \phi_{c} = 2 n \pi$.
+    \newpage
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img12.png}
+    \end{figure} 
+    Vogliamo trovare ora massimo e minimo per linee con impedenze di carico con parte reale stettamente maggiore di zero.
+    Esplichiamo l'espressione:
+    \begin{equation} 
+        \Re(Z(d)) = Z_{0}\Re[\frac{1+\Gamma(d)}{1-\Gamma(d)}] = Z_{0}\Re[\frac{(1+\Gamma(d)(1-\Gamma(d)^{*}))}{-2\Re(\Gamma(d))+1+|\Gamma|^{2}}]
+    \end{equation}
+    \begin{equation}
+        = Z_{0}\Re[\frac{2+2\Im(\Gamma(d)-|\Gamma|^{2})}{1+|\Gamma|^{2}-2\Re(\Gamma(d))}] = \frac{(1-|\Gamma|)(1+|\Gamma|)}{1+|\Gamma|^{2}-2\Re(\Gamma(d))} > 0
+    \end{equation}
+    Questo numero è minimo quando il numeratore è massimo, cioè quando la parte reale di $\Re(\Lambda(d))$ è pari all'opposto del suo modulo:
+    \begin{equation}
+        1+|\Lambda|^{2}
+    \end{equation}
+    \chapter*{Appendice A - Note di carattere matematico}
     
-        \section*{Vettori complessi}
+\section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
         \begin{itemize}
             \item $(\underline{a} | \underline{b}) \geq 0$ \\
