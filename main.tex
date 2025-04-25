@@ -2179,7 +2179,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{align}
         Dunque il circuito aperto parte con $\Gamma(0)=1$ e varia sulla linea come $\Gamma(-d)=e^{-j2 \beta d}$
     \newpage 
-    \section{Andamento di tensione e corrente}
+    \section{Andamento dei parametri di linea}
     Continuiamo il discorso per le linee di trasmissione omogenee
     \begin{figure}[h!]
         \center  
@@ -2227,9 +2227,151 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{equation}
     Questo numero è minimo quando il numeratore è massimo, cioè quando la parte reale di $\Re(\Lambda(d))$ è pari all'opposto del suo modulo:
     \begin{equation}
-        1+|\Lambda|^{2}
+        \textrm{Minimo denominatore} = 1+|\Gamma|^{2}-2\Re(\Gamma (d))
     \end{equation}
-    \chapter*{Appendice A - Note di carattere matematico}
+    Mentre il massimo è $1+|\Gamma ^{2}|+2\Re(\Gamma (d))$. Il minimo si ottiene per fase negativa mentre 
+    il massimo per fare positiva. A fronte di ciò, il minimo valore della parte reale dell'impedenza sulla linea è:
+    In entrambi i casi $\Gamma$ è totalmente reale e visto che il modulo è costante $\Re(\Gamma) = |\Gamma|$. Allora:
+    \begin{equation}
+        1+|\Gamma|^{2}-2\Re(\Gamma (d)) = (1-|\Gamma|)^{2} \qquad 1+|\Gamma|^{2}+2\Re(\Gamma (d)) =(1+|\Gamma|)^{2}
+    \end{equation}
+    \begin{equation}
+         \implies \Re_{min}(Z(d)) = Z_{0} \frac{(1-|\Gamma|)(1+|\Gamma|)}{(1-\Gamma)^{2}}=Z_{0}\frac{1-|\Gamma|}{1+|\Gamma|} > 0
+    \end{equation}
+    \begin{equation}
+        \implies \Re_{max}(Z(d))=Z_{0}\frac{1+|\Gamma|}{1-|\Gamma|}
+    \end{equation}
+    Si noti che sia per il massimo che per il minimo la parte immaginaria dell'impedenza è zero, perché $\Gamma$ è puramente reale.
+    \section*{Carico puramente reattivo}
+    Consideriamo ora una linea omogenea senza perdite e con carico $Z_{C}$. Analizziamo il caso per il quale $Z_{C}=jX_{C}$, ovvero c'è 
+    un carico puramente reattivo. Facendo il trasporto d'impedenza a generica distanza $d$:
+    \begin{equation}
+        Z(d) = Z_{0} \frac{j(X_{C}+Z_{0}\tan(\beta d))}{Z_{0}-X_{C}\tan(\beta d)}
+    \end{equation}
+    puramente immaginaria, come ben sappiamo. La $Z(d)$ non è limitata in modulo. In particolare si ottiene 
+    un corto per l'annullarsi del nominatore ed un aperto nel caso si annulli il denominatore:
+    \begin{equation}
+        \frac{Z_{0}}{X_{C}} = \tan(\beta d) \implies Z(d) = + \infty \qquad \frac{Z_{0}}{X_{C}}=-\tan(\beta) \implies Z(d) = 0
+    \end{equation}
+    Dimostriamo ora che sulla linea corti e aperti sono distanti di $\lambda/4$\footnote{Ricordiamo che $\lambda = 2\pi/\beta$}.\\
+    \textbf{Proof}: \\
+    Consideriamo una linea omogenea con carico $Z_{C}$ e due diverse distanze dal carico, $d'$ e $d$. Supponiamo che in $d'$ ci sia un corto 
+    e dunque $Z(d')=0$, mentre in $d$ un aperto, per cui $Z(d)=+\infty$. Applichiamo il trasporto per un aperto:
+    \begin{equation}
+        Z(d)=jZ_{0}\tan(\beta d) \qquad \textrm{con } \beta = \frac{\pi}{2}+n \pi \ \ n \geq 0
+    \end{equation}
+    dove $n\geq 0$ perché $\beta d$ non può essere negativo per ovvi motivi fisici.\footnote{$d$ è una distanza, $\beta$ l'inverso di una lunghezza d'onda}
+    Dunque il primo aperto si ha per $\beta = \frac{\pi}{2}$ e poiché $\beta = 2\pi/\lambda$:
+    \begin{equation}
+        \frac{2\pi}{\lambda}d = \frac{\pi}{2} \implies d = \frac{\lambda}{4}
+    \end{equation}
+    Allo stesso modo, per il corto ragioniamo con le ammettenze e consideriamo il primo aperto:
+    \begin{equation}
+        Y(d) = j y_{0}\tan(\beta d) \qquad \textrm{con } \beta d = \frac{\pi}{2}+n \pi
+    \end{equation}
+    \begin{equation}
+        \implies \frac{2 \pi}{\lambda} d = \frac{\pi}{2} \implies d = \frac{\lambda}{4}
+    \end{equation}
+    Entrambe le espressioni sono periodiche di $\lambda/2$, dunque è facile intuire che ogni $\lambda/4$ si alterna corto, aperto, corto ... \\ \\
+    La stessa cosa si può vedere nel piano complesso:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img13.png}
+    \end{figure}
+    \\ Partendo con fase generica $\varphi_{c}$, si ha l'aperto quando la fase è nulla, cioè per:
+    \begin{equation}
+        2 \beta d + \varphi_{c} = 2n \pi
+    \end{equation}
+    Similmente, si ottiene l'aperto quando $\Gamma=-1$, cio per fase è $\pi$:
+    \begin{equation}
+        2\beta d + \varphi_{c}=2 n \pi + \pi
+    \end{equation}
+    \\ \\ 
+    Vediamo come variano i \textbf{moduli} di tensione e corrente lungo la linea. Esprimiamo l'andamneto come rapporto fra il modulo
+    della tensione e il parametro $V^{+}$, perchè l'andamento  (la "forma" della funzione) è indipendente da quest'ultimo:
+    \begin{align}
+        V(d) = V^{+}(1+\Gamma (d)) \implies \frac{|V(d)|}{|V^{+}|} = |1+\Gamma (d)| \\
+        \implies |1+\Gamma_{R}(d)+j \Gamma_{Im}(d)| = \sqrt{(1+\Gamma_{R})^{2}+\Gamma_{Im}^{2}(d)} \\
+        = \sqrt{1 + 2 \Gamma_{R}(d)+|\Gamma|^{2}}
+    \end{align}
+    L'ultimo passaggio è giustificato dal fatto che $\Gamma_{R}^{2}+\Gamma_{Im} ^{2} = |\Gamma|^{2}$. Tenendo conto che:
+    \begin{equation}
+        \Re(\Gamma (d)) = \Re(|\Gamma|e^{j \varphi_{c}}e^{-j 2 \beta d}) = |\Gamma|\cos(2\beta d - \varphi_{c})
+    \end{equation}
+    si ottiene, in definitiva:
+    \begin{equation}
+        \frac{|V(d)|}{|V^{+}|} = \sqrt{1 + |\Gamma|^{2}+2|\Gamma|\cos(2 \beta d- \varphi_{c})}
+    \end{equation}
+    È una funzione sinuosidale di periodo $\lambda/2$ che ha massimi per $2\beta d - \varphi_{c} = 2n \pi$, quando il coseno è massimo. 
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.65\linewidth]{Chapter_two/Chapt2img14.png}
+    \end{figure}
+    \\
+    Che abbia periodo $\lambda/2$ è immediato, perché il coseno ha pulsazione $2 \beta d$.
+    Per la corrente l'espressione che si ottiene è la stessa a meno di un segno, facendo gli stessi identici 
+    passaggi di sopra:
+    \begin{equation}
+        \frac{|I(d)|}{|I^{+}|} = \sqrt{1+|\Gamma|^{2}-2|\Gamma|\cos(2 \beta d - \varphi_{c})}
+    \end{equation}
+    Il grafico della corrente è, senza troppe sorprese, traslato di $\pi/2$ rispetto a quello della tensione. \\
+    Gli stessi risultati si potevano ottenere dall'espressione dei coefficienti di riflessione:
+    \begin{equation}
+        \label{eqn:pippo}
+        \frac{|V(d)|}{|V^{+}|}=|1+\Gamma(d)|
+    \end{equation}
+    ha un massimo per $\Gamma(d)$, cioè per $2\beta d-\varphi_{c} = 2n \pi$. Allo stesso modo:
+    \begin{equation}
+        \label{eqn:pluto}
+        \frac{|V(d)|}{|V^{+}|}=|1-\Gamma(d)|
+    \end{equation}
+    ha massimo per $\Gamma(d) = -1$, cioè per $2\beta d-\varphi_{c} = \pi + 2n \pi$. 
+    E questa cosa ha perfettamente senso ! Infatti (\ref{eqn:pippo}) è la condizione per avere un aperto, 
+    per il quale si ha il massimo di tensione $|V(d)|=2|V^{+}|$, mentre (\ref{eqn:pluto}) è la condizione per il chiuso,
+    per il quale c'è il massimo di corrente $|I(d)|=2|I^{+}|$. \\ \\
+    Facciamo una precisazione su una cosa leggermente tricky. Consideriamo una linea di trasmissione lunga 
+    $d < \lambda/4$ ed ipotizziamo che abbia un corto come carico. Il massimo di tensione dovrebbe stare a $\lambda/4$ dal corto,
+    ma la linea è più corta. Allora il massimo è all'inizio della linea, perché la tensione è una funzione continua in $d$ che ha un 
+    minimo in corrispondenza del corto, dunque il massimo c'è sempre, perché partendo dal minimo cresce a destra e a sinistra per $\lambda/4$. 
+    
+    \section*{Carico generico}
+        In questo caso, la parte reale dell'impedenza di carico è maggiore di zero. Abbiamo già visto che 
+        per impedenze con parti reali non nulle il coefficiente di riflessione è, in modulo, minore dell'unità. 
+        L'espressione per i rapporti di moduli per tensione e corrente è analoga a prima:
+        \begin{equation}
+            \frac{|V(d)|}{|V^{+}|} = \sqrt{1+|\Gamma|^{2}+2|\Gamma|\cos(2\beta d - \varphi_{c})}
+        \end{equation}
+        Quella per la corrente varia di un segno. È facile vedere che entrambe le funzioni\footnote{Quando c'è il massimo per la tensione (corrente) $1+|\Gamma|^{2}\pm2|\Gamma| = (1 \pm |\Gamma|)^{2}$} variano nell'intervallo:
+        \begin{equation}
+            [1-|\Gamma|, 1+|\Gamma|]
+        \end{equation}
+        e avranno i massimi, come prima, in corrispondenza dei valori per i quali il coseno è massimo in modulo, che sono gli stessi
+        di prima. \\
+        \begin{center}
+        \begin{tabular}{c|c|c} 
+            $2 \beta d - \varphi_{c}=2\pi n$ & $\max V$ & $\min I$ \\
+            $2\beta d - \varphi_{c}=2 \pi n + \pi$ & $\min V$ & $\max I$
+        \end{tabular}
+        \end{center} 
+        In questo caso\footnote{Cioè in corrispondenza di massimi e minimi}, quando il coefficiente di riflessione è puramente reale, abbiamo carico puramente 
+        resistivo:
+        \begin{equation}
+            Z(d) = Z_{0} \frac{1-|\Gamma|^{2}+j2\Gamma_{I}(d)}{1+|\Gamma|^{2}-2 \Gamma_{R}(d)} = Z_{0}\frac{1-|\Gamma|^{2}}{1+|\Gamma|^{2}-2|\Gamma|}
+        \end{equation}
+        \begin{equation}
+            = \frac{1+|\Gamma|}{1-|\Gamma|}Z_{0} = R_{max}
+        \end{equation}
+        che è il massimo valore di resistenza trasportabile. Viceversa, per $\Gamma$ reale negativo c'è il minimo valore di resistenza trasportabile:
+        \begin{equation}
+            R_{min}=\frac{1-|\Gamma|}{1+|\Gamma|}
+        \end{equation}
+        In sintesi la parte reale dell'impedenza è compresa fra i valori:
+        \begin{equation}
+            \frac{1-|\Gamma|}{1+|\Gamma|} \leq \Re(Z(d)) \leq \frac{1+|\Gamma|}{1-|\Gamma|} 
+        \end{equation}
+        che sono entrambi valori positivi, come ci aspettavamo. Se non fosse così, infatti, ci sarebbe almeno un punto con potenza attiva propagata nulla e di
+        conseguenza su tutta la linea non ci sarebbe propagazione di potenza attiva.
+        \chapter*{Appendice A - Note di carattere matematico}
     
 \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
