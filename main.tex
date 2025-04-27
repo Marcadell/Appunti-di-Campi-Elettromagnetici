@@ -2371,8 +2371,299 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         che sono entrambi valori positivi, come ci aspettavamo. Se non fosse così, infatti, ci sarebbe almeno un punto con potenza attiva propagata nulla e di
         conseguenza su tutta la linea non ci sarebbe propagazione di potenza attiva.
-        \chapter*{Appendice A - Note di carattere matematico}
-    
+        
+    \section{Linee con discontinuità ed adattamento}
+    \subsection*{Linee con discontinuità}
+    Consideriamo ora il caso di linee che presentano discontinuità, come nel disegno a seguire:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img15.png}
+    \end{figure}
+    Vogliamo calcolare il trasporto d'impedenza nel punto a distanza $d_{0}$ dall'inizio della prima linea, tenendo conto che la seconda 
+    linea è lunga $d_{1}$. La prima e la seconda linea sono caratterizzate rispettivamente da $(\beta_{0}, Z_{0})$ e $(\beta_{1}, Z_{1})$.
+    Per risolverlo, si calcola prima l'impedenza vista dalla linea alla sezione $AA'$:
+    \begin{equation}
+        Z_{AA'} = Z_{1} \frac{Z_{C}+jZ_{1}\tan(\beta d_{1})}{Z_{1}+jZ_{C}\tan(\beta d_{1})} = j Z_{1}\tan(\beta d_{1})
+    \end{equation}
+    perché siamo nel caso semplice dove c'è un corto come carico. A questo punto bisogna semplicemente trasportare:
+    \begin{equation}
+        Z_{BB'} = Z_{0} \frac{Z_{AA'}+jZ_{0}\tan(\beta d_{0})}{Z_{0}+jZ_{AA'}\tan(\beta d_{0})}
+    \end{equation}
+    Qual è l'ipotesi sotto la quale regge ciò che abbiamo appena fatto? Che l'impedenza sia continua lungo la discontinuità 
+    e che quindi $Z_{AA'}=Z_{CC'}$. In altri termini, abbiamo supposto che l'impedenza alla fine della linea coincida con quella all'inizio 
+    di quella successiva. L'ipotesi di continuità dell'impedenza è in realtà conseguenza dell'ipotesi più generale che tensione e corrente 
+    siano continue su tutta la linea e, di conseguenza, lo sono anche le impedenze e la potenza complessa.
+    \begin{equation}
+        \begin{cases}
+            V_{AA'}=V_{BB'} \\
+            I_{AA'} = I_{BB'}
+        \end{cases} \implies 
+        \begin{cases}
+            Z_{AA'} = Z_{BB'} \\
+            \hat{P}_{AA'} = \hat{P}_{BB'}
+        \end{cases}
+    \end{equation}
+    Ciò che abbiamo detto non vale, però per il coefficiente di riflessione.  \\
+    \textbf{Proof}: \\
+    Per dimostrarlo supponiamo, riferendoci al disegno 
+    di prima, di avere una resistenza $R_{C}<Z_{1}$ come carico al posto del corto. Supponiamo inoltre che $d=\lambda_{1} /4$. Calcolando $Z_{AA'}$ si ricava:
+    \begin{equation}
+        Z_{AA'} = Z_{1}\frac{R_{C}+jZ_{1}\tan(\beta \frac{\lambda_{1}}{4})}{Z_{1}+jR_{C}\tan(\beta \frac{\lambda_{1}}{4})}
+    \end{equation}
+    Poiché:
+    \begin{equation}
+        \frac{\lambda}{4}\beta = \frac{2\pi}{\lambda} \cdot \frac{\lambda}{4}=\frac{\pi}{2}
+    \end{equation}
+    l'espressione di sopra può essere approssimata al rapporto delle due tangenti, che divergono per $\pi/2$:
+    \begin{equation}
+        Z_{AA'} \simeq \frac{Z_{1} ^{2}}{R_{C}}
+    \end{equation}
+    che è una quantità sicuramente maggiore di $Z_{1}$, sotto l'ipotesi $R_{C}<Z_{1}$.
+    A questo punto, otteniamo la seguente linea equivalente:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img16.png}
+    \end{figure}
+    Calcoliamo il coefficiente di riflessione in $Z_{BB'}$\footnote{cioè alla fine della seconda linea, ho dimenticato di disegnarlo}:
+        \begin{equation}
+            \Gamma_{CC'} = \frac{R_{C}-Z_{1}}{R_{C}+Z_{1}} < 0
+        \end{equation}
+    Tenendo conto che il coefficiente alla sezione AA' (inizio della seconda linea) è:
+    \begin{equation}
+        \Gamma_{AA'} = \Gamma_{BB'}e^{-j 2 \beta \lambda/4} = \Gamma_{BB'}e^{-j \pi} = -\Gamma_{BB'} \neq \Gamma_{CC'}
+    \end{equation}
+    in quanto:
+    \begin{equation}
+        \Gamma_{CC'} = \frac{Z_{1} ^{2} /R_{C} -Z_{0}}{Z_{1} ^{2} +Z_{0}} \neq - \Gamma_{BB'}
+    \end{equation}
+    \\ \\
+    Un ulteriore caso di interesse applicativo è quello per il quale si conosce il coefficiente di riflessione di una delle due linee, per esempio la seconda, ma 
+    non l'impedenza di carico. Quello che si fa è semplicemente calcolare l'impedenza di carico tramite il coefficiente di riflessione è poi applicare il trasporto.
+    Se poi si conosce quello della prima, si può direttamente calcolare con la ben nota relazione:
+    \begin{equation}
+        Z_{CC'} = Z_{1}\frac{1+\Lambda_{CC'}}{1-\Lambda_{CC'}}
+    \end{equation}
+    Fisicamente, il fatto che il coefficiente di riflessione non si conservi ma il resto delle grandezze si, significa che la proporzione di onda 
+    regressiva ed onda progressiva varia nel tempo, ma la loro somma resta costante:
+    \begin{equation}
+        V^{+}_{AA'}+V^{-} _{AA'} = V^{+}_{BB'}+V^{-} _{BB'}
+    \end{equation}
+    \subsection*{Adattamento}
+        Consideriamo una situazione del genere:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.65\linewidth]{Chapter_two/chapt2img17}
+        \end{figure}
+        Il nostro interesse è il trasferimento massimo di potenza attiva al carico. Sappiamo che 
+        la massima potenza attiva che il generatore può trasferire al carico è pari a:
+        \begin{equation}
+            P_{max} = \frac{1}{8} \frac{|V_{g}| ^{2}}{R_{g}}
+        \end{equation}
+        In pratica, vogliamo annullare il coefficiente di riflessione alla sezione d'ingresso.
+        Sia $Z_{BB'}$ l'impedenza trasportata dal carico alla sezione d'ingresso. Affinché il coefficiente di riflessione 
+        sia nullo deve risultare:
+        \begin{equation}
+            \Lambda_{IN} = \frac{Z_{BB'}-Z_{g}}{Z_{BB'}+Z_{g}} = 0 \implies Z_{g} = Z_{BB'}
+        \end{equation}
+        Per fare in modo che l'impedenza trasportata sia uguale a quella del generatore, bisogna inserire una
+        \textbf{rete di adattamento} tra il generatore ed la linea. Si può fare la stessa cosa tra linea e carico e in quel caso si 
+        parla di adattamento \textit{al carico}, invece che \textit{al generatore}. La linea non deve introdurre perdite e 
+        non linearità, quindi deve essere fatta da soli \textbf{elementi lineari reattivi od al massimo linee senza perdite }.
+    \subsubsection{Adattatore a $\lambda/4$}
+        L'adattatore a $\lambda/4$ è il primo dei due adattatori che vediamo in questa sezione. Come suggerisce il nome,
+        è costituito da una linea lunga $\lambda/4$ interposta fra la linea e il carico:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img18.png}
+        \end{figure}
+        Ovviamente non basta che l'adattatore sia lungo $\lambda/4$, ma deve soddisfare ulteriori proprietà.
+        Sia la linea da adattare che l'adattatore devono avere, infatti, impedenza caratteristica reale. Nel nostro caso, $Z_{1}$ e $Z_{0}$. Inoltre 
+        l'adattatore deve avere $\beta_{1}$ reale. La terza condizione è che anche il carico sia puramente reale.
+        \\ Fatte queste premesse, possiamo caclolare il trasporto all'inizio dell'adattatore:
+        \begin{equation}
+            Z_{BB'} = Z_{0} = Z_{1} \cdot \frac{Z_{C}+jZ_{1}\tan(\beta \lambda /4)}{Z_{1}+jZ_{C}\tan(\beta \lambda /4)} \simeq \frac{Z_{1} ^{2}}{Z_{C}} = Z_{0}
+        \end{equation}
+        Da cui si ottiene:
+        \begin{equation}
+            Z_{1} \simeq \sqrt{Z_{0}Z_{C}}
+        \end{equation}
+        che va sotto il nome di \textbf{formula di adattamento}.
+    \newpage
+        \subsubsection*{Adattatore a singolo stub}
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.5\linewidth]{Chapter_two/Chapt2img19.png}
+        \end{figure}
+        In questa sezione presentiamo solo la forma dell'adattatore a singolo stub, che poi verrà trattato
+        ampiamente negli esercizi. Quello in figura è un adattatore a singolo stub \textbf{in serie}, perché la corrente che scorre all'interno
+        dello stub (la linea in verticale sotto) è la stessa che scorre all'interno della linea di adattamento collegata subito prima del carico.
+        La configurazione in parallelo è la stessa con l'unica eccezione che lo stub e la linea da adattare sono connessi, per l'appunto, in parallelo.
+        \\ \\
+        Ipotizziamo che il carico si $Z_{C}=R_{C}+jX_{C}$, la lunghezza dello stub $y$ (incognita) e quella della linea di adattamento $x$, anch'essa incognita.
+        Ci viene richiesto, di solito, di ricavare i valori di $x$ ed $y$ per i quali la rete è adattata.
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img20.png}
+        \end{figure}
+        Le condizion di adattamento sono, nel nostro caso:
+        \begin{equation}
+            Z_{DD'} = Z_{0} ^{*}
+        \end{equation}
+        Supponendo che $Z_{0}$ sia reale, bisogna verificare:
+        \begin{equation}
+            R_{DD'} = Z_{0} \\
+            X_{DD'} = 0
+        \end{equation}
+        È sempre possibile trovare valori di $x$ ed $y$ reali non negativi\footnote{Sono lunghezze !} tali da soddisfare le condizioni 
+        di adattamento? La rispota è affermativa.
+        \\ \textbf{Proof}: 
+        \\ Si vede dal disegno che :
+        \begin{equation}
+            Z_{DD'} = Z_{CC'}+Z_{BB'}
+        \end{equation}
+        perchè siamo in configurazione serie. Lo stesso discorso vale per le ammettenze per la configurazione parallelo.
+        Esplicandole e tenendo conto che lo stub trasporta un corto:
+        \begin{align*}
+            Z_{CC'} = jZ_{0}\tan(\beta y) = jX_{CC'}(y) \\
+            Z_{BB'} = Z_{0} \cdot \frac{Z_{C}+jZ_{0}\tan(\beta x)}{Z_{0}+jZ_{C}\tan(\beta x)} = R_{BB'}(x)+jX_{BB'}(x)
+        \end{align*}
+        A questo punto bisogna verificare:
+        \begin{equation}
+            \begin{cases}
+                R_{BB}(x)=Z_{0} \\
+                X_{CC'}(y)+X_{BB'}(x) = 0
+            \end{cases}
+        \end{equation}
+        La prima equazione ammette sempre soluzione? Tenendo conto che:
+        \begin{equation}
+            Z_{0} \frac{1-|\Gamma|}{1+|\Gamma|} \leq R_{BB}(x) \leq Z_{0}\frac{1+|\Gamma|}{1-|\Gamma|}
+        \end{equation}
+        poiché $Z_{0}$ è compreso nell'intervallo di valori per cui varia $R_{BB}(x)$ e poiché l'impedenza è continua sulla linea,
+        allora è sicuramente verificata per qualche valore di $x$. In tal modo $X_{BB'}(x) \in \mathbb{R}$ è anch'essa univocamente determinata.
+        A questo punto bisogna verificare che esista qualche valore di $y$ per cui:
+        \begin{equation}
+            X_{CC'}(y)=-X_{BB'}(x) \implies Z_{0}\tan(\beta y) = -X_{BB'}(x)
+        \end{equation} 
+        La relazione è verificata perché $-X_{BB'}(x)$ è un numero reale e la tangente assume tutti i valori fra $-\infty$ e $+\infty$, dunque $y$ esiste.
+\chapter{Esercizi}
+    \section{Linee di trasmissione}
+        \subsection{Adattamento a singolo stub in serie}
+            \begin{figure}[h!]
+                \center 
+                \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img21.png}
+            \end{figure}
+        \textbf{Traccia}: determinare i valori minimi di $x$ ed $y$ affinché $Z_{DD'}=Z_{0}$.
+        Partiamo con il calcolo di $Z_{BB'}$ per ottenere la dipendenza da $x$:
+        \begin{equation}
+            Z_{BB'} = Z_{0} \frac{Z_{C}+jZ_{0}\tan(\beta x)}{Z_{0}+jZ_{C}\tan(\beta x)} =
+            Z_{0} \frac{Z_{0}(1+j)+jZ_{0}\tan(\beta x)}{Z_{0}+jZ_{0}(1+j)\tan(\beta x)}
+        \end{equation}
+        Poniamo, per semplicità di calcolo:
+        \begin{equation}
+            T_{x}0\tan(\beta x) \qquad T_{y}=\tan(\beta y)
+         \end{equation}
+         Ottendo dunque:
+         \begin{equation}
+            Z_{BB'} = Z_{0} \frac{Z_{0}(1+j)+jZ_{0}T_{x}}{Z_{0}+j(1+j)Z_{0}T_{x}} = Z_{0}\frac{1+j(1+T_{x})}{(1-T_{x})+jT_{x}}
+         \end{equation}
+         Calcoliamone la parte reale:
+         \begin{equation}
+            R_{BB'} = \Re[Z_{0} \frac{[1+j(1+T_{x})][(1-T_{x}-jT_{x})]}{(1-T_{x})^{2}+T_{x} ^{2}}] = Z_{0}\frac{T_{x} ^{2}+1}{2T_{x} ^{2}-2T_{x}+1}
+         \end{equation}
+         A questo punto ricaviamo $T_{x}$:
+         \begin{equation}
+            Z_{0} \frac{1+T_{x} ^{2}}{2T_{x} ^{2}-2T_{x}+1} = Z_{0}
+         \end{equation}
+         Controlliamo prima se questa relazione ha soluzione all'infinito. Se facciamo tendere $T_{x} \to \infty$ si ottiene:
+         \begin{equation}
+            \frac{1}{2} = 1
+         \end{equation}
+         dunque non ha soluzione all'infinito.
+         Allora si risolve l'equazione di secondo grado e si ricava:
+         \begin{equation}
+            T_{x1} = 0 \implies x_{1} = \frac{n \pi}{\beta} \qquad T_{x2} = 2 \implies x_{2} = \frac{\arctan(2)}{\beta}+\frac{n\pi}{\beta}
+         \end{equation}
+         Per entrambe le soluzioni, $n\geq 0$ affinché si ottengano valori reali. Si noti che se per esempio avessimo ricavato:
+         \begin{equation}
+            x = -\arctan(2)/\beta +n \pi/\beta
+         \end{equation}
+         allora $n>1$! Escludendo la soluzione banale per $x=0$, il valore minimo si ottiene per $n=0$ con $x_{2}=arctan(2)$.
+         Per semplicità, supponiamo di poter utilizzare $x=0$. A questo punto $T_{x}=0$ e dunque la parte immaginaria di $Z_{BB'}$ sarà semplicemente $Z_{0}$ (basta riutilizzare
+         la relazione di sopra). Allora:
+         \begin{equation}
+            Z_{0}\tan(\beta y) = Z_{0} \implies \beta y = \arctan(1)+n \pi 
+         \end{equation}
+         ottenendo, come valore minimo $y_{min} = arctan(1)/\beta$.
+         Poiché il risultato serve in termini noti, si sostituisce il valore di $\beta = 2\pi /\lambda$, tenendo 
+         conto che per un mezzo in aria:
+         \begin{equation}
+            \lambda = \frac{2\pi f}{c}
+         \end{equation}
+         dove $f$ è la frequenza di lavoro e $c$ la velocità della luce nel vuoto.
+    \newpage
+    \subsection*{Equipartizione di potenza a singolo stub}
+         Considerato il seguente circuito:
+         \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.8\linewidth]{Chapter_two/Chapt2img22.png}
+         \end{figure} \\
+         \begin{center}
+            \begin{tabular}{c c c c }
+                $l_{1} = 0.25m$ & $Z_{0}=50 \Omega$ & $f=150Mhz$ & $R_{g} = 40 \Omega $ \\
+                $l_{2}=0.5m$ & $Z_{1}=Z_{0}(1+j)$ & $R=37.5 \Omega$ & $V_{g} = 1V$ \\
+                & $Z_{2} = Z_{0}(1+j)$ & &
+             \end{tabular}
+         \end{center}
+         Il mezzo è assunto in aria. Calcolare i valori minimi $x_{min}$ ed $y_{min}$ tali per cui la potenza 
+         attiva dissipata su $Z_{1}$  sia la stessa di quella dissipata su $Z_{2}$. \\ \\
+         La chiave per risolvere quest'esercizio è tener conto del fatto che, in una linea senza perdite, la potenza attiva si
+         conserva, dunque nel nostro caso:
+         \begin{equation}
+            P_{AA'}=P_{Z_{1}} \qquad P_{BB'}=P_{Z_{2}}
+         \end{equation}
+         I due carichi sono in serie, dunque la condizione di equipartizione di potenza 
+         attiva si riduce all'uguaglianza della parte reale delle impedenza:
+         \begin{equation}
+            P_{AA'}=\frac{1}{2}R_{AA'}|I_{AA'}|^{2} = P_{BB'} = \frac{1}{2}R_{BB'}|I_{BB'}|^{2} \implies R_{AA'}=R_{BB'}
+         \end{equation}
+         L'impedenza alla sezione AA' è funzione di termini noti, la calcoliamo immediatamente\footnote{non sviluppando i calcoli per non appensatire il flusso della trattazione}:
+         \begin{equation}
+            Z_{AA'} = \Re[Z_{0} \frac{Z_{1}\cdot j Z_{0}\tan(\beta l_{1})}{Z_{0}+jZ_{1}\tan(\beta l_{1})}] = Z_{0}\Re[ \frac{1+2j}{j}] = 2Z_{0}
+         \end{equation}
+         Mentre per la parte reale di $Z_{BB'}$, applicando il trasporto, si ottiene in funzione di $T_{x}=\tan(\beta x)$:
+         \begin{equation}
+            \Re(Z_{BB'})=Z_{0}\frac{1+T_{x} ^{2}}{2T_{x} ^{2}-2T_{x}+1}
+         \end{equation}
+         Notiamo subito che non ha soluzione all'infinito, dunque ricaviamo quelle al finito svolgendo l'equazione di secondo grado:
+         \begin{equation}
+          R_{BB'}=R_{AA'} \implies  Z_{0} \frac{1+T_{x} ^{2}}{2T_{x} ^{2}-2T_{x}+1} = Z_{0} \implies \frac{1+T_{x} ^{2}}{2T_{x} ^{2}-2T_{x}+1} = 1
+         \end{equation}
+         ed ottenendo come risultati:
+         \begin{equation}
+            \begin{cases}
+                T_{x1}=\frac{1}{3} \\ T_{x2} =1    
+            \end{cases} \implies
+            \begin{cases}
+                x_{1} = \frac{1}{\beta} (\arctan (\frac{1}{3})+n\pi) \\
+                x_{2}=\frac{1}{\beta} (\arctan (1)+n\pi) 
+            \end{cases}
+         \end{equation}
+         ottenendo in definitiva il valore di $x$ da sostituire nel calcolo di $Z_{BB'}$:
+         \begin{equation}
+            x_{min} = \frac{\arctan(\frac{1}{3})}{\beta} \implies Z_{BB'}=Z_{0}(2+j)
+         \end{equation}
+         
+
+
+
+
+
+
+
+
+
+
+\chapter*{Appendice A - Note di carattere matematico}
 \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
         \begin{itemize}
