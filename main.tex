@@ -2280,10 +2280,12 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{figure}
     \\ Partendo con fase generica $\varphi_{c}$, si ha l'aperto quando la fase è nulla, cioè per:
     \begin{equation}
+        \label{eqn:max_tensione}
         2 \beta d + \varphi_{c} = 2n \pi
     \end{equation}
-    Similmente, si ottiene l'aperto quando $\Gamma=-1$, cio per fase è $\pi$:
+    Similmente, si ottiene il corto quando $\Gamma=-1$, cio per fase è $\pi$:
     \begin{equation}
+        \label{eqn:max_corrente}
         2\beta d + \varphi_{c}=2 n \pi + \pi
     \end{equation}
     \\ \\ 
@@ -2652,13 +2654,171 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
          \begin{equation}
             x_{min} = \frac{\arctan(\frac{1}{3})}{\beta} \implies Z_{BB'}=Z_{0}(2+j)
          \end{equation}
-         
-
-
-
-
-
-
+        \\ La situazione ora è questa qua:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.85\linewidth]{img/Esercizi/Esercizi1.png}
+        \end{figure} \\
+        Il \textbf{secondo punto} chiede di calcolare i valori di $y_{min}$ e $w_{min}$ tali per cui
+        $\overline{P}_{Z_{1}}+\overline{P}_{Z_{2}}=\max$ ed i valori delle singole potenze. Dal disegno è immediato verificare che:
+        \begin{equation}
+            \overline{P}_{Z_{1}}+\overline{P}_{Z_{2}}=\overline{P}_{CC'} =P_{DD'}
+        \end{equation}
+        e che in virtù dell'equipartizione dell'energia del punto precedente $\overline{P}_{Z_{1}}=\overline{P}_{Z_{2}}$, dunque basta dividere per due 
+        la potenza massima per ricavare entrambe. Sullo stub di lunghezza $w$ c'è un carico reattivo, dunque è verificato $\overline{P}_{DD'}=\overline{P}_{FF}$.
+        Non possiamo dire lo stesso per la sezione GG', perchè c'è un carico resistivo e conseguente dissipazione di potenza attiva:
+        \begin{equation}
+            P_{GG'}\geq P_{FF'}
+        \end{equation}
+        In questi casi, conviene applicare Thevenin/Norton per inglobare tutte le cause di dissipazione, così da ricavare la potenza 
+        massima erogabile del generatore equivalente, che terrà conto anche delle perdite dovute ai carichi resistivi. In 
+        questo caso va applicato Thevenin, perché abbiamo una configurazione serie. Se isoliamo (virtualmente) la sezione FF' dal circuito
+        e calcoliamo la $Z_{eq}$ di Thevenin, cioè quella vista da un ipotetico carico in FF' quando il generatore di tensione è cortocircuitato:
+        \begin{equation}
+            Z_{eq}=Z_{GG'}+R \simeq \frac{Z_{0} ^{2}}{R_{g}}+R = \frac{Z^{2} _{0}}{\displaystyle \frac{4}{5}Z_{0}}+\frac{3}{4}Z_{0}=2Z_{0}
+        \end{equation}
+        L'approssimazione è giustificata dalla presenza di un tratto a $\lambda/4$, situazione vista in precedenza.
+        Per la $V_{eq}$, accendiamo il generatore e apriamo la sezione FF'. La $V_{eq}$ trasportata da HH' (sezione dove c'è il generatore) è 
+        \begin{equation}
+            V_{eq}=V_{HH'}\cos(\beta \lambda /4)-jZ_{0}I_{HH'}\sin(\beta \lambda /4) = -jZ_{0}I_{HH'} 
+        \end{equation}
+        Grazie all'aperto a fine sezione, non circola corrente in $R$ per cui:
+        \begin{equation}
+            V_{eq}=V_{FF'}=-jZ_{0}\frac{V_{g}}{R_{g}+Z_{AA'}} = -jZ_{0}\frac{V_{g}}{R_{g}} = -j\frac{5}{4}V_{g}
+        \end{equation}
+        perché $Z_{AA'}=0$. Era immediato da fare perché il trasporto di $\lambda/4$ di un aperto è un corto e viceversa, ma almeno
+        questo è il procedimento generale. La situazione ora è semplificata di molto:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.7\linewidth]{img/Esercizi/Esercizi2.png}
+        \end{figure}
+        Ora possiamo imporre le condizioni di adattamento fra il generatore equivalente di Thevenin e l'impedenza vista 
+        alla sezione FF':
+        \begin{equation}
+            Z_{FF'}=Z_{eq} ^{*}=2Z_{0} \implies 
+            \begin{cases}
+                Z_{FF'} = R_{DD'}(y)= 2Z_{0} \\
+                X_{FF'} = X_{DD'}(y)+X_{EE'}(w) = 0    
+            \end{cases}
+        \end{equation}
+        A questo punto si applicano i trasporti, si pone $T_{y}=\tan(\beta y), T_{w}=\tan(\beta w)$ e si risolve il sistema:
+        \begin{equation}
+            \begin{cases}
+            R_{DD'} = \Re [Z_{0} \displaystyle \frac{4Z_{0}+jZ_{0}T_{y}}{Z_{0}+j4Z_{0}T_{y}}] =  \displaystyle \frac{4+4T_{y} ^{2}}{1+16T_{y} ^{2}} \\
+            X_{DD'}+X_{EE'} = \textrm{Im}[Z_{0} \displaystyle \frac{4Z_{0}+jZ_{0}T_{y}}{Z_{0}+j4Z_{0}T_{y}}] +Z_{0}T_{w} =  \displaystyle -\frac{15T_{y}}{1+16T_{y} ^{2}}+Z_{0}T_{w}
+        \end{cases}
+        \end{equation}
+        ricavando come soluzioni
+        \begin{equation}
+            T_{y1} = -0.27 \qquad T_{y2}=0.27 \qquad T_{w}=1.87 
+        \end{equation}
+        \begin{equation}
+         \implies \beta y_{1} = -\arctan(0.27)+n\pi \qquad \beta y_{2}=\arctan(0.27)+n \pi \qquad \beta w = \arctan(1.87)+n \pi
+        \end{equation}
+        \begin{equation}
+            \implies y_{min} = \frac{1}{\beta}\arctan(0.27) = 0.084m \qquad w_{min}=0.34m
+        \end{equation}
+        avendo sostituito $\beta = \displaystyle \frac{2\pi f}{c} = \pi$
+        Per il valore numerico della potenza, basta tenere conto che la potenza massima è pari a quella disponibile al \textbf{generatore equivalente} (non a quello originale!):
+        \begin{equation}
+            \overline{P}_{disp}=\frac{1}{8}\frac{|V_{eq}| ^{2}}{R_{g}} = \frac{1}{8}\frac{|V_{eq} ^{2}|}{2Z_{0}} = 0.125W
+        \end{equation}
+        \\ \\
+        Il \textbf{terzo punto} chiede di calcolare la differenza fra energia elettrica e magnetica media nel tratto di lunghezza $w$.
+        In questi casi, dove è richiesta la differenza, si può applicare direttamente il teorema di Poynting alla zona di nostro interesse e risparmiarci
+        il calcolo dell'integrale. L'area suddetta è:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.7\linewidth]{img/Esercizi/Esercizi3.png}
+        \end{figure} \\
+        Il flusso del vettore di Poynting attraverso questa superficie $\Sigma$ è dato da:
+        \begin{equation}
+            \Phi_{\Sigma}(\underline{S}) = \Phi_{\Sigma_{EE'}}+\Phi_{Corto}+\Phi_{Lati}
+        \end{equation}
+        Ai lati non c'è contributo perché per un CEP il campo elettromagnetico non penetra, mentre il corto non contribuisce
+        perché c'è zero campo e dunque zero flusso\footnote{stesso discorso per l'aperto}. In definitiva il flusso dipende unicamente dalla sezione EE'.
+        Applicando la relazione di Poynting per la parte immaginaria e tenendo conto che $Phi_{\Sigma} = \Phi_{EE'}$:
+        \begin{equation}
+            \Phi_{EE'}+2 \omega (\overline{W}_{m}-\overline{W}_{e})=-\textrm{Im}(\frac{j}{2} \iiint_{V} \underline{E} \cdot \underline{J}_{0}dV)
+        \end{equation}
+        che si riduce, in virtù dell'assenza di sorgenti interne ($\underline{J}_{0}=0)$ a:
+        \begin{equation}
+            \overline{W}_{m}-\overline{W}_{e} = -\frac{1}{2\omega}\Phi_{EE'}(\underline{S}) = -\frac{1}{2\omega} (-\Im(\frac{1}{2}V_{EE'}I_{EE'} ^{*}))
+        \end{equation}
+        dove abbiamo messo un meno perché, come sappiamo dalla teoria, la convenzione richiede che il flusso del vettore di Poynting venga calcolato uscente.
+        A questo punto ricaviamo tensione o corrente. La corrente che scorre nel corto è la stessa che scorre nel generatore equivalente, dunque:
+        \begin{equation}
+            I_{EE'} = I_{FF'} = \frac{V_{eq}}{Z_{eq}+Z_{FF'}} = \frac{V_{eq}}{2Z_{eq}} = \frac{V_{eq}}{4Z_{0}}
+        \end{equation}
+        mentre l'impedenza alla sezione è il trasporto di un corto:
+        \begin{equation}
+            Z_{EE'}=jZ_{0}\tan(\beta w) \implies \overline{W}_{m}-\overline{W}_{e} = \frac{1}{4 \omega}\frac{1}{2}\textrm{Im}(Z_{EE'}|I_{EE'}|) ^{2}
+        \end{equation}
+        \begin{equation}
+            = \frac{1}{4 \omega} \frac{1}{2}\frac{|V_{eq} |^{2}}{16Z_{0} ^{2}} Z_{0}\tan(\beta w) \simeq 1.65 \cdot 10^{-13}J
+        \end{equation}
+        \textbf{Il punto quattro} chiede invece la somma dell'energia elettromagnetica alla stessa sezione. Possiamo sfruttare il risultato che già abbiamo sulla differenza 
+        e calcolare una fra l'energia magnetica e quella elettrica. Calcoliamo quella elettrica:
+        \begin{equation}
+            \overline{W}_{e} = \frac{C}{4} \int_{0} ^{w} |V(z)|^{2}dz
+        \end{equation}
+        dove $C=\displaystyle \frac{\beta}{\omega Z_{0}} = 6.6 \cdot 10^{-11} F/m$ è la capacità per unità di lunghezza della linea.
+        A questo punto:
+        \begin{equation}
+            V(z) = (V_{EE'}\cos(\beta z)-jI_{EE'}Z_{0}\sin(\beta z)) = I_{EE'}(Z_{EE'}\cos(\beta z)-jZ_{0}\sin(\beta z)) 
+        \end{equation}
+        poiché $Z_{EE'}=X_{EE'}=jZ_{0}\tan(\beta w)$:
+        \begin{equation}
+            \implies |V(z)| ^{2} = |I_{EE'}| ^{2}|X_{EE'}^{2}\cos^{2}(\beta z)+Z_{0}^{2}\sin^{2}(\beta z)-2X_{EE'}Z_{0}\cos(\beta z)\sin(\beta z)|
+        \end{equation}
+        A questo punto si risolve l'integrale tenendo conto delle formule di addizione e sottrazione:
+        \begin{equation}
+            \cos^{2}(x)=\frac{1}{2}(1+\cos(2x)) \qquad sin^{2}(x)=\frac{1}{2}(1-\sin(2x)) \qquad \sin(x)\cos(x)=sin(2x)
+        \end{equation}
+        Trovato il valore di $W_{e}$ il risultato è facilmente ricavabile con:
+        \begin{equation}
+            \overline{W}_{e}+\overline{W}_{m}=\overline{W}_{m}-\overline{W}_{e}+2 \overline{W}_{e}
+        \end{equation}
+        Il \textbf{quinto e ultimo punto} chiede di determinare le distanze $d_{V}$ e $d_{I}$ a partire dal carico dove si ottengono 
+        rispettivamente il massimo di tensione ed il massimo di corrente (in modulo). Partiamo dal massimo di tensione, che come sappiamo si può
+        esprimere come:
+        \begin{equation}
+            V(z)=V^{+}(x)(1+\Gamma (z))
+        \end{equation}
+        poichè la relazione vale a meno di un fattore costante:
+        \begin{equation}
+            \frac{V(z)}{V^{+}}=1+\Gamma(z) \implies \frac{|V(z)|}{|V^{+}|} = |1+\Gamma (z)|
+        \end{equation}
+        Si avrà il massimo di tensione per:
+        \begin{equation}
+            \Gamma (-d_{V}) = \Gamma_{0}e^{-j2 \beta d_{V}} = |\Gamma_{0}|e^{j \varphi_{0}}e^{-j 2 \beta d_{V}}
+        \end{equation}
+        Calcolando $\Gamma_{0}$ e la relativa fase:
+        \begin{equation}
+            \Gamma_{0} = \frac{Z_{1}-Z_{0}}{Z_{1}+Z_{0}} = \frac{j}{2+j} \implies 
+            \begin{cases}
+                |\Gamma_{0}| = \frac{\sqrt{5}}{5} \\ \varphi_{0}=\arctan(2)    
+            \end{cases}
+        \end{equation}
+        si applica il criterio di massimo di tensione visto al capitolo 2\ref{eqn:max_tensione} e si sceglie un valore minore della 
+        lunghezza $l_{1}$ della linea, se esiste:
+        \begin{equation}
+            d_{V}|_{n=0}=\frac{\varphi}{2 \beta} = 0.18m < l_{1}
+        \end{equation} 
+        Per la corrente il procedimento è identico\ref{eqn:max_corrente}:
+        \begin{equation}
+            d_{I}|_{n=-1}=\frac{\varphi_{0}-\pi}{2 \beta} = 0.68m>l_{1}
+        \end{equation}
+        Per la tensione il risultato è maggiore di $l_{1}$, dunque il massimo si trova o all'inizio o alla fine. A questo punto 
+        si calcola ambo lati e si sceglie il più piccolo. All'inizio:
+        \begin{equation}
+            \frac{|I(0)|}{|I^{+}|}=|1-\Gamma_{0}|=\frac{2\sqrt{5}}{5} \simeq 0.89
+        \end{equation}
+        mentre alla fine:
+        \begin{equation}
+            \frac{|I_{AA'}|}{|I^{+}|}=|1-\Gamma_{AA'}| \simeq 1
+        \end{equation}
+        Dunque il massimo sta alla fine.
 
 
 
