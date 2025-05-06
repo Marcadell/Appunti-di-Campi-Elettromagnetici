@@ -3066,7 +3066,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         avendo posto $T_{x}=\tan(\beta x)$. Arrivati a questo punto si potrebbe pensare di trasportare $Y_{CC'}=Y_{BB'}+Y_{AA'}$ al generatore 
         e adattare, ma è un casino. Quello che conviene fare è utilizzare il teorema di Norton e adattare al generatore di corrente equivalente.
-        Applichiamo allora Norton alla sezione CC'. Per l'ammettenza equivalente, c'è il trasporto a $\lambda /4$ dunque si ottiene
+        Applichiamo allora Norton alla sezione CC', ottenendo $Y_{eq}=Y_{0}$. Per l'ammettenza equivalente, c'è il trasporto a $\lambda /4$ dunque si ottiene
         \begin{equation}
             Y_{eq} \simeq (\frac{1}{Z_{1}})^{2}\cdot \frac{1}{Y_{0}} + \frac{1}{Z_{0}} = \frac{(\frac{2}{3}Y_{0})^{2}}{Y_{0}} +Y_{0}= \frac{13}{9}Y_{0} 
         \end{equation}
@@ -3082,14 +3082,105 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             Y_{CC'} = Y_{0} ^{*} \implies 
             \begin{cases}
                 G_{AA'} = \displaystyle \frac{4Y_{0}Z_{0}R_{x}}{R_{x} ^{2}+3Z_{0}} 0 \frac{4}{9}Y_{0} \\
-                X_{AA'}+z_{BB'} = Y_{0} \cdot \displaystyle \frac{\sqrt{3}(R_{x} ^{2}-Z_{0} ^{2})}{R_{x} ^{2}+3Z_{0} ^{2}} +Y_{0}T_{x} = 0
+                X_{AA'}+Z_{BB'} = Y_{0} \cdot \displaystyle \frac{\sqrt{3}(R_{x} ^{2}-Z_{0} ^{2})}{R_{x} ^{2}+3Z_{0} ^{2}} +Y_{0}T_{x} = 0
             \end{cases}
         \end{equation}
-        Non ci sono soluzioni all'infinito né per $R_{x}$ né per $T_{x}$.
-
-
-
-
+        Non ci sono soluzioni all'infinito né per $R_{x}$ né per $T_{x}$. Risolviamo allora il sistema in $R_{x}$
+        utilizzando la relazione per la parte reale, ottenendo:
+        \begin{equation}
+            \begin{cases}
+                R_{x1} = 8.65\ Z_{0} \\
+                R_{x2} = 0.345\ Z_{0}
+            \end{cases} \implies \textrm{Scegliamo }R_{x1} = 0.345\ Z_{0} =17.5 \Omega
+        \end{equation}
+        A questo punto si sostituisce nella seconda equazioni e si ricava il valore di $T_{x}=0.49$, ottenendo 
+        il relativo $x_{min}=2.3m$. \\
+        Il \textbf{secondo punto} chiede la $V_{g}$ tale per cui $P_{R_{x}}=1W$. Avendo adattato, la potenza dissipata
+        su $R_{x}$ è quella disponibile al generatore:
+        \begin{equation}
+            P_{R_{x}} = \frac{1}{8}\frac{|V_{g}|^{2}}{Z_{0}} = 1W \implies V_{g} = 20V
+        \end{equation}
+        La \textbf{terza richiesta} è quella di determinare $Z_{1}$ ed $x_{min}$ tale per cui, ipotizzando che $R_{x} = 2Z_{0}$,  $P_{x} = \max$.
+        Potremmo adattare come prima, ma sfrutteremo il fatto che possiamo utilizzare il tratto a $\lambda/4$ come adattatore. Abbiamo l'impedenza del 
+        generatore è reale, dunque resta da verificare che $Z_{1}$ e $Z_{CC'}$ siano reali.
+        Calcoliamo, posto $R_{x}=2Z_{0}$:
+        \begin{equation}
+            Y_{AA'} = Y_{0} \frac{Z_{0}+j2Z_{0}\tan(\beta l_{1})}{2Z_{0}+jZ_{0}\tan(\beta l_{1})} = Y_{0} \frac{1+2j}{2+j} = Y_{0}\frac{4+j}{5}
+        \end{equation}
+        \begin{equation}
+            \implies Y_{CC'}=Y_{AA'}+Y_{BB'} = (\frac{4}{5}+j\frac{1+T_{x}}{5})Y_{0}
+        \end{equation}
+        Imponendo che $Z_{CC'}$ sia reale:
+        \begin{equation}
+            \implies 
+            \begin{cases}
+                X_{CC'} = \frac{1+T_{x}}{5}Y_{0} = 0 \\
+                G_{CC'} = \frac{4}{5}Y_{0}
+            \end{cases} \implies T_{x}=-\frac{1}{5} \implies x_{min} =-\frac{\arctan(1/5)}{\beta}+\pi
+        \end{equation}
+        A questo punto abbiamo la certezza che $Z_{CC'}$ sia reale, dunque $Z_{1}$ applicando la formula dell'adattatore 
+        a $\lambda/4$ sarà reale:
+        \begin{equation}
+            Y_{1} = \sqrt{Y_{0}G_{CC'}} \implies Z_{1} = \frac{1}{\sqrt{Y_{0}G_{CC'}}} = \frac{\sqrt{5}}{2}Z_{0}
+        \end{equation}
+    La \textbf{quarta richiesta} è l'energia elettrica media nel tratto di lunghezza $x$. Dobbiamo per forza calcolare l'integrale:
+    \begin{equation}
+        \overline{W}_{e} = \frac{C}{4} \int_{0} ^{x} |V(z)|^{2}dz
+    \end{equation}
+    con $C=\frac{\beta}{\omega Z_{0}}$. Iniziamo ricavando l'espressione di $V(z)$ tramite la formula del trasporto:
+    \begin{equation}
+        V(z) = V_{BB'}\cos(\beta z)-jZ_{0}I_{BB'}\sin(\beta z) = V_{BB'}[\cos(\beta z)-j\frac{Z_{0}}{Z_{BB'}}\sin(\beta z)]
+    \end{equation}
+    \begin{equation}
+        =V_{BB'}[\cos(\beta z)-jZ_{0}Y_{BB'}\sin(\beta z)]
+    \end{equation}
+    con $Y_{BB'}=jY_{0}T_{x}$ (a cui sostituiremo il valore di $T_{x}$ del punto uno). A questo punto, poichè $Y_{0}Z_{0}=1$:
+    \begin{equation}
+        =V_{BB'}[\cos(\beta z)-jT_{x}\sin(\beta z)]
+    \end{equation}
+    per cui:
+    \begin{equation}
+        |V(z)|^{2} = |V_{BB'}|^{2}|\cos^{2}(\beta z)+T_{x} ^{2} \sin ^{2} (\beta z) +2T_{x}\cos(\beta z) \sin(\beta z)|
+    \end{equation}
+    Svolgendo l'integrale e utilizzando le formule di bisezione:
+    \begin{equation}
+        \int_{0} ^{x} |V_{BB'}|^{2}|\frac{1}{2}(1+\cos(2\beta z))+T_{x} ^{2} \frac{1}{2}(1-\sin (2\beta z)) +2T_{x}\sin(2\beta z)|dz
+    \end{equation}
+    \begin{equation}
+        =|V_{BB'}| ^{2}[\frac{1}{2}(2z+\frac{1}{2\beta}\sin(2\beta z)+\frac{1}{2\beta}\cos(2\beta z))-\frac{T_{x}}{\beta}\cos(2\beta z)]^{x} _{0}
+    \end{equation}
+    A questo punto non resta che sostituire i valori nell'integrale. Per ricavare $V_{BB'}=V_{CC'}$ basta applicare il trasporto dal generatore:
+    \begin{equation}
+        V_{CC'} = V_{g}\cos(\beta \lambda/4)-jI_{g'}Z_{0}\sin(\beta \lambda_{4}) = -jI_{BB'}Z_{0}
+    \end{equation}
+    Ma la $I_{g'}$ è quella dell'equivalente di Norton:
+    \begin{equation}
+        I_{g} = \frac{V_{g}}{R_{g}}
+    \end{equation}
+    dunque viene:
+    \begin{equation}
+        |V_{BB'}|^{2}=|\frac{V_{g}}{R_{g}}Z_{0}|^{2}
+    \end{equation}
+    Il \textbf{quinto punto} chiede di calcolare la distanza $d_{I}$ per cui $|I(z)|=\max$. Sappiamo che:
+    \begin{equation}
+        \frac{|I(d_{I})|}{|I^{+}|} = (1-\Gamma(d_{I}))
+    \end{equation}
+    Il massimo di corrente lo si ha per:
+    \begin{equation}
+        \varphi_{0}-2\beta d_{i} = (2n+1)\pi
+    \end{equation}
+    con $\Gamma(d) =|\Gamma(0)|e^{j\varphi_{0}}e^{j2\beta d}$. Quello che ci serve è $\Gamma(0)$, prendendo come riferimento il carico:
+    \begin{equation}
+        \Gamma(0) = \frac{R_{x}-Z_{0}}{R_{x}+Z_{0}} = -0.48 \in \mathbb{R} \implies \varphi_{0} = \pi
+    \end{equation}
+    Scelto $n=-1$ si ottiene:
+    \begin{equation}
+        d_{I} = \frac{\pi}{2\beta} = \frac{\lambda}{4} = 0.75\textrm{cm}
+    \end{equation}
+    La linea, però, è lunga solo $l_{1}=0.53\textrm{cm}$! Il massimo si trova allora all'inizio o alla fine.
+    In questo caso non c'è bisogno di fare i calcoli per poter affermare che il massimo sta al carico, perché il coefficiente 
+    di riflessione è un numero reale negativo, per cui la fase è proprio $\pi$, ragion per la quale si ha il massimo di corrente. Il minimo
+    di corrente si troverà, viceversa, alla fine della linea.
 \chapter*{Appendice A - Note di carattere matematico}
 \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
