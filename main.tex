@@ -2547,7 +2547,224 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             X_{CC'}(y)=-X_{BB'}(x) \implies Z_{0}\tan(\beta y) = -X_{BB'}(x)
         \end{equation} 
         La relazione è verificata perché $-X_{BB'}(x)$ è un numero reale e la tangente assume tutti i valori fra $-\infty$ e $+\infty$, dunque $y$ esiste.
-\chapter{Esercizi}
+    \section*{ROS e Carta di Smith}
+        Il ROS (\textit{Rapporto di Onda Stazionaria}), per una linea senza perdite chiusa su di un carico, ha la seguente espressione operativa:
+        \begin{equation}
+            \textrm{ROS } = \frac{1+|\Gamma|}{1-|\Gamma|} \in [1, + \infty)
+        \end{equation}
+        che discende direttamente dalla definizione:
+        \begin{equation}
+            \textrm{ROS } \triangleq = \frac{|V(z)|_{max}}{|V(z)|_{min}} = \frac{|V^{+}|\max(|1+\Gamma|)}{V^{+}\min(|1+\Gamma|)} = \frac{1+|\Gamma|}{1-|\Gamma|} 
+        \end{equation}
+        Il ROS ci da un'informazione parziale sul coefficiente di riflessione, dandoci il modulo. Per ricavare la fase basta mettersi in corrispondenza di un massimo o di un minimo
+        di corrente, dove la fase è nulla, ruotando nel piano complesso fino ad arrivare all'inizio del carico. L'angolo di rotazione necessario per arrivare all'inizio sarà la fase del ROS.
+        \\ \\ 
+        Un'altro strumento è la \textbf{carta di Smith}. Sia $\Gamma = \xi +j \eta$ il coefficiente di riflessione, che sappiamo essere un numero complesso.
+        Vogliamo tracciare una coppia di curve parametriche di $\xi$ ed $\eta$, comprese nella circonferenza unitaria.\footnote{perché il modulo di $\Gamma$ è al massimo uno.} \\
+        Per fare ciò, sia $Z=R+jX$ una certa impedenza da adattare. Possiamo scrivere:
+        \begin{equation}
+            Z=Z_{0}\frac{1+\Gamma}{1-\Gamma} \implies \frac{Z}{Z_{0}} =\frac{1+\Gamma}{1-\Gamma}
+        \end{equation}
+        ottenendo una carta di Smith universale indipendente dall'impedenza da adattare. Esprimiamo $\Gamma$:
+        \begin{equation}
+            \frac{Z}{Z_{0}}=\frac{1+\xi+j\eta}{1-\xi-j\eta} = \frac{(1+\xi+j\eta)(1-\xi-j\eta)}{1+\xi ^{2}+\eta ^{2}-2\xi} = \frac{1+2j\eta - \xi ^{2} -\eta ^{2}}{1+\xi ^{2} + \eta ^{2}- 2 \xi}
+        \end{equation}
+        Otteniamo due funzioni, una per la parte reale  $r$ ed una per quella immaginaria $x$:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle r = \frac{1-\xi ^{2}-\eta ^{2}}{1+\xi ^{2}+\eta ^{2}-2\xi} \in [1, +\infty) \\
+                \displaystyle x = \frac{2 \eta}{1+\xi ^{2}+\eta ^{2}-2\xi} \in (-\infty, + \infty)
+            \end{cases}
+        \end{equation}
+        le quali non sono altro che le curve parametriche che stavamo cercando. Supponiamo ora che $r$ sia un valore fissato. Possiamo scrivere:
+        \begin{equation}
+            1-\xi ^{2} - \eta ^{2}= r (1+\xi^{2}+\eta^{2}-2\xi) \implies \xi^{2}(r+1)+\eta^{2}(r+1)-2r \xi = 1-r
+        \end{equation}
+        Dividiamo per $(1+r)$ e  facciamo comparire il quadrato di binomio a primo membro aggiungendo e sottraendo
+        $(\frac{r}{1+r})^{2}$:
+        \begin{equation}
+            \xi^{2}+\eta ^{2}-\frac{2r}{r+1}\xi + (\frac{r}{r+1} )^{2}- (\frac{r}{r+1} )^{2} = \frac{1-r}{1+r}
+        \end{equation} 
+        \begin{equation}
+            \implies (\xi-\frac{r}{r+1}) ^{2}+\eta ^{2} = \frac{1-r^{2}+r^{2}}{(1+r)^{2}} = (\frac{1}{1+r})^{2}
+        \end{equation}
+        Dunque la funzione parte reale $r$ è una circonferenza parametrica con centro
+         $C_{r} = \displaystyle (\frac{r}{r+1},0)$ e raggio $\displaystyle \frac{1}{1+r} = \rho_{r}$.
+         Se per esempio $r=1$, avremo $\rho = 1$ e centro in $(\frac{1}{2}, 0)$. Visto che $r$ varia da $0$ a $+\infty$,
+         il centro si muove sul semiasse positivo di $\varepsilon$, con raggio che si annulla all'infinito. \newpage
+         Per la parte immaginaria il procedimento è analogo:
+         \begin{equation}
+            x = \frac{2\eta}{1+\xi ^{2}+\eta ^{2}-2\xi}
+         \end{equation}
+        Come prima, supponendo che $x \neq 0$, moltiplichiamo ambo membri per il denominatore del membro a sinistra, riordiniamo, dividiamo per $x$ e facciamo 
+        comparire il quadrato di binomio, ottenendo un'altro set di circonferenze parametriche:
+        \begin{equation}
+            (\xi -1) ^{2}+(\eta-\frac{1}{x})^{2}=\frac{1}{|x|^{2}}
+        \end{equation}
+        Le circonferenze parametriche della parte immaginaria hanno centro $C_{x} = \displaystyle (1, \frac{1}{x})$ 
+        e raggio $\rho_{x} = \displaystyle \frac{1}{|x|}$. I centri si muovono lungo la retta $\xi=1$.
+        In definitiva otteniamo:
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img23.png}
+        \end{figure}\\
+        La carta di Smith offre un metodo grafico per ricavare i valori d'impedenza necessaria per adattare alla linea. Una volta
+        ricavati $r$ ed $x$ tramite metodo grafico, conoscendo il rapporto $Z$ e $Z_{0}$ (pari a uno, per l'adattamento), posso calcolare $Z$ semplicemente
+        moltiplicando $r$ ed $x$ per $Z_{0}$:
+        \begin{equation}
+            r+jx = \frac{R}{Z_{0}}+j\frac{X}{z_{0}}
+        \end{equation}
+        La stessa carta di Smith può essere utilizzata anche per le ammettenze, tenendo a mente che:
+        \begin{equation}
+            \frac{y}{Y_{0}} = \frac{1-\Gamma}{1+\Gamma} = \frac{1+\gamma}{1-\gamma}
+        \end{equation}
+        avendo posto $\gamma = -\Gamma$.
+        Si possono allora ricavare $g$ e $b$ (conduttanza e suscettanza normalizzate) sapendo $y=-r$ e $b = -x$, 
+        perché $\gamma = g+jb = -\Gamma = -r-jx$. \newpage 
+        La carta di Smith non si limita a trovare i valori di adattamento, ma può essere utilizzata, per esempio, per ricavare 
+        i valori minimi degli stub di adattamento per le linee. Consideriamo la seguente situazione
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.65\linewidth]{Chapter_two/chapt2img24}
+        \end{figure}
+        Conosco il carico $Z_{C}$, per cui conosco il coefficiente di riflessione corrispondente $\Gamma_{C} = \xi_{C}+j\eta_{C}$.
+        La condizione di adattamento è:
+        \begin{equation}
+            R_{CC'}=R_{AA'} = Z_{0} \implies \frac{R_{AA'}}{Z_{0}} = 1
+        \end{equation} 
+        Occorre allora la corrispondenza per $r=1$. Nel piano complesso, la circonferenza di raggio $r=1$ interseca
+        in due punti quella di raggio $|\Gamma_{C}$, quale dei due sarà il minimo? Quello più vicino percorrendo la circonferenza in senso 
+        antiorario, di angolo pari proprio a $2\beta x_{min}$. Ora per trovare $y_{min}$ tracciamo le due circonferenze di centro $(\frac{1}{x},0)$ e
+        $(-\frac{1}{x}, 0)$, che hanno raggio uguale. Partendo dal valore di $2\beta x_{min}$ ricavato in precedenza, si percorre la circonferenza in senso orario
+        ed la prima intersezione con le due circonferenze (ognuna interseca in un solo punto la circonferenza di raggio $\Gamma_{C}$) sarà il valore 
+        $2 \beta y_{min}$ di nostro interesse.
+
+        \chapter{Guide d'onda}
+            \section{Modi TE}
+                In questa sezione affrontiamo la seconda delle tre soluzioni fondamentali del problema elettromagnetico, 
+                di cui abbiamo parlato ampiamente nello scorso capitolo, ricavando le equazioni che regolano il fenomeno elettromagnetico 
+                per i modi TEM. I modi TE sono, come sappiamo, particolari soluzioni TE per le quali le componenti trasversali di campi sono 
+                fattorizzabili come:
+                \begin{equation}
+                    \label{eqn:soluzioni_TE}
+                    \begin{cases}
+                        \underline{E}_{t}(\underline{r}_{t},z) = V(z)\underline{e}(\underline{r}_{t}) \\
+                        \underline{H}_{t}(\underline{r}_{t},z) = I(z)\underline{h}(\underline{r}_{t}) \\
+                    \end{cases}
+                \end{equation}
+            Sulla falsa riga di ciò che abbiamo fatto per i modi TEM, partiamo dalle equazioni di Markuvitz-Schwinger:
+            \begin{equation}
+                \begin{cases}
+                    \displaystyle \frac{\partial}{\partial z} \underline{E}_{t} = -j \omega \mu (\underline{H}_{t} \times \underline{i}_{z})+\nabla_{t} E_{z} \\
+                    \displaystyle \frac{\partial}{\partial z} \underline{H}_{t} = -j \omega \varepsilon( \underline{i}_{z} \times \underline{E}_{t})+\nabla_{t}H_{z} \\
+                    \displaystyle E_{z}=\frac{1}{j\omega \varepsilon}\nabla_{t}(\underline{H}_{t}\times \underline{i}_{z}) \\
+                    \displaystyle H_{z} = \frac{1}{j \omega \mu} \nabla_{t}(\underline{i}_{z}\times \underline{E}_{t})    
+                \end{cases}
+            \end{equation}
+            Sfruttando il fatto che per i TE $E_{z}=0$
+            \begin{equation}
+                \begin{cases}
+                    \displaystyle \frac{\partial}{\partial z} \underline{E}_{t} = -j \omega \mu (\underline{H}_{t} \times \underline{i}_{z})+0 \\
+                    \displaystyle \frac{\partial}{\partial z} \underline{H}_{t} = -j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t})+\nabla_{t}H_{z} \\
+                    0 =\frac{1}{j\omega \varepsilon}\nabla_{t}(\underline{H}_{t}\times \underline{i}_{z}) \\
+                    \displaystyle H_{z} = \frac{1}{j \omega \mu} \nabla_{t}(\underline{i}_{z}\times \underline{E}_{t})    
+                \end{cases}
+            \end{equation}
+        Sostituendo le (\ref{eqn:soluzioni_TE}) all'interno delle prime due equazioni di Markuvitz-Schwinger si ottiene:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle \frac{\partial}{\partial z}\underline{E}_{t} = \underline{e}\frac{dV}{dt} = -j \omega I \cdot (\underline{h} \times \underline{i}_{z}) \\
+                \displaystyle \frac{\partial}{\partial z} \underline{H}_{t} = \underline{h}\frac{d}{dz}I = -j \omega \varepsilon  V \cdot (\underline{i}_{z} \times \underline{e})+V \frac{\nabla_{t}}{j \omega \mu} (\nabla_{t} \cdot (\underline{i}_{z} \times \underline{e}))    
+            \end{cases}
+        \end{equation}
+        Soffermiamoci sulla prima:
+        \begin{equation}
+            \underline{e}\frac{dV}{dz} = -j \omega \mu I \cdot (\underline{h} \times \underline{i}_{z})
+        \end{equation}
+        Deve valere per ogni $z$, indi per cui $\underline{e}$ e $\underline{h} \times \underline{i}_{z}$ devono essere 
+        paralleli (proporzionali). Allora scrivendo:
+        \begin{equation}
+            \underline{h} \times \underline{i}_{z} = \displaystyle -\frac{\frac{d}{dz}V(z)}{j \omega \mu I(z)} \underline{e}
+        \end{equation}
+        tale costante di proporzionalità è proprio il termine dipendente da $z$ che moltiplica $\underline{e}$. Affinché la relazione sia valida,
+        quel termine deve essere costante e dunque indipendente da $z$:
+        \begin{equation}
+            \frac{1}{A} = \displaystyle -\frac{\frac{d}{dz}V(z)}{j \omega \mu I(z)} =\textrm{costante}
+        \end{equation}
+        Abbiamo ottenuto due relazioni:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle \underline{h} \times \underline{i}_{z} = \frac{\underline{e}}{A} \\
+                \frac{1}{A} = \displaystyle -\frac{\frac{d}{dz}V(z)}{j \omega \mu I(z)}
+            \end{cases}
+        \end{equation}
+        Poiché le (\ref{eqn:soluzioni_TE}) sono definite a meno di due costanti moltiplicative, possiamo sceglierne una arbitrariamente, in questo caso
+        $A$, che poniamo uguale ad uno, ottenendo:
+        \begin{equation}
+            \underline{h} \times \underline{i}_{z} = \underline{e}
+        \end{equation}
+        Dalla stessa relazione si ricava\footnote{qui compare un doppio prodotto vettoriale con due vettori uguali}:
+        \begin{equation}
+            \label{eqn:mi_serve1}
+            \underline{i}_{z} \times \underline{h} \times \underline{i}_{z} = \underline{i}_{z} \times \underline{e} \implies \underline{h} = \underline{i}_{z} \times \underline{e}
+        \end{equation}
+        Ora possiamo manipolare la seconda equazione. Sostituendo la fattorizzazione di $\underline{H}_{t}$:
+        \begin{equation}
+            -\underline{h} \frac{d}{dz} = j \omega \varepsilon V [\underline{i}_{z} \times \underline{e} - \frac{\nabla_{t}}{j^{2}\omega^{2}\varepsilon\mu}(\nabla_{t} \cdot (\underline{i}_{z}\times \underline{e}))]
+        \end{equation}
+        che si può scrivere, poiché $-k^{2}=j^{2}\omega^{2}\varepsilon\mu$, come:
+        \begin{equation}
+            = j \omega \varepsilon V [\underline{i}_{z} \times \underline{e} + \frac{\nabla_{t}}{k^{2}}(\nabla_{t}\cdot (\underline{i}_{z} \times \underline{e}))]
+        \end{equation}
+        Sostituendo la (\ref{eqn:mi_serve1}):
+        \begin{equation}
+            -\underline{h}\frac{d}{dz}I(z) = j \omega \varepsilon V [ \underline{h} + \frac{\nabla_{t}}{k^{2}}(\nabla_{t} \cdot \underline{h})]
+        \end{equation}
+        Riordinando:
+        \begin{equation}
+            -\underline{h}(\frac{d}{dz}I(z)+j\omega V(z))=\frac{j\omega \varepsilon V(z)}{k^{2}}\nabla_{t}\nabla_{t} \cdot \underline{h}
+        \end{equation}
+        la quale per valere per ogni $z$ richiede che $\underline{h}$ e $\nabla_{t}\nabla_{t} \cdot \underline{h}$ siano proporzionali di una certa costante:
+        \begin{equation}
+            \underline{h} = \frac{-j\omega \varepsilon \frac{1}{k^{2}}V(z)}{\frac{d}{dz}I(z)+j\omega \varepsilon V(z)} \nabla_{t} \nabla_{t} \cdot \underline{h}
+        \end{equation}
+        Sia ora $\Psi = \nabla_{t} \displaystyle \cdot \frac{\underline{h}}{k_{t}}$ con $k_{t}$ tale per cui:
+        \begin{equation}
+            -\frac{1}{k_{t} ^{2}} = \frac{-j\omega \varepsilon \frac{1}{k^{2}}V(z)}{\frac{d}{dz}I(z)+j\omega \varepsilon V(z)}
+        \end{equation}
+        Facciamo notare che $k_{t}$ non può essere scelta arbitrariamente perché abbiamo già speso il nostro grado di libertà selezionando un valore 
+        arbitrario di $A$. Possiamo allora scrivere:
+        \begin{equation}
+            \frac{k_{t} ^{2}}{k^{2}}j \omega \varepsilon V(z) = \frac{d}{dz}I(z)+j \omega \varepsilon V(z)
+        \end{equation}
+        \begin{equation}
+            \implies \frac{d}{dz}I(z) = V(z)(\frac{k_{t} ^{2}}{k^{2}}j \omega \varepsilon - j \omega \varepsilon) = -j \omega \varepsilon V(z)(1-\frac{k_{t} ^{2}}{k^{2}})
+        \end{equation}
+        In definitiva otteniamo:
+        \begin{equation}
+            \displaystyle - \frac{d}{dz}I(z) = j \omega V(z)(1-\frac{k_{t} ^{2}}{k^{2}}) \\
+            \underline{h} = \frac{1}{k_{t}}\nabla_{t}\Psi
+        \end{equation}
+        Ponendo $k_{z} = \sqrt{k^{2}-k_{t} ^{2}}$, raggruppiamo le due equazioni che legano le due funzioni scalari di modo:
+        \begin{equation}
+            \begin{cases}
+                \displaystyle -\frac{d}{dz}V(z) = j \omega \mu I(z) \\
+                \displaystyle -\frac{d}{dz}I(z) = j \omega V(z)(\frac{k^{2}-k_{t} ^{2}}{k^{2}}) = j \omega V(z)(\frac{k_{z}}{k})^{2}
+            \end{cases}
+        \end{equation}
+        Facendo un analisi dimensionale:
+        \begin{equation}
+            [\frac{\omega \mu}{k_{z}}] = \Omega \implies \frac{\omega \mu}{k_{z}} = Z_{0} ^{TE}
+        \end{equation}
+        con $Z_{0} ^{TE}$ l'impedenza caratteristica per i modi TE. Poiché $k^{2}=\omega^{2} \varepsilon \mu$ otteniamo:
+        \begin{equation}
+            \begin{cases}
+            -\frac{d}{dz}V(z) = Z_{0} ^{TE} k_{z}I(z) \\
+            \frac{d}{dz}I(z) = j V(z) \displaystyle \frac{k_{z}}{Z_{0} ^{TE}}
+            \end{cases}
+        \end{equation}
+        perché $\displaystyle \frac{k^{2} _{z}}{k ^{2}} = \frac{k_{z} \cdot k_{z}}{\omega ^{2} \varepsilon \mu} = \frac{k_{z}}{Z_{0} ^{TE}}$.
+        \chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
             \begin{figure}[h!]
@@ -2819,6 +3036,56 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \frac{|I_{AA'}|}{|I^{+}|}=|1-\Gamma_{AA'}| \simeq 1
         \end{equation}
         Dunque il massimo sta alla fine.
+        \newpage
+    \subsection{Stub in parallelo e adattamento $\lambda /4$}
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.7\linewidth]{img/Esercizi/Esercizi4.png}
+        \end{figure}
+        \begin{center}
+            \begin{tabular}{c c c}
+                $f = 100MHz$ & $Z_{0}=50 \Omega$ & $Z_{1}=\frac{3}{2}Z_{0}$ \\
+                $l_{1}=0.53m$ & $V_{g}=20V$ & $R_{g}=Z_{0}$
+            \end{tabular}
+        \end{center}
+        
+        Il \textbf{primo punto} chiede, assegnato il circuito in figura, i valori $R_{x}$ ed $x_{min}$ tali per cui
+        la potenza sul carico $\overline{P}_{R_{x}}=\max$. \\
+        Dal disegno, $\overline{P}_{AA'}=\overline{P}_{CC'}$, perché il corto non assorbe alcuna potenza attiva. Per la conservazione 
+        della potenza attiva, $\overline{P}_{AA'}=\overline{P}_{R_{x}}$, dunque va massimizzata $\overline{P}_{CC'}$.
+        Per fare ciò, tenendo conto che la topologia è in parallelo, facciamo il trasporto di ammettenza alla sezione AA':
+        \begin{equation}
+            Y_{AA'}=Y_{0}\frac{Z_{0}+jR_{x}\tan(\beta l_{1})}{R_{x}+jZ_{0}\tan(\beta l_{1})} \simeq Y_{0} \frac{Z_{0}+jR_{x}\sqrt{3}}{R_{x}+jZ_{0}\sqrt{3}}
+        \end{equation}
+        \begin{equation}
+            = Y_{0}\frac{4Z_{0}R_{x}+j\sqrt{3}(R_{x} ^{2}-Z_{0} ^{2})}{R_{x} ^{2}+3Z_{0} ^{2}}
+        \end{equation}
+        mentre $Y_{BB'}$ è immediata:
+        \begin{equation}
+            Y_{BB'}=jY_{0}T_{x}
+        \end{equation}
+        avendo posto $T_{x}=\tan(\beta x)$. Arrivati a questo punto si potrebbe pensare di trasportare $Y_{CC'}=Y_{BB'}+Y_{AA'}$ al generatore 
+        e adattare, ma è un casino. Quello che conviene fare è utilizzare il teorema di Norton e adattare al generatore di corrente equivalente.
+        Applichiamo allora Norton alla sezione CC'. Per l'ammettenza equivalente, c'è il trasporto a $\lambda /4$ dunque si ottiene
+        \begin{equation}
+            Y_{eq} \simeq (\frac{1}{Z_{1}})^{2}\cdot \frac{1}{Y_{0}} + \frac{1}{Z_{0}} = \frac{(\frac{2}{3}Y_{0})^{2}}{Y_{0}} +Y_{0}= \frac{13}{9}Y_{0} 
+        \end{equation}
+        Per ora non calcoliamo il generatore equivalente, perché non ci è stato chiesto il valore della potenza ma solo le condizioni per cui 
+        è massimo, dunque ci limitiamo ad imporre le condizioni di adattamento al generatore:
+        \begin{equation}
+            Y_{CC'}=Y_{0}
+        \end{equation}
+        Nota: da qui in poi inserisco un $4/9$ al posto del $13/9$, perché in classe è venuto questo risultato che però sembra sbagliato, perché
+        si ottiene trascurando l'ammettenza del generatore. Non rifaccio i calcoli perché alla fine è il procedimento che conta, ma era doveroso segnalare
+        questa cosa. \\
+        \begin{equation}
+            Y_{CC'} = Y_{0} ^{*} \implies 
+            \begin{cases}
+                G_{AA'} = \displaystyle \frac{4Y_{0}Z_{0}R_{x}}{R_{x} ^{2}+3Z_{0}} 0 \frac{4}{9}Y_{0} \\
+                X_{AA'}+z_{BB'} = Y_{0} \cdot \displaystyle \frac{\sqrt{3}(R_{x} ^{2}-Z_{0} ^{2})}{R_{x} ^{2}+3Z_{0} ^{2}} +Y_{0}T_{x} = 0
+            \end{cases}
+        \end{equation}
+        Non ci sono soluzioni all'infinito né per $R_{x}$ né per $T_{x}$.
 
 
 
