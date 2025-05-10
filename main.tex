@@ -2764,7 +2764,289 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \end{cases}
         \end{equation}
         perché $\displaystyle \frac{k^{2} _{z}}{k ^{2}} = \frac{k_{z} \cdot k_{z}}{\omega ^{2} \varepsilon \mu} = \frac{k_{z}}{Z_{0} ^{TE}}$.
-        \chapter{Esercizi}
+    Possiamo scrivere inoltre:
+    \begin{equation}
+        \label{eqn:relazioni_TE}
+        \begin{cases}
+            \displaystyle \underline{e} = \underline{h} \times \underline{i}_{z} \\
+            \underline{h} = \displaystyle - \frac{1}{k_{t}}\nabla_{t} \Psi \\
+            \Psi = \nabla_{t} \cdot \displaystyle (\frac{\underline{h}}{k_{t}})
+        \end{cases}
+    \end{equation}
+    Poiché $\underline{h}$ si può scrivere come il gradiente di un campo scalare (che è il $\Psi$, la divergenza di $\underline{h}$ ) allora 
+    $\underline{h}$ è un campo conservativo. \\
+    Per ricavare i campi, avvalendoci delle relazioni di Markuvitz-Schwinger e delle (\ref{eqn:relazioni_TE}) possiamo scrivere:
+    \begin{equation}
+        \begin{cases}
+            \underline{E}_{t} = \underline{E} = V(z)\underline{e} \\
+            \underline{H}_{t} = I(z)\underline{h} \\
+            H_{z} = \frac{V(z)}{j \omega \mu} \nabla_{t} \cdot \underline{h}
+        \end{cases}
+    \end{equation}
+    In particolare, la terza equazioni può essere riscritta\footnote{$\Psi = \frac{1}{k_{t}}\nabla_{t} \cdot \underline{h}$} come:
+    \begin{equation}
+        H_{z} = \frac{V(z)}{j \omega \mu} k_{t}\Psi
+    \end{equation}
+    Determinando $\Psi$ è possibile determinare $\underline{h}$ e dunque $\underline{e}$. Allora è necessario 
+    ricavare soltanto $\Psi$ e le condizioni al contorno $I(0)$ e $V(0)$. Se applichiamo l'operatore divergenza trasversa ad $\underline{h}$
+    otteniamo la divergenza del gradiente (tutto trasverso) di $\Psi$, che è proprio il laplaciano trasverso di $\Psi$:
+    \begin{equation}
+        k_{t}\Psi = \nabla_{t} \cdot \underline{h} = -\frac{1}{k_{t}}\nabla_{t} \cdot \nabla_{t}\Psi = -\frac{1}{k_{t}}\nabla ^{2} _{t} \Psi
+    \end{equation}
+    Se $k_{t}=0$ ricadiamo nel caso TEM, perché $H_{z} = 0$. Supposto allora $k_{t} \neq 0$ otteniamo la seguente equazione di Laplace:
+    \begin{equation}
+        \nabla _{t} ^{2} \Psi+k_{t} ^{2}\Psi = 0
+    \end{equation}. \newpage 
+    Consideriamo allora una sezione generica (può essere molteplicemente connessa) orientata con normale $\underline{i}_{n}$ e contorno $\mathcal{C}$, il quale assumiamo 
+    corrisponda ad una curva regolare. Il contorno della sezione è supposto essere CEP, dunque deve valere la nullità delle componente tangenti lungo $\mathcal{C}$.
+    Imponendo tale condizione e sostituendo l'espressione fattorizzata di $\underline{E}=\underline{E}_{t}$ si ricava:
+    \begin{equation}
+        \underline{i}_{c} \times \underline{E}|_{\mathcal{C}} =  \underline{i}_{c} \times V(z)\underline{e} |_{\mathcal{C}} = V(z)\underline{i}_{c} \times \underline{e}|_{\mathcal{C}}= 0 \qquad \forall z
+    \end{equation}
+    dove $\underline{i}_{c}$ è il versore tangente a $\mathcal{C}$.\\
+    Le possibilità sono due, affinché valga per ogni $z$, sono $V(z)$ identicamente nulla oppure la componente tangente di $\underline{e}$ lungo il bordo nulla. La prima
+    possibilità è quella banale dove $\underline{E} = 0$ per ogni $z$, dunque deve valere necessariamente la seconda:
+    \begin{equation}
+        \underline{i}_{c} \times \underline{e}|_{\mathcal{C}} = 0
+    \end{equation}
+    La quale può essere riscritta come:
+    \begin{equation}
+        \underline{i}_{c} \times (\underline{h} \times \underline{i}_{z})|_{\mathcal{C}= 0} = \underline{h} \times \underline{i}_{n} \times \underline{i}_{c}|_{\mathcal{C}}
+    \end{equation}
+    Ma $\underline{i}_{z} \times \underline{i}_{c} = \underline{i}_{n}$, per cui:
+    \begin{equation}
+        \underline{h}\times \underline{i}_{h}|_{\mathcal{C}} = 0 \implies (\frac{1}{k_{t}} \nabla_{t} \cdot \Psi)\cdot \underline{i}_{n}|_{\mathcal{C}} = 0
+    \end{equation}
+    Tuttavia il gradiente scalare di un versore è la derivata direzionale di questo lungo la normale:
+    \begin{equation}
+        -\frac{1}{k_{t}} \frac{\partial}{\partial i_{n}} \Psi|_{\mathcal{C}} = 0 \stackrel{k_{t} \neq 0}{\iff} \frac{\partial}{\partial t}\Psi|_{\mathcal{C}} = 0
+    \end{equation}
+    ovvero la condizione al contorno che ci serviva. Il problema da risolvere diventa allora:
+    \begin{equation}
+        \begin{cases}
+            \nabla_{t} ^{2} \Psi+k_{t} ^{2}\Psi = 0 \\
+            \displaystyle \frac{\partial}{\partial t}\Psi|_{\mathcal{C}} = 0
+        \end{cases}
+    \end{equation}
+    Assegnata la frontiera di $\mathcal{C}$, questo è un problema agli autovalori $k_{t} ^{2}$, con relative autofunzioni $\Psi$.
+    C'è infatti una stretta analogia con la definizione di autovalore di una matrice:
+    \begin{equation}
+        [\underline{\underline{A}}-a]\underline{u} = 0 \iff \nabla ^{2} \Psi = -k_{t} ^{2}\Psi
+    \end{equation}
+    Si può dimostrare che l'operatore di Laplace $\nabla_{t} ^{2}$ è un'operatore autoaggiunto.\footnote{Cioè tale da essere uguale al suo trasposto coniugato}
+    Valgono le seguenti proprietà indipendenti da $\mathcal{C}$:
+    \begin{itemize}
+        \item L'operatore $\nabla_{t} ^{2}$ è definito positivo, cioè risulta
+        \begin{equation}
+            \underline{x} ^{T} \underline{\underline{A}} \cdot \underline{x} \geq 0
+        \end{equation}
+        dove $\underline{x}$ è un vettore dello spazio sopra il quale agisce $\underline{\underline{A}}$ e $\underline{\underline{A}}$ un operatore hermitiano.
+        \item Gli autovalori $k_{t}$ sono reali positivi:
+        \begin{equation}
+            k_{t} \in \mathbb{R} - \{0\}
+        \end{equation}
+        \item  Il set di possibili autovalori $k_{t}$ costituite un'infinità numerabile, perché la funzione 
+        $\Psi$ è definita su uno spazio di Hilbert e sono quadrato sommabili.
+        \item Ad ogni autovalore $k_{t,n}$ corrisponde la relativa autofunzione $\Psi_{n}$:
+        \begin{equation}
+            \nabla_{t} ^{2} \Psi_{n}=-k_{t,n} ^{2}\Psi_{n}
+        \end{equation}
+        Si dimostra che lo spazio  delle autofunzioni è ortogonale. Cioè dati $\Psi_{m}, \Psi_{n}$ con $m \neq n$ risulta:
+        \begin{equation}
+            \int_{\Sigma} \Psi_{m}\Psi_{n} ^{*}dS = 0
+        \end{equation}
+        dove $\Sigma$ è lo spazio sul quale sono definite le autofunzioni.
+        \item Se $k_{t}$ ha molteplicità geometrica unitaria, allora lo spazio ad esso associato è anch'esso
+        unitario e di conseguenza le autofunzioni sono ortonormali.In caso contrario $k_{t}$ ha la dimensione della molteplicità geometrica. Dunque il set delle autofunzioni $\{\Psi_{n}\} _{n = 0} ^{n= \infty}$ costituisce una base ortogonale
+        per lo spazio delle funzioni $\Psi$ che soddisfa:
+        \begin{equation}
+            \frac{\partial}{\partial \underline{i}_{n}}\Psi|_{\mathcal{C}} = 0
+        \end{equation}
+    \end{itemize}
+    Si possono normalizzare le autofunzioni dello spazio in tal modo:
+    \begin{equation}
+        \Psi_{n} ' = \frac{\Psi_{n}}{||\Psi_{n}||} \qquad ||\Psi_{n}||^{2} = \int_{\Sigma} \Psi^{2} _{n} dS < \infty \qquad \textrm{perché quadrato sommabile} 
+    \end{equation}
+    I campi non ne risentono perché la fattorizzazione dei modi è definita a meno di due costanti arbitrarie.
+\section{Modi TM}
+    Il procedimento è analogo a quello per i modi TE, tenendo conto che stavolta $H_{z} = 0$. Scriviamo allora le equazioni 
+    di Markuvitz-Schwinger per i modi TM:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \frac{\partial}{ \partial z}\underline{E}_{t} = -j \omega \mu \underline{H}_{t} \times \underline{i}_{z} + \nabla_{t} E_{z} \\
+            \displaystyle \frac{\partial}{\partial z} \underline{H}_{t} = -j \omega \varepsilon \underline{E}_{t} \times \underline{i}_{z} \\
+            \displaystyle E_{z} = \frac{1}{j \omega \varepsilon} \nabla_{t} \cdot (\underline{H} \times \underline{i}_{z}) \\
+            \displaystyle 0 = \frac{1}{j \omega \mu} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})
+        \end{cases}
+    \end{equation}
+    Come prima possiamo scrivere. per i modi TM:
+    \begin{equation}
+        \begin{cases}
+        \displaystyle \underline{E}_{t} (\underline{r}_{t},z) = V(z) \underline{e}(\underline{r}_{t}) \\
+        \displaystyle \underline{H}(\underline{r}_{t},z) = I(z)\underline{h}(\underline{r}_{t})
+        \end{cases}        
+    \end{equation}
+    Risulta allora:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \underline{e} \frac{d}{dz}V(z)=-j \omega \mu I(z) \underline{h} \times \underline{i}_{z} + \frac{I(z)}{j \omega \varepsilon} \nabla_{t} \nabla_{t} \cdot (\underline{h} \times \underline{i}_{z}) \\
+            \displaystyle \underline{h} \frac{d}{dz}I(z)=-j \omega \varepsilon V(z)\underline{i}_{z} \times \underline{e} \\
+            \displaystyle E_{z} = \frac{I(z)}{j \omega \varepsilon}  \nabla_{t} \cdot (\underline{h} \times \underline{i}_{z})\\
+            \displaystyle 0 = \frac{V(z)}{j \omega \mu} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{e})
+        \end{cases}
+    \end{equation}
+    Di nuovo, ricaviamo una relazione di proporzionalità dalla seconda equazione:
+    \begin{equation}
+        \underline{h}(\underline{r}_{t}) = (\frac{-j \omega \varepsilon V(z)}{\frac{d}{dz}I(z)}) \underline{i}_{z} \times \underline{e}(\underline{r}_{t})=\frac{1}{A}\underline{i}_{z} \times \underline{e}(\underline{r}_{t}) \qquad \forall z
+    \end{equation}
+    che per valere per ogni $z$ deve per forza soddisfare:
+    \begin{equation}
+        \begin{cases} 
+        \displaystyle \underline{h} =\frac{1}{A} \underline{i}_{z} \times \underline{e} \\
+        \displaystyle -\frac{d}{dz}I(z)=j \omega \varepsilon A V(z) 
+        \end{cases}
+    \end{equation}
+    Di nuovo, $A$ è arbitraria e la poniamo uguale ad uno. \\
+    Sostituiamo ora la relazione trovata $\underline{e} = \underline{h} \times \underline{i}_{z}$ all'interno delle 
+    Markuvitz-Scwinger:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \underline{e} \frac{d}{dz}V(z) = -j \omega \mu I(z) \underline{e} + \frac{I(z)}{j \omega \varepsilon} \nabla_{t}\nabla_{t} \cdot \underline{e} \\
+            \displaystyle \underline{h}\frac{d}{dz}I(z) = -j \omega \varepsilon V(z) \underline{i}_{z} \times \underline{e} \\
+            \displaystyle E_{z} = \frac{I(z)}{j \omega \varepsilon} \nabla_{t} \cdot (\underline{h} \times \underline{i}_{z}) \\
+            \displaystyle 0 = \frac{V(z)}{j \omega \mu}\nabla_{t} \cdot (\underline{i}_{z} \times \underline{e})
+        \end{cases}
+    \end{equation} \newpage
+    Dalla prima equazione di Markuvitz-Scwhinger si ricava:
+    \begin{equation}
+        \underline{e}(\frac{d}{dz}V(z)+j \omega \mu I(z)) = \frac{I(z)}{j \omega \varepsilon}\nabla_{t}\nabla_{t} \underline{e}
+    \end{equation}
+    Dalla quale ricaviamo la proporzionalità fra $\underline{e}$ e il gradiente della sua divergenza:
+    \begin{equation}
+        \underline{e} = \displaystyle \frac{\frac{I(z)}{j \omega \varepsilon}}{\frac{d}{dz}V(z)j \omega \mu I(z)} \nabla_{t} \nabla_{t} \cdot \underline{e} = - \frac{1}{k_{t} ^{2}}\nabla_{t} \nabla_{t} \cdot \underline{e}
+    \end{equation}
+    dove $k_{t} ^{2}$ è una costante indipendente da $z$ (o non si avrebbe la proporzionalità). Otteniamo allora
+    in definitiva:
+    \begin{equation}
+        -k_{t} ^{2} \frac{I(z)}{j \omega \varepsilon} = \frac{d}{dz}V(z)+j \omega I(z) \implies \frac{d}{dz}V(z) = -j \omega \mu I(z)-\frac{k_{t} ^{2}}{j \omega \varepsilon}I(z)
+    \end{equation}
+    \begin{equation}
+        \implies \frac{d}{dz}V(z) = -I(z)(j \omega \mu + \frac{k_{t} ^{2}}{j \omega \varepsilon}) = -j \omega \mu (1-\frac{k_{t} ^{2}}{k^{2}})I(z)
+    \end{equation}
+    dove $-k^{2} = j^{2}\omega^{2}\mu \varepsilon$. Ponendo $\displaystyle \Phi = \nabla_{t} \cdot \frac{e}{k_{t}}$ si ottiene:
+    \begin{equation}
+        \underline{e} = -\frac{1}{k_{t}}(\nabla_{t} (\nabla_{t} \cdot \frac{\underline{e}}{k_{t}})) = -\frac{1}{k_{t}}\nabla_{t} \Phi
+    \end{equation}
+    dunque $\underline{e}$ è un campo conservativo nel modo TM.
+    Riassumendo abbiamo:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \underline{e} = -\frac{1}{k_{t}} \nabla_{t} \Phi \\
+            \displaystyle \underline{h} = \underline{i}_{z} \times \underline{e} \\
+            \displaystyle -\frac{d}{dz}I(z)= j \omega \varepsilon V(z) \\
+            \displaystyle -\frac{d}{dz}V(z) = -j \omega \mu (1-\frac{k_{t} ^{2}}{k^{2}})I(z)
+        \end{cases}
+    \end{equation}
+    Ponendo $k_{z} ^{TM} = \displaystyle \sqrt{k^{2} _{t}+(k_{T} ^{TM})^{2}}$ e $Z_{0} ^{TM} = \displaystyle \frac{k_{z}}{\omega \varepsilon}$ si ottiene per la terza equazione:
+    \begin{equation}
+        -\frac{d}{dz}I(z) = \frac{j \omega \varepsilon}{k_{z} ^{TM}}k_{z} ^{TM} V(z)
+    \end{equation}
+    mentre per la quarta:
+    \begin{equation}
+        -\frac{d}{dz}V(z) = j \omega \mu \frac{k_{z} \cdot k_{z}}{k^{2}} = j \frac{k_{z} ^{TM}}{\omega \varepsilon} k_{z} ^{TM} = j Z_{0} ^{TM}k_{z} ^{TM} I(z)
+    \end{equation}
+    Ottenendo in definitiva le equazioni che devono soddisfare le funzioni scalari di modo per i modi TM:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle -\frac{d}{dz}I(z) = \frac{j \omega \varepsilon}{k_{z} ^{TM}}k_{z} ^{TM} V(z) \\
+            \displaystyle -\frac{d}{dz}V(z) = j \omega \mu \frac{k_{z} \cdot k_{z}}{k^{2}} = j \frac{k_{z} ^{TM}}{\omega \varepsilon} k_{z} ^{TM} = j Z_{0} ^{TM}k_{z} ^{TM} I(z) \\
+            \displaystyle \underline{e} = -\frac{1}{k_{t}} \nabla_{t} \Phi \\
+            \displaystyle \underline{h} = \underline{i}_{z} \times \underline{e} \\
+        \end{cases}
+    \end{equation}
+    Come nel caso TE, determinando $\Phi$ possiamo determinare $\underline{e}$ e di conseguenza anche $\underline{h}$. Vale infatti:
+    \begin{equation}
+        \begin{cases}
+            \underline{E}_{t} = V(z) \cdot \underline{e} \\
+            \underline{H} = I^{TM} (z) \underline{h} \\
+            E_{z} = \frac{I(z) ^{TM}}{j \omega \varepsilon}k_{t} ^{TM} \cdot \Phi
+        \end{cases}
+    \end{equation}
+    dove abbiamo ricavato l'ultima espressione dalla terza equazione di Markuvitz-Schwinger. Sappiamo che:
+    \begin{equation}
+        \Phi = \triangleq = \frac{1}{k_{t}} \nabla_{t} \cdot \underline{e} = \frac{1}{k_{t}} (- \frac{1}{k_{t} \nabla_{t} \cdot (\nabla_{t} \Phi)})
+    \end{equation}
+    per cui possiamo scrivere:
+    \begin{equation}
+        \Phi = \frac{1}{k_{t}} ( -\frac{1}{k_{t}} \nabla_{t} \cdot \nabla_{t} \varphi) = - \frac{1}{k_{t}} \nabla _{t} ^{2} \Phi \implies \nabla_{t} ^{2} \Phi = - k_{t} ^{2} \Phi
+    \end{equation}
+    che è analogo al problema agli autovalori ottenuto per i TE. Come prima, occorrono le condizioni al contorno per determinare $\Phi$. Consideriamo 
+    una sezione di CEP di superficie $\Sigma$ con normale $\underline{i}_{n}$ e bordo $\mathcal{C}$ con versore tangente $\underline{i}_{c}$. Per un CEP risulta:
+    \begin{equation}
+        \underline{i}_{c} \cdot \underline{E}|_{\mathcal{C}} = 0 \forall z
+    \end{equation}
+    Tuttavia, questo ci da informazioni soltanto sulla componente tangente di $\underline{E}$, ma niente su quella longitudinale
+    (che nel caso dei TE era nulla). Bisogna imporre allora due condizioni al contorno:
+    \begin{equation}
+        \begin{cases}
+            \underline{i}_{c} \cdot \underline{E}|_{\mathcal{C}} = 0 \\
+            E_{z}|_{\mathcal{C}} = 0
+        \end{cases}
+    \end{equation}
+    Dalla prima condizione si ricava:
+    \begin{equation}
+        \underline{e} = - \frac{1}{k_{t}} \nabla_{t} \phi \implies -\frac{V(z)}{k_{t}} \nabla_{t} \Phi \cdot \underline{i}_{c}|_{\mathcal{C}} = 0
+    \end{equation}
+    La soluzione banale $V(z)=0 \ \forall z$ non è di nostro interesse, dunque:
+    \begin{equation}
+        \nabla_{t} \Phi \cdot \underline{i}_{\mathcal{C}} = 0 \implies \frac{\partial}{\partial \underline{i}_{c}} \Phi|_{\mathcal{C}} = 0 \qquad k_{t} \neq 0 
+    \end{equation}
+    Dalla seconda, invece, si ottiene:
+    \begin{equation}
+        \label{eqn:mi_serve6}
+        E_{z}|_{\mathcal{C}} = \frac{I(z)}{j \omega \varepsilon} k_{t}\Phi|_{\mathcal{C}} = 0 \qquad \forall z
+    \end{equation}
+    La soluzione $I(z) = 0 \ \forall z$ è banale e dunque:
+    \begin{equation}
+        \label{eqn:mi_serve5}
+        k_{t} ^{TM} \Phi|_{\mathcal{C}} = 0 \  \omega \varepsilon, k_{t} \neq 0 \implies \Phi|_{\mathcal{C}} = 0 
+    \end{equation}
+    Tuttavia a noi ne serve una sola, perché una ingloba l'altra. Infatti la (\ref{eqn:mi_serve5}) è restrittiva e vince sulla 
+    (\ref{eqn:mi_serve6}), la quale da soltanto l'informazione che $\Phi$ è costante sul contorno (perché la derivata è ivi nulla). \\
+    Il problema che otteniamo per i modi TM è allora:
+    \begin{equation}
+        \nabla_{t} ^{2} \Phi = - k_{t} ^{2} \Phi \\
+        \Phi|_{\mathcal{C}} = 0
+    \end{equation}
+    che è un problema agli autovalori che gode delle stesse cinque proprietà di cui abbiamo 
+    discusso per i modi TE. \\ \\
+    Mettendo a confronto le relazioni fra TE e TM, notiamo che le equazioni da soddisfare hanno la stessa forma:
+    \begin{equation}
+        \begin{cases}
+            \displaystyle -\frac{d}{dz}V(z) = j k_{z}Z_{0}I(z) \\
+            \displaystyle -\frac{d}{dz}I(z)=j \frac{k_{z}}{Z_{0}}V(z)
+        \end{cases}
+        \qquad
+        \begin{cases}
+            \beta = \omega ^{2} \varepsilon \mu \geq 0 \\
+            \displaystyle Z_{0} = \sqrt{\frac{mu}{\varepsilon}\frac{1}{A}} > 0    
+        \end{cases}
+    \end{equation} 
+    supponendo che $\varepsilon e \mu$ siano numeri reali e costanti
+    La costante di propagazione del modo associato all'n-esimo autovalore (n-esimo modo):
+    \begin{equation}
+        k_{z,n} = \sqrt{k^{2}-k_{t,n} ^{2}}
+    \end{equation}
+    può essere immaginaria o reale a seconda della frequenza. Dunque mentre per i TEM valeva:
+    \begin{equation}
+        V(z) = V^{+}e^{-j \beta z} +V^{+}e^{j \beta z} \qquad \beta \in \mathbb{R}
+    \end{equation}
+    per i modi TE e TM vale la più generale:
+    \begin{equation}
+        V_{n}(z) = V^{+}e^{-j k_{z, n} z} +V^{+}e^{j k_{z, n} z} \qquad k_{z, n} \in \mathbb{C}
+    \end{equation}
+
+\chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
             \begin{figure}[h!]
