@@ -2554,7 +2554,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         che discende direttamente dalla definizione:
         \begin{equation}
-            \textrm{ROS } \triangleq = \frac{|V(z)|_{max}}{|V(z)|_{min}} = \frac{|V^{+}|\max(|1+\Gamma|)}{V^{+}\min(|1+\Gamma|)} = \frac{1+|\Gamma|}{1-|\Gamma|} 
+            \textrm{ROS } \triangleq  \frac{|V(z)|_{max}}{|V(z)|_{min}} = \frac{|V^{+}|\max(|1+\Gamma|)}{V^{+}\min(|1+\Gamma|)} = \frac{1+|\Gamma|}{1-|\Gamma|} 
         \end{equation}
         Il ROS ci da un'informazione parziale sul coefficiente di riflessione, dandoci il modulo. Per ricavare la fase basta mettersi in corrispondenza di un massimo o di un minimo
         di corrente, dove la fase è nulla, ruotando nel piano complesso fino ad arrivare all'inizio del carico. L'angolo di rotazione necessario per arrivare all'inizio sarà la fase del ROS.
@@ -2974,7 +2974,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{equation}
     dove abbiamo ricavato l'ultima espressione dalla terza equazione di Markuvitz-Schwinger. Sappiamo che:
     \begin{equation}
-        \Phi = \triangleq = \frac{1}{k_{t}} \nabla_{t} \cdot \underline{e} = \frac{1}{k_{t}} (- \frac{1}{k_{t} \nabla_{t} \cdot (\nabla_{t} \Phi)})
+        \Phi  \triangleq  \frac{1}{k_{t}} \nabla_{t} \cdot \underline{e} = \frac{1}{k_{t}} (- \frac{1}{k_{t} \nabla_{t} \cdot (\nabla_{t} \Phi)})
     \end{equation}
     per cui possiamo scrivere:
     \begin{equation}
@@ -3045,8 +3045,110 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \begin{equation}
         V_{n}(z) = V^{+}e^{-j k_{z, n} z} +V^{+}e^{j k_{z, n} z} \qquad k_{z, n} \in \mathbb{C}
     \end{equation}
+\section{Propagazione e attenuazione dei modi}
+    Per una struttura guidata con CEP ci sono tre tipi di soluzioni, TE, TM e TEM. La molteplicità della struttura determina il numero di soluzioni.
+    Per una guida semplicemente connessa (guida cava) la molteplicità della struttura è unitaria e non si propaga il modo TEM. Per un cavo coassiale,
+    che ha molteplicità di struttura due, si propaga una soluzione TEM. In generale, se la struttura ha molteplicità $n$ si propagano $n-1$ modi TEM, mentre 
+    i TM e i TE come sappiamo costituiscono un'infinità numerabile. \\ \\
+    Vale il \textbf{Teorema di Helmholtz}: qualsiasi soluzione di campo che si propaga all'interno di una guida generica, le cui pareti sono in CEP, si può scrivere
+    come sovrapposizione di soluzioni TM, TE e TEM. \\
+    Nella realtà tale assunzione è una buona approssimazione per i campi ma non per la potenza, perché bisogna tener conto delle perdite 
+    nel materiale. Si può utilizzare comunque la situazione ideale per stimare le perdite associate alle pareti metalliche non ideali. Occorre allora 
+    stimare quanta potenza viene dissipata sulle pareti. Se $\sigma < \infty$ la componente tangente di campo elettrico $\underline{E}_{t}$ sulle pareti
+    è diversa da zero e ad essa è associata una potenza dissipata per effetto Joule pari a $\sigma |\underline{E}|^{2}$. \\
+    Anche $\underline{H}_{t}$ varia, ma molto meno di $\underline{E}_{t}$, perché $\underline{E}_{t}$ va da zero ad un valore nullo, mentre $\underline{H}_{t}$ va da un valore 
+    non nullo ad un valore che è pressochè lo stesso, dunque \textit{relativamente} $\underline{E}_{t}$ varia più di $\underline{H}_{t}$ e di conseguenza la stima della variazione del campo elettrico 
+    tangente è molto meno precisa rispetto alla stima della componente tangente di $\underline{H}$.  \\ 
+    Si utilizza allora un \textbf{metodo perturbativo}. Se $\tilde{\underline{H}}$ è il valore reale del campo magnetico tangente, si suppone 
+    che $\underline{H} \simeq \tilde{\underline{H}}$, mentre per il campo elettrico si impone quella che si chiama \textbf{condizione di Leontovich}:
+    \begin{equation}
+        \tilde{E}_{t} = \zeta_{m}\underline{H}_{t} \times \underline{i}_{n}
+    \end{equation}
+    dove $\zeta_{m}$ è detta impedenza di Leontovich. Tramite la condizione di Leontovich si può stimare $|\underline{E}|^{2}$ e dunque 
+    la potenza dissipata. \\ \\
+    Supponiamo ora che nella banda di frequenze di nostro interesse $\varepsilon$ e $\mu$ siano reali e costanti. Allora $k_{z} = \omega \sqrt{\varepsilon \mu}$ è un numero 
+    reale e costante. Per i TEM sappiamo essere valido, supponendo ci sia solo onda progressiva:
+    \begin{equation}
+        V(z) = V^{+}e^{-jk_{z} z} \implies |V(z)| = |V^{+}|
+    \end{equation}
+    In altre parole, il modo TEM si propaga sempre ad ogni frequenza (se presente nella guida). Dunque se c'è modo TEM c'è \textbf{necessariamente propagazione elettromagnetica}, 
+    cioè un'onda EM traslata rigidamente. \\
+    Per i TM e i TE risulta, in virtù di come è definita $k_{t,n}$:
+    \begin{equation}
+        k_{n} = \sqrt{k_{t,n} ^{2} - \frac{\omega ^{2}}{c^{2}}} \implies 
+        \begin{cases}
+        k_{z,n} = \beta_{n} \in \mathbb{R} \iff \frac{\omega ^{2}}{c^{2}} \geq k_{t,n} ^{2} \\
+        k_{z,n} = -j \alpha_{n} \iff \frac{\omega ^{2}}{c^{2}} < k_{t,n} ^{2} \ \ \textrm{ con} \ \alpha_{n} = - \sqrt{k_{t,n} - \frac{\omega ^{2}}{c^{2}}}
+    \end{cases}
+    \end{equation}
+    Il meno davanti alla $\alpha_{n}$ è giustificato dal fatto che per un mezzo passivo c'è solo attenuazione. Se avessimo posto $k_{z,n} = j \alpha_{n}$ si avrebbe:
+    \begin{equation}
+        V^{+}e^{-jk_{n,z}z} = V^{+}e^{\alpha z}
+    \end{equation}
+    che è impossibile, perché corrisponde ad un aumento divergente di potenza, associato peraltro ad un mezzo passivo! \\
+    Chiamiamo i modi per i quali la costante di propagazione è reale \textbf{modi di propagazione}, mentre chiamiamo \textbf{modi di cutoff} quelli 
+    per i quali $k_{n,z}$ è immaginaria. La frequenza:
+    \begin{equation}
+        \omega_{t,n} = k_{t,n} c 
+    \end{equation}
+    è detta \textbf{frequenza di cutoff}, al di sotto della quale il modo invece di propagarsi si attenua con andamento esponenziale. Dunque a differenza dei TEM, i TE e i TM 
+    possono attenuarsi lungo la linea. È bene sottolineare che \textbf{l'attenuazione modale non corrisponde alla dissipazione di potenza}, che è associata alle perdite. Il cutoff 
+    è semplicemente la "non-propagazione" del modo. \\ \\
+    Si può definire allora un \textbf{diagramma di dispersione} per ogni struttura guidante, utile per la determinazione di $\beta$ ed $\alpha$ nel rispettivo caso di 
+    propagazione e attenuazione modale. Il diagramma di dispersione per la propagazione viene tracciato nel piano cartesiano $(\beta_{z}, \omega)$, mentre
+    quello per i modi attenuati in quello di assi $(\alpha, \omega)$. 
+    \\ Partiamo da quelli di dispersione. Se c'è un TEM, c'è necessariamente propagazione con costante di propagazione:
+    \begin{equation}
+        \beta_{z} = \frac{\omega}{c} \implies \omega = c \beta_{z}
+    \end{equation}
+    con $c$ velocità della luce. Dunque occorre tracciare la retta di pendenza $c \beta_{z}$ passante per l'origine. Questa retta 
+    prende il nome di \textbf{retta di propagazione}. \\
+    Per i TM e i TE ci può essere sia attenuazione che propagazione. Sappiamo che vale:
+    \begin{equation}
+        k_{z,n} ^{2} = \frac{\omega ^{2}}{c^{2}}-k_{t,n} ^{2} \implies k_{z,n} ^{2}c^{2}=\omega ^{2}-k_{t,n} ^{2}c^{2} = \omega^{2}-\omega_{t,n}
+    \end{equation}
+    Se c'è propagazione $k_{z,n} = \beta_{z,n} \in \mathbb{R}$dunque nel piano va tracciata la curva:
+    \begin{equation}
+        \omega = \sqrt{\omega_{t,n} ^{2}+\beta_{z,n} ^{2}c^{2}}
+    \end{equation}
+    che parte con un offset pari proprio alla frequenza di cut-off. È facile vedere che per $\beta_{z} + \infty$ la curva assume il comportamento
+    della retta di propagazione per i TEM:
+    \begin{equation}
+        \omega = \sqrt{\omega^{2} _{t,n} +c^{2} \beta_{z,n} ^{2}} \stackrel{+\infty}{=}  c\beta_{z,n}
+    \end{equation} 
+    che costituisce quindi un asintoto verticale per la curva associata all'n-esimo modo. Si noti che l'ordine delle pulsazioni di taglio lungo la retta
+    delle frequenze non distingue fra TE e TM, ma sono ordinate semplicemente dalla minore alla maggiore. Sarà nostro interesse, per ogni guida, ricavare il modo fondamentale 
+    (dalla frequenza di cut-off minore) all'interno della guida.  \\
+    Da queste considerazioni traiamo un altro risultato: i modi TEM si propagano tutti alla stessa velocità (di fase) $\displaystyle \frac{\omega}{\beta_{z}}$,
+    perché il rapporto è costante. Ciò non è vero per i modi TM e TE (se non all'infinito). Se la velocità di fase è la stessa, il segnale parte e arriva 
+    con lo stesso ritardo temporale e dunque anche lo spettro in frequenza è lo stesso ai capi della linea, dunque i TEM \textbf{non subiscono distorsioni}.
+    I TE e i TM, invece, subiscono distorsione dovuta alla differente velocità di fase dei contributi frequenziali. Se per esempio ci sono due frequenze diverse, queste per 
+    lo stesso $\beta_{z}$ avranno frequenze e quindi velocità diverse. Questo fenomeno prende il nome di \textbf{dispersione modale}, il quale non è legato alle caratteristiche
+    del mezzo ma solo alle diverse velocità dei modi. \\ \\
+    Per tracciare invece l'attenuazione modale, si parte dall'espressione di $\alpha_{z}$:
+    \begin{equation}
+        -\alpha_{z} ^{2} = \frac{\omega ^{2}}{c^{2}}-k_{t,n} ^{2} \implies \frac{\omega ^{2}}{c^{2}}+\alpha_{z} ^{2} = k_{t,n} ^{2}
+    \end{equation}
+    dividendo per $k_{t,n} ^{2}$ e tenendo conto che $c^{2}k_{t,n} ^{2} = \omega_{t,n} ^{2}$:
+    \begin{equation}
+        \implies \frac{\omega ^{2}}{\omega_{t,n} ^{2}}+\frac{\alpha_{z} ^{2}}{k_{t,n} ^{2}}=k_{t,n} ^{2} \implies (\frac{\alpha_{z}}{k_{t,n}})^{2}+(\frac{\omega}{\omega_{t,n}})^{2} = 1
+    \end{equation}
+    che è un ellisse che interseca $(k_{t,n},0)$ e $(0, \omega_{t,n})$. Tracciando definitivamente entrambi i grafici, sia per i modi 
+    in cut-off che per quelli in propagazione, si ottiene una cosa del genere:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.7\linewidth]{img/Chapter_three/Chapt3img1.png}
+    \end{figure}
+    \\ \\
+    Come fare per contenere la distorsione modale? Se c'è  propagazione TEM non ci sono problemi, basta 
+    restare al di sotto della frequenza di cutoff fondamentale. Se però ci sono solo TE e TM? Ci sono un'infinità numerabile di modi
+    TE e TM all'interno delle guide, seppur con le loro intensità variabili. Se si parte con un solo modo e si becca una discontinuità,
+    anche di entità lieve, questi si mischiano fra loro distorcendo il segnale facendo variare lo spetto di frequenza. \\
+    La velocità dell'inviluppo del pacchetto d'onda, ovvero la \textbf{velocità di fase}, per segnali a banda stretta è diversa da quella di fase. 
+    Torneremo a parlare di distorsione nelle prossime lezioni.
 
-\chapter{Esercizi}
+\section{Guida d'onda rettangolare}
+ \chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
             \begin{figure}[h!]
