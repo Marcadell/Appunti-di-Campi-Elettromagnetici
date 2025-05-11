@@ -3148,7 +3148,195 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     Torneremo a parlare di distorsione nelle prossime lezioni.
 
 \section{Guida d'onda rettangolare}
- \chapter{Esercizi}
+    Il modo a cui è associata la frequenza di taglio minore è detto \textbf{modo fondamentale}. In questa 
+    sezione ricaviamo il primo modo fondamentale per le guide rettangolari cavi, attraverso le quali non c'è propagazione TEM. 
+    Per far ciò, occorre determinare $\Phi$ per i modi TM e $\Psi$ per quelli TE. \\ \\
+    Consideriamo una sezione rettangolare di lati $a$ e $b$, con $a>b$ ed orientiamone i lati con normali come in figura:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img2.png}
+    \end{figure}
+    \\ Per i TE risulta:
+    \begin{equation}
+        \begin{cases}
+            \nabla_{t} ^{2} \Psi + k_{t} ^{2} \Psi = 0 \\
+            \frac{\partial}{\partial n} \Psi|_{\mathcal{C}} = 0
+        \end{cases}
+    \end{equation}
+    dove $\displaystyle \frac{\partial}{\partial n}$ è l'operatore di derivata rispetto alla normale e $\mathcal{C}$ il perimetro
+    della sezione.\\
+    Riscriviamo esplicando il laplaciano:
+    \begin{equation}
+        \label{eqn:mi_serve6}
+        \begin{cases}
+            \displaystyle \frac{\partial ^{2}}{\partial x^{2}}\Psi + \frac{\partial ^{2}}{\partial y^{2}}\Psi + k_{t} ^{2} \Psi = 0 \\
+            \displaystyle \frac{\partial}{\partial n} \Psi|_{\mathcal{C}} = 0
+        \end{cases}
+    \end{equation} \\
+    La seconda equazione delle (\ref{eqn:mi_serve6}) è una condizione al contorno, scomponibile in quattro condizioni, una per ogni lato.
+    In accordo a come abbiamo posto le normali possiamo scrivere:
+    \begin{equation}
+        \frac{\partial}{\partial x} \Psi|_{x=a} = - \frac{\partial}{\partial x}\Psi|_{x=0} = -\frac{\partial}{\partial y}|_{y=0}\Psi = \frac{\partial}{\partial y}|_{y=b} \Psi = 0
+    \end{equation}
+    Supponiamo che $\Psi(x,y)$ sia fattorizzabile come
+    \begin{equation}
+        \Psi(x,y) = \Psi_{x}(x)\Psi_{y}(y)
+    \end{equation} 
+    Allora si può scrivere, in accordo alla prima equazione delle (\ref{eqn:mi_serve6})
+    \begin{equation}
+        \Psi_{y}\frac{d ^{2}}{d x^{2}}\Psi_{x} + \Psi_{x}\frac{d ^{2}}{d y^{2}}\Psi_{y} + k_{t} ^{2} \Psi_{x}\Psi_{y} = 0
+    \end{equation}
+    Dividendo per $\Psi=\Psi_{x}\Psi_{y}$ si ottiene
+    \begin{equation}
+        \frac{1}{\Psi_{x}}\frac{d}{dx^{2}}\Psi_{x}+\frac{1}{\Psi_{y}}\frac{d}{dy^{2}}\Psi_{y} = -k_{t} ^{2}
+    \end{equation}
+    La somma di una funzione di $x$ ed una di $y$ deve essere pari ad una costante, dunque le singole funzioni sono anche loro costanti. Posto allora:
+    \begin{equation}
+        -k_{x} ^{2} = \frac{1}{\Psi_{x}}\frac{d}{dx^{2}}\Psi_{x} \qquad -k_{y} ^{2} = \frac{1}{\Psi_{y}}\frac{d}{dy^{2}}\Psi_{y}
+    \end{equation}
+    ricaviamo un espressione molto più pulita:
+    \begin{equation}
+        \begin{cases}
+            k_{x} ^{2}+k_{y} ^{2} = k_{t} ^{2} \\
+            -k_{x} ^{2} = \frac{1}{\Psi_{x}}\frac{d}{dx^{2}}\Psi_{x} \\
+            -k_{y} ^{2} = \frac{1}{\Psi_{y}}\frac{d}{dy^{2}}\Psi_{y}
+        \end{cases}
+        \implies
+        \begin{cases}
+            k_{x} ^{2}+k_{y} ^{2} = k_{t} ^{2} \\
+            \frac{d}{dx^{2}}\Psi_{x}+k_{x}^{2}\Psi_{x} = 0 \\
+            \frac{d}{dy^{2}}\Psi_{y}+k_{y}^{2}\Psi_{y} = 0
+        \end{cases}
+    \end{equation}
+    Le ultime due equazioni hanno la stessa forma di quella di un oscillatore armonico, dunque le 
+    soluzioni sono seni e coseni. Scriviamo allora
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \Psi_{x}(x) = A_{x}\cos(k_{x}x)+B_{x}\sin(k_{x}x) \\
+            \displaystyle \Psi_{y}(y) = A_{y}\cos(k_{y}y)+B_{y}\sin(k_{y}y)
+        \end{cases}
+    \end{equation}
+    Applichiamo le condizioni al contorno. Partiamo da quella per $x=0$:
+    \begin{equation}
+        \frac{\partial}{\partial x}\Psi|_{x=0} =\Psi_{y} \frac{d}{dx}\Psi|_{x=a} \qquad \forall y \in [0, b] 
+    \end{equation}
+    La soluzione $\Psi_{y}=0$ è banale, dunque la derivata deve essere nulla. Allora $\Psi_{x}$ è costante sul bordo. 
+    Lo stesso ragionamento può essere fatto per la condizione al bordo $x=a$. Per $x=0$, sostituendo nella soluzione generale, si ottiene:
+    \begin{equation}
+        \frac{d}{dx}\Psi_{x}|_{x=0} = B_{x}k_{x} = 0
+    \end{equation}
+    mentre per $x=a$
+    \begin{equation}
+        \frac{d}{dx}\Psi|_{x=a} = -A_{x}k_{x}\sin(ak_{x})
+    \end{equation}
+    Dunque la condizione da soddisfare è una tra le due a seguire:
+    \begin{equation}
+        B_{x}k_{x} = 0 \qquad \textrm{oppure} \qquad k_{x}=\frac{n\pi}{a}
+    \end{equation}
+    Per $\Psi_{y}$ il ragionamento è analogo e occorre soddisfare una delle due
+    \begin{equation}
+        B_{y}k_{y} = 0 \qquad \textrm{oppure} \qquad k_{y} = \frac{m \pi}{b}
+    \end{equation}
+    Abbiamo un'espressione per $k_{x}$ e $k_{y}$, che possiamo sostituire nell'integrale generale
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \Psi_{x}(x) = A_{x}\cos(\frac{n \pi}{a}x)+B_{x}\sin(\frac{n \pi}{a}x) \\
+            \\
+            \displaystyle \Psi_{y}(y) = A_{y}\cos(\frac{m\pi}{b}y)+B_{y}\sin(\frac{m\pi}{b}y)
+        \end{cases}
+    \end{equation}
+    Ipotizzando che $k_{x} \neq 0  \ (n \neq 0)$ deve risultare $B_{x}=0$ e di conseguenze
+    \begin{equation}
+        \Psi_{x}(x)=A_{x}\cos(\frac{n\pi}{a}x)
+    \end{equation}
+    Se $k_{x}=0$ il seno si annulla e si ha la stessa espressione, quindi $B_{x}=0$ sempre. Il ragionamento analogo 
+    per $\Psi_{y}$ ci permette di scrivere 
+    \begin{equation}
+        \label{eqn:base_soluzioniTE}
+        \begin{cases}
+            \Psi_{x}(x) = A_{x}\cos(\frac{n \pi}{a}x)  \\
+            \Psi_{y}(y) = A_{y}\cos(\frac{m \pi}{b}y) 
+        \end{cases}
+        \qquad n, m \in \mathbb{N}_{0} \times \mathbb{N}_{0} - \{0, 0\}
+    \end{equation}
+    Perché la condizione su $m,n $? Posto $A_{x}, A_{y} \neq 0$, altrimenti si avrebbe la soluzione banale, escludiamo anche il caso per il quale $\{n,m\} = \{0,0\}$,
+    perché sennò si avrebbe $\Psi_{x}$ e $\Psi_{y}$ costanti, altra soluzione banale. Inoltre poiché il coseno è una funzione pari, lo spazio $\mathbb{Z} \times \mathbb{Z}$
+    contiene la stessa informazione di quello $N_{0} \times N_{0}$. 
+    \\ Le (\ref{eqn:base_soluzioniTE}) generano una base per le soluzioni TE all'interno della guida rettangolare. Tale base è costituita dai modi 
+    identificati dagli indici $n$ ed $m$. \\
+    Utilizziamo la relazione che abbiamo trovato in precedenza per identificare la costante di propagazione del modo $\textrm{TE}_{m,n}$:
+    \begin{equation}
+        k_{x} ^{2} +k_{y} ^{2}= k_{t} ^{2} \implies k_{t_{n,m}} = \sqrt{(\frac{n \pi}{a})^{2}+(\frac{m \pi}{b})^{2}}
+    \end{equation}
+    Per identificare il modo fondamentale, bisogna trovare il $k_{t_{n,m}}$ più piccolo. Se $a>b$ è immediato verificare che questo corrisponde 
+    a $k_{t_{1,0}}$:
+    \begin{equation}
+        k_{t_{1,0}} = \frac{\pi}{a} < k_{t_{0,1}} = \frac{\pi}{b}
+    \end{equation}
+    Da cui ricaviamo il relativo modo
+    \begin{equation}
+        \Psi_{1,0} = A_{1,0}\cos(\frac{\pi}{a}x)
+    \end{equation}
+    con $A_{1,0}$ costante arbitraria in virtù della fattorizzazione. La scelta più semplice ricade nel porre 
+    $A_{1,0}$ tale da normalizzare il modulo quadro della $\Psi$:
+    \begin{equation}
+        ||\Psi_{1,0}|| ^{2} = A_{1,0} ^{2} \int_{0} ^{a} \int_{0} ^{b} \cos^{2}(\frac{\pi}{a}x)dxdy = 1 \implies A_{1,0} = \sqrt{\frac{2}{ab}}
+    \end{equation}
+    Conoscendo $\Psi_{1,0}$ si ricavano le relative funzioni vettoriali di modo
+    \begin{equation}
+        \underline{h}_{1,0} = -\frac{1}{k_{t_{1,0}}} = \sqrt{\frac{2}{ab}} \sin(\frac{\pi}{a}x)\underline{i}_{x}
+    \end{equation}
+    avendo tenuto conto che $\nabla_{t} = (\frac{\partial}{\partial x} \ \ \frac{\partial}{\partial y})$. \\
+    Ricaviamo anche $\underline{e}_{1,0}$
+    \begin{equation}
+        \underline{e}_{1,0} = \underline{h}_{1,0} \times \underline{i}_{z} = \sqrt{\frac{2}{ab}} = \sin(\frac{\pi}{a}x)\underline{i}_{x} \times \underline{i}_{z} = -\sqrt{\frac{2}{ab}}\sin{\frac{\pi}{a}x}\underline{i}_{y}
+    \end{equation}
+    perché $\underline{i}_{x}\times\underline{i}_{z} = - \underline{i}_{y}$. Infine si ricava 
+    la componente tangete di $\underline{H}$:
+    \begin{equation}
+        \underline{H}_{z} = \frac{V(z)}{j \omega \mu}k_{t_{1,0}} \cdot \Psi_{1,0} = \frac{V(z)}{j \omega \mu} \frac{\pi}{a}\sqrt{\frac{2}{ab}}\cos(\frac{\pi}{a}x)
+    \end{equation} \\ \\ \\ \\
+    Proseguiamo analogamente per ricavare l'espressione per i modi TM. Sappiamo che vale
+    \begin{equation}
+        \begin{cases}
+            \frac{\partial ^{2}}{\partial x^{2}}\Phi + \frac{\partial ^{2}}{\partial y^{2}}\Phi +k_{t} ^{2}\Phi = 0 \\
+            \Phi|_{\mathcal{C}} = 0
+        \end{cases}
+    \end{equation}
+    Supponiamo come prima che $\Phi(x,y) = \Phi_{x}(x)\Phi_{y}(y)$. Allo stesso modo, arriviamo a determinare
+    \begin{equation}
+        \begin{cases}  
+        \frac{d ^{2}}{dx ^{2}}\Phi_{x}+k_{x} ^{2}\Phi_{x} = 0 \\
+        \frac{d^{2}}{dy^{2}}\Phi_{y}+k_{y} ^{2}\Phi_{y} = 0 \\
+        k_{x} ^{2}+k_{y} ^{2}=k_{t} ^{2}
+        \end{cases}
+    \end{equation}
+    Che corrispondono agli integrali generali
+    \begin{equation}
+        \begin{cases}
+            \displaystyle \Phi_{x}(x) = A_{x}\cos(k_{x}x)+B_{x}\sin(k_{x}x) \\
+            \displaystyle \Phi_{y}(y) = A_{y}\cos(k_{y}y)+B_{y}\sin(k_{y}y)
+        \end{cases}
+    \end{equation}
+    Applicando le condizioni al contorno si ottiene
+    \begin{equation}
+        \Phi_{x} (0) = 0 \implies A_{x} = 0 \qquad \Phi_{y}(0) = 0 \implies A_{y} = 0
+    \end{equation}
+    \begin{equation}
+        \Phi_{x}(a) = 0 \implies k_{x} = \frac{n\pi}{a} \qquad \Phi_{y}(b)=0 \implies k_{y} = \frac{m \pi}{b}  
+    \end{equation}
+    Ottenendo in definitiva
+    \begin{equation}
+        \Phi_{n,m} (x,y) = B_{x_{n}}B_{y_{m}}\sin(\frac{n \pi}{a}x)\sin(\frac{m \pi}{b}y) \qquad n, m > 0
+    \end{equation}
+    A differenza del caso TE, il modo TM dipende dal prodotto di due seni e dunque $n$ ed $m$ non possono esser nulli,
+    altrimenti si avrebbe soluzione banale! \\
+    Ricaviamo il la costante di propagazione più piccola
+    \begin{equation}
+        k_{t_{1,1}} ^{TM}= \pi\sqrt{\frac{1}{a}+\frac{1}{b}} \implies \Phi_{1,1} = B_{11}\sin(\frac{\pi}{a}x)\sin(\frac{\pi}{b}y)
+    \end{equation}
+    la quale è sicuramente maggiore di $k_{1,0} ^{TE}$. Allora \textbf{in una guida rettangolare il modo fondamentale è il TE 10}.\footnote{leggasi "uno zero"}
+\chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
             \begin{figure}[h!]
