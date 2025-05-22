@@ -1,0 +1,117 @@
+\documentclass{book}
+\usepackage{hyperref}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{xr}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{pxfonts}
+\usepackage[italian]{babel}
+\title{Formulario Campi}
+\author{Guido Lamoto}
+\date{A.A. 24/25}
+
+\hypersetup{
+pdftitle = '',
+pdfauthor ='' '',
+pdfcreator = '',
+pdfproducer = ''
+}
+
+
+\begin{document}
+    \maketitle
+    \chapter*{Linee di trasmissione}
+    \section*{Formule}
+        \begin{itemize}
+            \item Trasporto all'indietro di $Z(z)$ 
+            \begin{equation}
+                Z(z) = Z_{0} \cdot \frac{Z(0)+jZ_{0}\tan(\beta z)}{Z_{0}+jZ(0)\tan(\beta z)}
+            \end{equation}
+            dove $Z_{0}$ è l'impedenza della linea e $Z(0)$ l'impedenza nell'origine di riferimento.
+            \item Trasporto in avanti di tensione e corrente
+            \begin{align}
+                V(z) = V(0)\cos(\beta z)-jZ_{0}\sin(\beta z) \\
+                I(z) = I(0)\cos(\beta z)-j\frac{V(z)}{Z_{0}}\sin(\beta z) 
+            \end{align}
+            \item Relazioni impedenza - coefficiente di riflessione
+            \begin{flalign}
+                \Gamma(z) = \frac{Z(z)-Z(0)}{Z(z)+Z(0)}  = \frac{Y(0)-Y(z)}{Y(0)+Y(z)} &&
+                Y(z) = Y_{0} \frac{1-\Gamma(z)}{1+\Gamma(z)} \\
+                \Gamma(z) = |\Gamma(0)|\exp{(j \varphi_{0})}\exp{j( 2 \beta z)} && Z(z) = Z_{0} \frac{1+\Gamma(z)}{1-\Gamma(z)}
+            \end{flalign}
+            dove $|\Gamma(0)|$ e $\varphi_{0}$ sono modulo e fase del coefficiente di riflessione nell'origine di riferimento.
+            \item Relazione di Poynting parte immaginaria (assumendo $\underline{J}_{0} = 0$, ovvero assenza di sorgenti impresse interne)
+            \begin{equation}
+                \Phi_{I}(\underline{S})+2\omega (\overline{W}_{m}-\overline{W}_{e}) = \Im(\frac{j}{2}\iiint_{V} \underline{E} \cdot \underline{J}_{0} dV) = 0
+            \end{equation}
+            \begin{equation}
+                \implies \overline{W}_{m}-\overline{W}_{e} = -\frac{\Phi_{I}(\underline{S})}{2\omega}
+            \end{equation}
+            \item Calcolo energia elettrica (o magnetica) media su tratto lungo $d$
+            \begin{equation}
+                \overline{W}_{e} = \frac{C}{4} \int_{0} ^{d} |V(z)| ^{2} dz \qquad \overline{W}_{m} = \frac{L}{4} \int_{0} ^{d} |V(z)| ^{2} dz
+            \end{equation}
+            dove $\displaystyle C=\frac{\beta}{\omega Z_{0}}$ ed $L=\displaystyle \frac{\beta Z_{0}}{\omega}$
+            \item Massima potenza attiva erogabile dal generatore (con impedenza reale)
+            \begin{equation}
+                \overline{P}_{max} = \frac{1}{8}\frac{|V_{g}| ^{2}}{Z_{g}} = \frac{1}{8}\frac{|I_{g}| ^{2}}{Y_{g}}
+            \end{equation}
+            \item Condizione di adattamento al generatore. Se l'impedenza alla sezione che si affaccia al generatore è $Z_{DD'} = R_{DD'}+jX_{DD'}$ deve risultare
+            \begin{equation}
+                Z_{DD'} = Z_{gen} ^{*} \implies
+                \begin{cases}
+                    R_{DD'} = R_{gen} \\
+                    X_{DD'} = X_{gen} ^{*}
+                \end{cases}
+            \end{equation}
+            o equivalentemente
+            \begin{equation}
+                Y_{DD'} = Y_{gen} ^{*} \implies
+                \begin{cases}
+                    G_{DD'} = G_{gen} \\
+                    B_{DD'} = B_{gen} ^{*}
+                \end{cases}
+            \end{equation}
+            \item Adattatore a $\lambda/4$. Sia $Z_{0}$ l'impedenza caratteristica della linea da adattare e $Z_{1}$ quella del tratto
+            a $\lambda/4$. Sia inoltre $Z_{C}$ il carico da adattare alla linea. La condizione per utilizzare il $\lambda/4$ è che $Z_{0}$, $Z_{C}$ siano
+            reali. A quel punto il valore di $Z_{1}$ è pari a 
+            \begin{equation}
+                Z_{1} = \sqrt{Z_{0}Z_{C}} \in \mathbb{R}
+            \end{equation}
+            \item Massimi di tensione e corrente in modulo
+            \begin{equation}
+                |V(z)| = \max \textrm{ e } |I(z)| = \min \iff  2\beta d- \varphi_{c} = 2n \pi 
+            \end{equation}
+            \begin{equation}
+                |I(z)| = \max \textrm{ e } |V(z)| = \min \iff 2\beta d - \varphi_{c} = 2n \pi +\pi
+            \end{equation}
+            dove $\varphi$ è la fase di $\Gamma$ a partire dal carico e $d$ la distanza dal carico.
+        \end{itemize}
+    \section*{Info utili}
+        \begin{itemize}
+            \item In un tratto a $\lambda/4$ dove entra un'impedenza reale esce ancora un'impedenza reale,
+            dunque la differenza di energia magnetica ed elettrica media è nulla.
+            \begin{equation}
+                Z_{in} \in \mathbb{Re} \textrm{ and } d= \lambda/4 \implies \overline{W}_{m}=\overline{W}_{e} \implies W_{em} = 2W_{e}=2W_{m}
+            \end{equation}
+            \item Quando si calcola il flusso del vettore di Poynting attraverso una sezione, poiché il flusso è per 
+            convenzione definito uscente, conviene orientare le superfici corrispondenti alle sezioni per determinare il verso del flusso.
+            \item Se viene chiesa la \textbf{massimizzazione del rapporto fra due potenze} $\overline{P}_{AA'}$ e $\overline{P}_{BB'}$ in funzione di $x$ (lunghezza di tratto)... \\
+            Ipotizzando $\overline{P}_{AA'}=\overline{P}_{AA'}(x)$, se $P_{BB'}$ è fissata e le due sezioni sono in serie
+            \begin{equation}
+                \frac{\overline{P}_{AA'}}{\overline{P}_{BB'}} = \frac{R_{AA'}(x)}{R_{BB'}} \implies x_{min} \ :\  \frac{\partial R_{AA'}}{\partial \tan(\beta x)} = 0
+            \end{equation}
+            mentre in parallelo
+            \begin{equation}
+                \frac{\overline{P}_{AA'}}{\overline{P}_{BB'}}=\frac{G_{AA'}(x)}{G_{BB'}} \implies x_{min} \ : \ \frac{\partial G_{AA'}}{\partial \tan(\beta x)} = 0
+            \end{equation}
+            \item Se si ha un'impedenza di carico costituita dalla serie di una resistenza e una reattanza (condensatore/induttore) e 
+            viene chiesto di massimizzare il modulo soltanto sulla resistenza, questo equivale a massimizzare la potenza sul carico, perché se $R$ ed $X$ 
+            sono fissati il partitore di tensione fra $R$ ed $X$ è anch'esso fissato e l'unica cosa che può variare è il modulo sulla serie, che è massimo quando è
+            massima la potenza  attiva $\overline{P}=\frac{1}{2}R|V_{C}|^{2}$.
+        \end{itemize}
+        
+
+\end{document}

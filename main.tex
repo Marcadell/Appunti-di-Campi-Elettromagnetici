@@ -393,7 +393,7 @@ pdfproducer = ''
         \end{equation}
         In tal caso quel limite di prima non si annulla, perché l'integrale su $S_{\mathcal{C}}$ da contributo unitario lungo la direzione $z$ per le proprietà della delta:
         \begin{equation}
-            \lim_{\delta \to 0} \iint_{S_{\mathcal{C}}} \underline{j}_{S} \cdot \underline{i}_{n}dl
+            \lim_{\delta \to 0} \iint_{S_{\mathcal{C}}} \underline{j} \cdot \underline{i}_{n}dS = \int_{A} ^{B} \underline{j}_{S} \cdot \underline{i}_{t} dl
         \end{equation}
         Notiamo che l'integrale di linea viene fatto sulla \textit{tangente} ad $AB$ $\underline{i}_{n}$ e non sulla tangente, questo perché l'informazione che interessa a noi è "quanta corrente sta uscendo per la superficie per il limite per $\delta \to 0$?". \\
         Alla luce di quanto detto possiamo scrivere, per $\delta \to 0$:
@@ -419,7 +419,7 @@ pdfproducer = ''
         \end{equation}
         Se questa relazione vale per ogni $\underline{i}_{n}$, e cioè per ogni componente del versore normale ad $S_{\mathcal{C}}$, allora possiamo cancellarlo. La scelta dei piani del fascio è arbitraria, quindi $\underline{i}_{n}$ può variare rimanendo tangente a $\Sigma$. Allora per quel che riguarda la componente tangente a $\Sigma$ i due vettori sono uguali. Ci manca la direzione normale, ma la componente normale di $\underline{i}_{n\Sigma} \cdot (\underline{h}_{2}-\underline{h}_{1})$ è:
         \begin{equation}
-            \underline{i}_{n\Sigma} \cdot \underline{i}_{n\Sigma} \cdot (\underline{h}_{2}-\underline{h}_{1}) = 0
+            \underline{i}_{n\Sigma} \cdot \underline{i}_{n\Sigma} \times (\underline{h}_{2}-\underline{h}_{1}) = 0
         \end{equation}
         per le proprietà del prodotto misto.\footnote{$a \cdot a \times b = b \cdot (a \times a) = 0$ perché ogni vettore è parallelo a se stesso dunque il prodotto vettoriale fra due vettori identici è nullo} Inoltre $\underline{j}_{S} \cdot \underline{i}_{n \Sigma} = 0$ perché $\underline{j}_{S}$ ha normale tangente a $\Sigma$.\\
         In definitiva si può scrivere la \textit{seconda equazione al raccordo}:
@@ -1495,7 +1495,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \end{equation}
             avendo definito $\displaystyle  \varepsilon_{eq} = \varepsilon(1 - j \frac{\sigma}{\varepsilon \omega})$, il cui nome è 
             \textbf{permettività elettrica equivalente}. Utilizzando la permettività elettrica equivalente inglobiamo l'influenza di $\sigma$ nella
-            permettività. Per renderci conto dell'effeto di $\sigma$, notiamo che nell'espressione di $\varepsilon_{eq}$, se $\sigma \neq 0$, c'è un polo 
+            permettività. Per renderci conto dell'effetto di $\sigma$, notiamo che nell'espressione di $\varepsilon_{eq}$, se $\sigma \neq 0$, c'è un polo 
             per $\omega = 0$. \\
             Per quanto concerne la terza equazione, consideriamo l'equazione di continuità in frequenza:
             \begin{equation}
@@ -1758,6 +1758,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     Allora $\underline{e}$ è un campo irrotazionale. Facendo gli stessi calcoli con la quarta equazione di Markuvitz-Scwhinger si ricava che $\underline{h}$ è irrotazionale
     ed $\underline{e}$ è indivergente. IN definitiva otteniamo
     \begin{equation}
+        \label{eqn:campi_irrotazionali_indivergenti_TEM}
         \begin{cases}
             \nabla \cdot \underline{e} = 0 \qquad \nabla \times \underline{e} = 0
             \\ \nabla \cdot \underline{h} = 0 \qquad \nabla \times \underline{h} = 0
@@ -1800,7 +1801,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \label{eqn:eq_tensione_corrente}
             \begin{cases}
                 \frac{d}{dz}V(z)=-j k Z_{0}I(z) \\
-                \frac{d}{dz}I(z) = -j k Z_{0}V(z)
+                \frac{d}{dz}I(z) = -j \displaystyle \frac{k}{Z_{0}}V(z)
             \end{cases}
         \end{equation}
         dove $k$ è la costante di propagazione e $Z_{0}$ l'impedenza caratteristica della linea:
@@ -3336,6 +3337,346 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         k_{t_{1,1}} ^{TM}= \pi\sqrt{\frac{1}{a}+\frac{1}{b}} \implies \Phi_{1,1} = B_{11}\sin(\frac{\pi}{a}x)\sin(\frac{\pi}{b}y)
     \end{equation}
     la quale è sicuramente maggiore di $k_{1,0} ^{TE}$. Allora \textbf{in una guida rettangolare il modo fondamentale è il TE 10}.\footnote{leggasi "uno zero"}
+    \\ \\ 
+    Affrontiamo ora il tema su come selezionare $a$ e $b$ all'interno di una guida rettangolare. Sappiamo che la frequenza di taglio indicizzata tramite $n$ ed $m$ è data da 
+    \begin{equation}
+        \omega_{t_{m,n}} = c k_{t_{m,n}} = c \sqrt{(\frac{n \pi}{a})^{2}+(\frac{m \pi}{b})^{2}} 
+    \end{equation}
+    Il fondamentale è $TE_{10}$ con relativa frequenza di taglio $\omega_{t_{10}} ^{TE} = c\frac{\pi}{a}$. Il secondo modo fondamentale sarà uno fra i seguenti
+    \begin{equation}
+        \omega_{20} ^{TE} = 2 \frac{c\pi}{b} \qquad \omega_{01} ^{TE} = \frac{c\pi}{b} \qquad \omega_{11} ^{TE} = c\sqrt{(\frac{\pi}{a})^{2}+(\frac{\pi}{b})^{2}} = \omega_{11} ^{TM}
+    \end{equation}
+    Possiamo scartare a priori la $\omega_{11} ^{TE}=\omega_{11} ^{TM}$ perché è sicuramente maggiore delle altre due. Se $b > a/2$ la $\omega_{01} ^{TE}$ è la fondamentale,
+    altrimenti è la $\omega_{20} ^{TE}$, dunque il problema si riduce alla scelta dell rapporto fra $a$ e $b$. \\
+    È di nostro interesse che la banda, identificata tra la fondamentale e la seconda frequenza di taglio, sia maggiore possibile. Per far ciò, conviene scegliere $b \leq a/2$. Dal punto di vista teorico l'ideale 
+    sarebbe proprio $b=a/2$, ma per tener conto delle imperfezioni si sceglie poco più piccola per star sicuri. Il motivo per il quale si sceglie $a/2$ è dovuto al fatto che, come abbiamo visto poco sopra, il fattore geometrico 
+    per i campi va come $\sqrt{\frac{2}{ab}}$, dunque aumenta al diminuire di $b$, aumentando la potenza dissipata.
+
+
+    \section{Soluzione TEM}
+        Nel caso TEM, la situazione è la seguente
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img3.png}
+        \end{figure}
+        \newpage 
+        Per i TEM, valgono le seguenti
+        \begin{equation}
+            \begin{cases}
+                \displaystyle -\frac{d}{dz}V = jkZ_{0}I \\
+                \displaystyle -\frac{d}{dz}I = j \frac{k}{Z_{0}} V
+            \end{cases} \qquad 
+            \begin{cases}
+                k = \omega \sqrt{\varepsilon \mu} \\
+                \displaystyle Z_{0} = \frac{\zeta}{A} \\
+                \displaystyle \zeta = \sqrt{\frac{\mu}{\varepsilon}}
+            \end{cases} \qquad 
+            \begin{cases}
+                \underline{e} = A \underline{h} \times \underline{i}_{z} \\
+                A \underline{h} = \underline{i}_{z} \times \underline{e}
+            \end{cases}
+        \end{equation}
+        Le equazioni di Markuvitz-Schwinger in questo caso avevano la forma
+        \begin{equation}
+            \begin{cases}
+            \displaystyle -\frac{\partial}{\partial z}\underline{E}_{t} = j \omega \mu \underline{H}_{t} \times \underline{i}_{z} \\
+            \displaystyle -\frac{\partial}{\partial z}\underline{H}_{t} = j \omega \varepsilon \underline{i}_{z} \times \underline{E}_{t} \\
+            0 = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) \\
+            0 = \nabla_{t} \cdot (\underline{H}_{t}\times \underline{i}_{z})
+            \end{cases}
+        \end{equation}
+        Le prime due equazioni le abbiamo usate per le linee, dunque useremo le ultime due per trovare l'espressione di $\underline{e}$ ed $\underline{h}$. Avevamo visto con la (\ref{eqn:campi_irrotazionali_indivergenti_TEM}) che
+        $\underline{e}$ ed $\underline{h}$ sono nel caso TEM sia irrotazionali che indivergenti. Se assumiamo che il volume all'interno del quale stiamo risolvendo il problema di campo sia semplicemente connesso, possiamo affermare 
+        \begin{equation}
+            \begin{cases}
+                \nabla_{t} \times \underline{e}, \ \nabla_{t} \times \underline{h} = 0 \\
+                V \ \textrm{semplicemente connesso}
+            \end{cases} 
+            \implies
+            \underline{e} \textrm{ ed } \underline{h} \textrm{ sono campi conservativi} 
+        \end{equation}
+        Dire che il campo è conservativo corrisponde a dire che \textbf{esiste una funzione scalare tale per cui il campo è esprimibile come l'opposto del gradiente di tale funzione scalare}. \newpage 
+        Posizionandoci ad una sezione della guida in tal modo
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img4.png}
+        \end{figure}
+        $\underline{h}$ ed $\underline{e}$ vivono in $\Sigma$, per cui bisogna verificare che $\Sigma$ sia un dominio semplicemente connesso\footnote{Ha senso parlare di dominio bidimensionale e non tridimensionale perché le funzioni vettoriali di modo
+        sono definite sulle due dimensioni tangenti $x$ ed $y$}; se consideriamo la sezione di un cavo coassiale, è istantaneo verificare che il dominio non è semplicemente connesso. Poiché vale
+        \begin{equation}
+            \oint_{C} = \underline{E} \cdot \underline{i}_{l}dl = - j \omega \mu \iint_{S_{C}} \underline{H} \cdot \underline{i}_{n} dS
+        \end{equation}
+        avendo scelto una curva $C$ sulla corona circolare\footnote{la zona fra anima e calza} del cavo, la quale racchiude area $S_{C}$.
+        Per il cavo coassiale (così come ogni guida) $\underline{i}_{n}=\underline{i}_{z}$ per cui $\underline{H}\cdot \underline{i}_{n} = H_{z} = 0$ nel caso TEM.
+        Dunque si può scrivere 
+        \begin{equation}
+            \oint_{C} \underline{E} \cdot \underline{i}_{l} dl = -j \omega \mu \iint_{S_{C}} H_{z} dS = 0 \implies \oint_{C} \underline{E} \cdot \underline{i}_{l} dl = 0 
+        \end{equation} 
+        dunque $\underline{E}$ è un campo conservativo. Dato che $E_{z}= 0$ si può scrivere la circuitazione di $\underline{E}$ considerando solo il contributo tangente
+        \begin{equation}
+            \oint_{C} \underline{E}_{t} \cdot \underline{i}_{l} dl = V(z) \oint_{C} \underline{e} (\underline{r}_{t}) \cdot \underline{i}_{l} dl = 0 \implies \oint_{C} \underline{e} (\underline{r}_{t}) \cdot \underline{i}_{l} dl = 0
+        \end{equation}
+        assumendo che $V(z) \neq 0$, altrimenti avremmo solo la soluzione banale. Poiché la scelta di $C$ è arbitraria, l'integrale è nullo per ogni curva e dunque $\underline{e}$ è un campo conservativo. \\
+        Sia $\varphi$ il potenziale scalare di $\underline{e}$, l'irrotazionalità di $\underline{e}$ nel caso di conservatività porta la stessa informazione di $\underline{e} = - \nabla_{t} \varphi$
+        \begin{equation}
+            \begin{cases}
+                \nabla_{t} \cdot \underline{e} = 0 \\
+                \underline{e} = - \nabla_{t} \varphi
+                \end{cases} \implies 
+                0 = \nabla_{t} \underline{e} = - \nabla_{t} \cdot \nabla_{t} \varphi \implies \nabla_{t} ^{2} \varphi = 0 
+        \end{equation}
+        Per ricavare $\underline{e}$ occorre risolvere l'equazione di Laplace che abbiamo appena ricavato. \\
+        Per $\underline{h}$ il discorso \textit{dovrebbe} essere analogo. Selezionata una curva arbitraria $C$ all'interno della corona circolare del cavo coassiale possiamo scrivere, nel caso TEM dove $E_{z} = 0$
+        \begin{equation}
+            \oint_{C} \underline{H} \cdot \underline{i}_{l} dl = j \omega \varepsilon \iint_{S_{C}} \underline{E} \cdot \underline{i}_{n} dS + i (\underline{\underline{S_{C}}}) =
+            j \omega \varepsilon \iint_{S_{C}} i (\underline{\underline{S_{C}}})
+        \end{equation}
+        Poiché c'è la corrente, non è possibile dire subito che $\underline{h}$ è conservativo, per cui si ricava $\underline{e}$ e poi $\underline{h}$. Occorre risolvere 
+        \begin{equation}
+            \begin{cases}
+                \underline{e} = - \nabla_{t} \varphi \\
+                \nabla_{t} \varphi = 0
+            \end{cases}
+        \end{equation}
+        la quale ha infinite soluzioni, a meno che non vengano specificate le condizioni al contorno.
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img5.png}
+        \end{figure}
+        Le condizioni al contorno, considerando il CEP, sono
+        \begin{equation}
+            0 = \underline{i}_{n} \times \underline{E}|_{\partial \Sigma} = \underline{i}_{n} \times \underline{E}_{t}|_{\partial \Sigma} = V(z)\underline{i}_{n} \times \underline{e}(\underline{r}_{t})|_{\partial \Sigma}
+        \end{equation}
+        Posto $V(z) \neq 0$ risulta
+        \begin{equation}
+            0 = \underline{i}_{n} \times \underline{e}|_{\partial \Sigma}  = - \underline{i}_{n} \times \nabla_{t} \varphi |_{\partial \Sigma}
+        \end{equation}
+        Considerato il versore $\underline{i}_{l}$ tangente e quello longitudinale $\underline{i}_{z}$ la situazione è questa
+        \begin{figure}
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img6.png}
+        \end{figure}
+        Dunque, forti del fatto che $\underline{i}_{n} = \underline{i}_{l} \times \underline{i}_{z}$
+        \begin{equation}
+            \underline{i}_{n} \times \nabla_{t} \varphi |_{\partial \Sigma} = (\underline{i}_{l} \times \underline{i}_{z}) \times \nabla_{t} \varphi |_{\partial \Sigma} = (\underline{i}_{l} \cdot \nabla_{t} \varphi) \underline{i}_{z} -
+            (\underline{i}_{z} \cdot  \nabla_{t}\varphi) \cdot \underline{i}_{l}|_{\Sigma} = (\underline{i}_{l} \cdot \nabla_{t} \varphi ) \cdot \underline{i}_{z}
+        \end{equation}
+        dato che $\nabla_{t} \varphi = - \underline{e} \implies \nabla_{t}\varphi|_{z} \cdot \nabla_{t} \varphi = 0$. Si scrive in definitiva 
+        \begin{equation}
+            \underline{i}_{l} \nabla_{t} \varphi |_{\partial \Sigma} = \frac{\partial \varphi}{\partial l}|_{\Sigma} = 0
+        \end{equation}
+        perchè il prodotto gradiente per versore è la derivata direzionale in direzione del versore. \\ 
+        Allora occorre cercare una $\varphi$ che soddisfi:
+        \begin{equation}
+            \begin{cases}
+                \nabla_{t} ^{2} \varphi = 0 \\
+                \displaystyle \frac{\partial \varphi}{\partial l}|_{\Sigma} = 0
+            \end{cases}
+        \end{equation}
+        Il fatto che la derivata di $\varphi$ lungo la direzione  $\underline{i}_{l}$ sia nulla \textbf{non implica che sia costante lungo tale direzione} a meno che che il dominio non sia connesso,
+        perché se così non fosse questa potrebbe variare al di fuori del dominio e rimanere costante solo all'interno di esso. La frontiera di un cavo coassiale, come sappiamo, non è connessa.\\
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img7.png}
+        \end{figure}
+        \\ Ci sono due valori diversi di $\varphi$ sulla frontiera non connesso del cavo coassiale, le quali però sono costanti. Se tali costanti sono diverse ciò risulta comodo perché significa che ci sarà 
+        una differenza di potenziale fra i conduttori. \newpage 
+        Consideriamo ora un domino del genere
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.6\linewidth]{img/Chapter_three/Chapt3img8.png}
+        \end{figure} \\
+        Ci chiediamo quanti modi TEM si propagano in una struttura guidante che ha una sezione come quella in figura. Ricordiamo che $\underline{e}$ e $\varphi$ sono quantità complesse, i casi da considerare sono tre,
+        cioè che si propagahi un modo su una delle superfici laterali (ognuna ha il suo "cerchio" in sezione, dunque i due interni e quello esterno). Sfruttando la linearità del mezzo, si può scrivere la $\varphi$ totale come somma 
+        di tutti e tre i contributi dei tre conduttori
+        \begin{equation}
+            \varphi = c_{1}\varphi_{1}+c_{2}\varphi_{2}+c_{3}\varphi_{3}
+        \end{equation} 
+        La $\varphi_{1}$ può essere complessa, ma le $\varphi_{2}$ e $\varphi_{3}$ sono reali (perché ???) dunque la condizione per la $\varphi_{1}$ assume la forma
+        \begin{equation}
+            \begin{cases}
+                \nabla_{t} ^{2} \varphi_{1R} = 0 \\
+                \nabla_{t} ^{2} \varphi_{1I} = 0
+            \end{cases}
+        \end{equation}
+        cioè le componenti di $\varphi_{1}$ sono due funzioni armoniche reali, così come lo sono $\varphi_{2}$ e $\varphi_{3}$. Le funzioni armoniche reali sono costrette ad assumere massimo e minimo sulla frontiera.
+        Applichiamo la sovrapposizione degli effetti: quando agisce solo $\varphi_{1}$, se questa assume massimo sulla frontiera e minimo sull'altra, allora la parte immaginaria è zero (dubbio, chiedi al professore). Dato 
+        che lafrontiera è $1$ o $0$ si ottiene su tutta la superficie $S$:
+        \begin{equation}
+            \varphi_{S} = \varphi_{1}+\varphi_{2}+\varphi_{3} \qquad \nabla_{t} ^{2} \varphi_{S} = 0
+        \end{equation} 
+        Poiché la somma in ogni frontiera deve fare $\varphi_{S} = 1$ risulta
+        \begin{equation}
+            \varphi_{1}+\varphi_{2}+\varphi_{3} = 1 \implies \varphi_{3} = 1- \varphi_{2} - \varphi_{2} \implies \varphi = (1-c_{3})\varphi_{1}+(c_{2}-c_{3})\varphi_{2}+c_{3}
+        \end{equation}
+        dunque per tre contorni servono due modi TEM. In generale, per un dominio con molteplcità $n$ si propagano $n-1$ modi TEM. Il problema del tubo cavo allora non ammette modo TEM e per frequenze 
+        basse del segnale occorrerebbero modi TE e TM con frequenze di taglio molto basse con sezioni di tubo enorme (PERCHÉ ???). \newpage
+        \subsection{Il cavo coassiale}
+        Il cavo coassiale è una struttura guidante che consta di due conduttori che sono, per l'appunto, coassiali. Ha doppia molteplcità e dunque al suo interno si 
+        propaga un singolo modo TEM. Per studiare il comportamento di tale modo, consideriamo una sezione coassiale di raggi $a$ (conduttore interno) e $b$ (conduttore esterno). Sia $P = (r, \vartheta)$ il 
+        generico punto all'interno della sezione e $\varphi = \varphi(x,y) \in \mathbb{R}$
+        \begin{figure}[h!]
+            \center  
+            \includegraphics[width=0.7\linewidth]{img/Chapter_three/Chapt3img9.png}
+        \end{figure}
+        Il laplaciano ha la forma
+        \begin{equation}
+            \nabla_{t} ^{2} \varphi = \frac{\partial ^{2}}{ \partial x^{2}}\varphi + \frac{\partial ^{2}}{\partial y ^{2}}\varphi = 0
+        \end{equation}
+        Conviene esprimerlo in coordinate polari, dunque
+        \begin{equation}
+            \varphi = \varphi(\rho, \vartheta) = \varphi(\rho) = 
+        \end{equation}
+        dove l'ultimo passaggio è giustificato dal fatto che, poiché la struttura è simmetrica rispetto ad una rotazione attorno al suo asse, anche la soluzione erediti tale simmetria, dipendendo 
+        solo da $\rho$. Allora scriviamo:
+        \begin{equation}
+            \nabla_{t} ^{2} \varphi = \frac{1}{\rho} \frac{d}{d\rho} [\rho \frac{d}{d \rho} \varphi(\rho)] = 0 \qquad \rho \in [a, b] \implies \rho \frac{d}{d \rho} \varphi = c_{1} = \textrm{ costante }
+        \end{equation}
+        \begin{equation}
+            \implies \frac{d \varphi}{d \rho} = \frac{c_{1}}{\rho} \implies \varphi = c_{1} \ln (\rho) + c_{2}
+        \end{equation}
+        Le condizioni al contorno da imporre sono
+        \begin{equation}
+            \begin{cases}
+            \varphi (a) = 1 \\
+            \varphi (b) = 0
+            \end{cases}
+        \end{equation}
+        dove $1$ è stata imposta in modo arbitrario, ma in generale il valore sulla superficie piccolina è $c_{1}$.
+        Per cui
+        \begin{equation}
+            \begin{cases}
+                c_{1} \ln (a)+c_{2} = 1 \\
+                c_{1} \ln (b)+c_{2} = 0
+            \end{cases}
+        \end{equation}
+        Sostituendo
+        \begin{equation}
+            \begin{cases}
+            c_{1}(\ln(a)-\ln(b)) = c_{1} \ln(\frac{a}{b})= 1 \\
+            c_{2} = -c_{1}\ln(b)
+            \end{cases} \implies 
+            \begin{cases}
+            \displaystyle    c_{1} = \frac{1}{\ln (\frac{a}{b})} \\
+            \displaystyle    c_{2} = -\frac{1}{\ln(\frac{a}{b})}\ln(b)
+            \end{cases}
+        \end{equation}
+        Allora per il campo $\underline{e}$ possiamo scrivere
+        \begin{equation}
+            \underline{e} = - \nabla_{t} \varphi = - \frac{d}{d\rho} \varphi \cdot \underline{i}_{\rho} = - \frac{c_{1}}{\rho} \underline{i}_{\rho} = - \frac{1}{\displaystyle \ln(\frac{a}{b}) \rho} \underline{i}_{\rho}
+         \end{equation}
+         \begin{equation}
+            \implies \underline{e} = \frac{1}{\ln (\frac{b}{a}\rho)} \cdot \underline{i}_{\rho}
+         \end{equation}
+         Data la struttura del cabo coassiale ($b>a$) il logaritmo a denominatore è positivo e dunque il campo $\underline{e}$ viene irradiato dalla sezione piccola a quella grande, in modo radiale.
+
+         \section{Potenziali elettromagnetici}
+            I potenziali elettromagnetici sono grandezze ausiliari utili per risolvere le equazioni di Maxwell. Supponiamo di avere una sorgente di campo $(\underline{J}_{0}, \rho_{0})$. Per l'equazione di
+            continuità
+            \begin{equation}
+                \nabla \cdot \underline{J}_{0}+ j \omega \rho_{0} = 0
+            \end{equation}
+            Trattiamo il problema all'interno di un volume limitato $V$, cioè tale da poter essere contenuto in una sfera di raggio sufficientemente grande. Supponiamo inoltre che il mezzo sia normale e omogeneo
+            nello spazio. Le equazioni di Markuvitz-Schwinger assumono la forma
+            \begin{equation}
+                \begin{cases}
+                    \displaystyle \nabla \times \underline{E} = -j \omega \mu \underline{H} \\
+                    \displaystyle \nabla \times \underline{H} = j \omega \varepsilon \underline{E}+\underline{J}_{0} \\
+                    \nabla \cdot (\varepsilon \underline{E}) = \rho \\
+                    \nabla (\mu \underline{H}) = 0
+                \end{cases}
+            \end{equation}
+            Il campo $\underline{B}= \mu \underline{H}$ è indivergente. Se supponiamo che il dominio sia a connessione superficiale semplice\footnote{cioè tale per cui è possibile deformare una superficie in un punto senza uscire dal dominio}
+            il campo è \textbf{solenoidale}, per cui è possibile definire un \textbf{potenziale vettore} $\underline{A}$ tale per cui
+            \begin{equation}
+                \mu \underline{H} = \nabla \times \underline{A}
+            \end{equation}
+            Il dominio $\mathbb{R} ^{3}$ nel quale stiamo cercando la soluzione è a connessione superficiale semplice, dunque $\underline{B}$ è sicuramente solenoidale.
+            Sostituendo il tutto nella IV equazione di MS\footnote{Markuvitz-Schwinger ndr.}:
+            \begin{equation}
+                \nabla (\mu \underline{H}) = \nabla \cdot \nabla \times \underline{A} = 0 \implies \nabla \times \underline{A} = 0
+            \end{equation}
+            Dunque $\underline{A}$ è irrotazionale. Se sostituiamo nella I equazione di MS
+            \begin{equation}
+                \implies \nabla \times \underline{E} + j \omega \nabla \times A = 0 \implies \nabla \times (\underline{E}+j \omega \underline{A}) = 0
+            \end{equation}
+            Dunque il campo $\underline{E}+j\omega A$ è irrotazionale. Se il dominio è a connessione lineare semplice, il campo è, in quanto irrotazionale, conservativo. Poichè $\mathbb{R} ^{3}$ è sia a connessione
+            lineare che superficiale semplice, il campo è conservativo, per cui esiste una funzione scalare $\varphi$, che prende il nome di \textbf{potenziale scalare}, tale per cui
+            \begin{equation}
+                \underline{E}+j \omega \underline{A} = - \nabla \varphi
+            \end{equation} \\ \\
+            Occorre allora determinare $\underline{A}$ e $\varphi$ e lo si può fare sfruttando le altre due equazioni che ci restano. Per la seconda equazione si ottiene:
+            \begin{equation}
+                \underline{H} = \frac{1}{\mu} \nabla \times \underline{A} \implies \nabla \times (\frac{1}{\mu} \nabla \times \underline{A}) = j \omega \varepsilon \underline{E}+\underline{J}_{0} 
+            \end{equation}
+            \begin{equation}
+                \implies \underline{H} = j \omega \underline{E}(-j \omega \underline{A}- \nabla \varphi)+\underline{J}_{0}
+            \end{equation}
+            Aggiungendo e sottraendo $k^{2} = -j^{2} \omega ^{2} \mu \varepsilon$
+            \begin{equation}
+                \nabla ^{2} \varphi + k ^{2} \varphi = -j^{2} \omega ^{2} \mu \varepsilon - \frac{\rho}{\varepsilon}-j \omega \nabla \cdot \underline{A}
+            \end{equation}
+            \begin{equation}
+                = - \frac{\rho}{\varepsilon}-j\omega (j \omega \mu \varepsilon + \nabla \cdot \underline{A})= \nabla ^{2} \varphi+k ^{2} \varphi
+            \end{equation}
+            In definitiva, occorre risolvere il seguente sistema
+            \begin{equation}
+                \begin{cases}
+                    \underline{H} = \frac{1}{\mu} \nabla \times \underline{A} \\
+                    \underline{E} = -j \omega \underline{A}-\nabla \varphi \\
+                    \nabla ^{2} \underline{A}+k^{2}\underline{A}= \nabla(\nabla \cdot \underline{A}+j \omega \varepsilon \mu \varphi)+\underline{J}_{0} \\
+                    \displaystyle \nabla ^{2} \varphi +k^{2} \varphi = -\frac{\rho}{\varepsilon}-j \omega ( \nabla \cdot \underline{A}+j \omega \varepsilon \mu \varphi)
+                \end{cases}
+            \end{equation}
+            Ci sono meno incognite rispetto alle equazioni di Maxwell, ma il problema ora è alle derivate del secondo ordine (Maxwell era al primo). Inoltre, le ultime due equazioni sono accoppiate.
+            Ci chiediamo allora se esista una coppia di poteniali $\underline{A} '$ e $\varphi '$ tali per cui le due equazioni risultano disaccoppiate, cosa che accade se è soddisfatta
+            \begin{equation}
+                \nabla \cdot \underline{A} ' +j \omega \varepsilon \mu \varphi ' = 0
+            \end{equation}
+            detta \textbf{gauge di Lorentz}. \\
+            Il campo $\underline{A}$ è definito a meno di un campo irrotazionale $\nabla \psi$, dunque il campo $\underline{A}'$ sarà del tipo
+            \begin{equation}
+                \underline{A}' = \underline{A}+\nabla \psi \qquad \nabla \times \underline{A} = \nabla \times \underline{A'}
+            \end{equation}
+            In pratica, $\underline{A}$ ed $\underline{A'}$ generano gli stessi campi. Scriviamo allora 
+            \begin{equation}
+                \underline{E'}= -j \omega \underline{A'} - \nabla \varphi' = \underline{E}= -j \omega \underline{A} - \nabla \varphi
+            \end{equation}
+            Per cui, sostituendo l'espressione di $\underline{A'}$
+            \begin{equation}
+                \underline{E'} = -j \omega \underline{A}-j \omega \nabla \psi - \nabla \varphi ' = -j \omega \underline{A}-\nabla \varphi
+            \end{equation}
+            \begin{equation}
+                \implies \nabla (\varphi - \varphi ') = j \omega \nabla \psi 
+            \end{equation}
+            Ricapitolando, se valgono le seguenti, il campo elettromagnetico generato dalle coppie di potenziali è lo stesso
+            \begin{equation}
+                \begin{cases}
+                \nabla \cdot \underline{A'}+j \omega \varepsilon \mu \varphi ' = 0 \\
+                \nabla (\varphi - \varphi ') = j \omega \nabla \psi \\
+                \underline{A'} = \underline{A} +\nabla \psi  
+                \end{cases}
+            \end{equation}
+            Notiamo che la seconda equazione da la seguente informazione:
+            \begin{equation}
+                \varphi - \varphi ' -j\omega \psi = \textrm{const} = 0 \implies \varphi = \varphi ' + j \omega \psi
+            \end{equation}
+            che abbiamo potuto porre a zero perché la condizione è sul gradiente. \\
+            Sostituiamo ora $\underline{A'}$ e $\psi '$ nella gauge di Lorentz (qui c'è un errore di calcolo oppure è sbagliata l'espressione scritta sopra questa nota, chiedere in classe)
+            \begin{equation}
+            \nabla \cdot \underline{A'}+j \omega \varepsilon \mu \psi ' = 0
+            \end{equation}
+            \begin{equation}
+                \implies \nabla \cdot \underline{A} + \nabla ^{2}\psi + j \omega \varepsilon (\varphi - j \omega \varepsilon \mu \omega \psi) = 0
+            \end{equation}
+            \begin{equation}
+                \implies \nabla \cdot \underline{A'} + j \omega \varepsilon \varphi + \nabla ^{2} \psi + k^{2} \psi = 0
+            \end{equation}
+            Posto $\chi = \nabla \cdot \underline{A}+j \omega \varepsilon \psi$ la condizione che deve soddisfare la coppia $\underline{A}$ e $\underline{\psi}$ è
+            \begin{equation}
+                \nabla ^{2} \psi + k^{2} \psi = - \chi     
+            \end{equation}
+            detta \textbf{equazione di Helmholtz}.
 \chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
@@ -3753,6 +4094,11 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     In questo caso non c'è bisogno di fare i calcoli per poter affermare che il massimo sta al carico, perché il coefficiente 
     di riflessione è un numero reale negativo, per cui la fase è proprio $\pi$, ragion per la quale si ha il massimo di corrente. Il minimo
     di corrente si troverà, viceversa, alla fine della linea.
+
+
+    \section{Guide d'onda}
+    \subsection*{TBD: Primo esercizio guide del 12/05/25}
+
 \chapter*{Appendice A - Note di carattere matematico}
 \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
