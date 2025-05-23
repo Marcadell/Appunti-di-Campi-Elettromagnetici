@@ -395,7 +395,7 @@ pdfproducer = ''
         \begin{equation}
             \lim_{\delta \to 0} \iint_{S_{\mathcal{C}}} \underline{j} \cdot \underline{i}_{n}dS = \int_{A} ^{B} \underline{j}_{S} \cdot \underline{i}_{t} dl
         \end{equation}
-        Notiamo che l'integrale di linea viene fatto sulla \textit{tangente} ad $AB$ $\underline{i}_{n}$ e non sulla tangente, questo perché l'informazione che interessa a noi è "quanta corrente sta uscendo per la superficie per il limite per $\delta \to 0$?". \\
+        Notiamo che l'integrale di linea viene fatto sulla \textit{tangente} ad $AB$ $\underline{i}_{n}$ e non sulla tangente, questo perché l'informazione che interessa a noi è "quanta corrente sta uscendo attraverso la superficie al limite per $\delta \to 0$?". \\
         Alla luce di quanto detto possiamo scrivere, per $\delta \to 0$:
         \begin{align}
             \int_{A} ^{B} \underline{h}_{2} \cdot \underline{i}_{t}dl - \int_{A} ^{B} \underline{h}_{1} \cdot \underline{i}_{t}dl = \int_{A} ^{B} \underline{j}_{S} \cdot \underline{i}_{n} dl \\ \implies
@@ -417,7 +417,7 @@ pdfproducer = ''
         \begin{equation}
             \underline{i}_{n} \cdot \underline{i}_{n \Sigma} \times (\underline{h}_{2}-\underline{h}_{2}) = \underline{j}_{S} \cdot \underline{i}_{n}
         \end{equation}
-        Se questa relazione vale per ogni $\underline{i}_{n}$, e cioè per ogni componente del versore normale ad $S_{\mathcal{C}}$, allora possiamo cancellarlo. La scelta dei piani del fascio è arbitraria, quindi $\underline{i}_{n}$ può variare rimanendo tangente a $\Sigma$. Allora per quel che riguarda la componente tangente a $\Sigma$ i due vettori sono uguali. Ci manca la direzione normale, ma la componente normale di $\underline{i}_{n\Sigma} \cdot (\underline{h}_{2}-\underline{h}_{1})$ è:
+        Se questa relazione vale per ogni $\underline{i}_{n}$, e cioè per ogni componente del versore normale ad $S_{\mathcal{C}}$, allora possiamo cancellarlo. La scelta dei piani del fascio è arbitraria, quindi $\underline{i}_{n}$ può variare rimanendo tangente a $\Sigma$. Allora per quel che riguarda la componente tangente a $\Sigma$ i due vettori sono uguali. Ci manca la direzione normale, ma la componente normale di $\underline{i}_{n\Sigma} \times (\underline{h}_{2}-\underline{h}_{1})$ è:
         \begin{equation}
             \underline{i}_{n\Sigma} \cdot \underline{i}_{n\Sigma} \times (\underline{h}_{2}-\underline{h}_{1}) = 0
         \end{equation}
@@ -431,14 +431,14 @@ pdfproducer = ''
         \begin{figure}[h!]
             \centering
             \includegraphics[width=0.60\linewidth]{img/Chapter_one/Chapt1img7.png}
-        \end{figure}
-        Per la componente normale del generico vettore $\underline{u}$ possiamo scrivere:
+        \end{figure} \\
+        Si può esprimere la componente normale del generico vettore $\underline{u}$ come:
         \begin{equation}
             \underline{u}_{n} = (\underline{u} \cdot \underline{i}_{n \Sigma}) \underline{i}_{n \Sigma}
         \end{equation}
         mentre per quella tangenziale, in assenza di versore tangenziale, possiamo prendere il vettore e sottrargli la componente normale:
         \begin{equation}
-            \underline{u}_{tg} = (\underline{u}-\underline{u}_{n}) = \underline{u} \cdot (\underline{u}-\underline{i}_{n \Sigma}) i_{n \Sigma}
+            \underline{u}_{tg} = (\underline{u}-\underline{u}_{n}) = \underline{u} - (\underline{u} \cdot \underline{i}_{n \Sigma}) i_{n \Sigma}
         \end{equation}
         il quale è un doppio prodotto vettoriale\footnote{$(\underline{a} \times \underline{b}) \times c = (\underline{a} \cdot \underline{c}) \underline{b} - (\underline{b} \cdot \underline{c})\underline{a}$} che si può riscrivere come:
         \begin{equation}
@@ -510,8 +510,9 @@ pdfproducer = ''
                 t-t' \geq 0
             \end{equation}
             Ne consegue che la causalità forte include quella causale ma non viceversa. \\ \\
-            La causalità richieda che se varia la causa in maniera sempre minore fino ad annullare la sua variazione, allora si deve comportare di conseguenza anche l'uscita. La stabilità BIBO (Bounded Input Bounded Output) richiede che ad ingresso finito ci sia uscita finita. \\ \\
-            Le relazioni costitutive vanno studiare per \textit{classi di mezzi}, in modo tale da studiare un caso valido per ogni membro di una data classe. Le proprietà da verificare (o no) sono:
+            La continuità richiede che il sistema al variare in maniera sempre minore della causa, fino all'annullamento della sua variazione, debba annullare di conseguenza anche la propria variazione uscita.
+            La stabilità BIBO (Bounded Input Bounded Output) richiede che ad ingresso finito ci sia uscita finita. \\ \\
+            Le relazioni costitutive vanno studiate per \textit{classi di mezzi}, in modo tale da studiare un caso valido per ogni membro di una data classe. Le proprietà da verificare (o no) sono:
             \begin{itemize}
                 \item Linearità
                 \item Non dispersività spaziale e temporale
@@ -728,14 +729,14 @@ pdfproducer = ''
                 \hat{D}[\hat{R}_{\underline{\varphi}}(\underline{e}(\underline{r}, t))] = \hat{R}_{\underline{\varphi}}[\hat{D}(\underline{e}(\underline{r}, t))]  
             \end{equation}
             \\
-            Assumendo ora che il mezzo sia anche non dispersivo nel tempo, dimostriamo che l'isotropia implica che la causa e l'effetto siano allineati, cioè che i vettori rappresentantin causa ed effetto siano fra loro proporzionali. \\
+            Assumendo ora che il mezzo sia anche non dispersivo nel tempo, dimostriamo che l'isotropia implica che la causa e l'effetto siano allineati, cioè che i vettori rappresentanti causa ed effetto siano fra loro proporzionali. \\
             Ipotizziamo che $\underline{e}(\underline{r},t)$ (causa) e $\underline{d}(\underline{r},t)$ (effetto) non siano tra loro allineati come in figura:
             \begin{figure}[h!]
                 \centering
                 \includegraphics[width=0.5\linewidth]{img//Chapter_one/chaptOneIsotropia.png}
                 \label{fig:isotropia}
                 \caption{}
-            \end{figure}
+            \end{figure} \\
             Applicando una rotazione attorno all'asse corrispondente alla direzione di $\underline{e}(\underline{r},t)$, questo rimane invariato perché la rotazione di un vettore parallelo a quello di rotazione $\underline{\varphi}$ ritorna lo stesso vettore. Ciò però non si può dire per la causa, che invece varia. Ma poiché in principio abbiamo assunto che il mezzo sia isotropo, l'unica possibilità per la quale $\underline{d}(\underline{r},t)$ rimanga invariato per rotazione è che sia allineato a $\underline{e}(\underline{r},t)$. \\
             In generale non vale il contrario, cioè l'allineamento di $\underline{e}(\underline{r},t)$ e $\underline{d}(\underline{r},t)$ non implica l'isotropia. Per visualizzarlo, consideriamo un mezzo con la seguente relazione costitutiva:
             \begin{equation}
@@ -850,7 +851,7 @@ pdfproducer = ''
                 \underline{j}(\underline{r}, t) = \sigma (\underline{r}) \cdot \underline{e}(\underline{r},t)
             \end{cases}
         \end{equation}
-        Delle tre equazioni appena scritte, quella per la densità di corrente fa eccezione circa l'assunzione che il mezzo sia non dispersivo nel tempo, il quale ci permette di far saltare l'integrale e definire la conducibilità elettrica $\sigma(\underline{r})$. La proprietà di dispersivitò tuttavia rimane per $\underline{d}$ e $\underline{b}$. \\ \\
+        Delle tre equazioni appena scritte, quella per la densità di corrente fa eccezione circa l'assunzione che il mezzo sia non dispersivo nel tempo, il quale ci permette di far saltare l'integrale e definire la conducibilità elettrica $\sigma(\underline{r})$. La proprietà di dispersività tuttavia rimane per $\underline{d}$ e $\underline{b}$. \\ \\
         Nel dominio di Fourier le stesse relazioni si scrivono come:
         \begin{equation}
             \begin{cases}
@@ -901,7 +902,7 @@ pdfproducer = ''
         Vanno poi aggiunte le equazioni costitutive per un mezzo normale non dispersivo in $t$:
         \begin{equation}
         \begin{cases}
-            \underline{d}(\underline{r},t) = \underline{\varepsilon}(\underline{r}) \underline{e}(\underline{r},t) \\
+            \underline{d}(\underline{r},t) = \varepsilon(\underline{r}) \underline{e}(\underline{r},t) \\
             \underline{b}(\underline{r},t) = \mu (\underline{r}) \underline{h}(\underline{r},t) \\
             \underline{j}(\underline{r},t) = \sigma ( \underline{r}) \underline{e}(\underline{r},t)
         \end{cases}
@@ -952,7 +953,7 @@ pdfproducer = ''
         \end{equation}
         potendo scrivere, in definitiva:
         \begin{equation}
-            \nabla \cdot \underline{s} + \frac{\partial}{\partial t}(\frac{\mu}{2} |\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}) = - \underline{e} \cdot \underline{j}_{0}
+            \nabla \cdot \underline{s} + \frac{\partial}{\partial t}(\frac{\mu}{2} |\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}) + \sigma |\underline{e}|^{2} = - \underline{e} \cdot \underline{j}_{0}
         \end{equation}
         ovvero l'identità di Poynting in forma locale per mezzi normali non dispersivi.
         Per la forma integrale, ammesso che $V$ non vari nel tempo:
@@ -966,8 +967,8 @@ pdfproducer = ''
         \begin{equation}
             \begin{cases}
             \nabla \times \underline{e} = - \displaystyle \mu \cdot \frac{\partial}{\partial t} \underline{h} \\
-            \nabla \times \underline{h} = \displaystyle \varepsilon \cdot \frac{\partial}{\partial t} \\
-            \nabla \cdot \underline{d} = \rho + \rho_{0} \\
+            \nabla \times \underline{h} = \displaystyle \varepsilon \cdot \frac{\partial}{\partial t} \underline{e} +  \sigma \underline{e} +\underline{j}_{0}\\
+            \nabla \cdot \underline{\varepsilon \underline{e}} = \rho + \rho_{0} \\
             \nabla \cdot (\mu \underline{h}) =0
             \end{cases}
         \end{equation}
@@ -1275,7 +1276,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
                 j_{x}=\frac{\Delta q}{\Delta \Sigma_{x}\delta t} = \frac{\rho \Delta v_{x}\Delta \Sigma_{x}\Delta t}{\Delta \Sigma_{x}\Delta t}=\rho v_{x}
         \end{equation}
         Dunque la densità di corrente è legata alla velocità delle cariche tramite la densità di carica, relazione che non stupisce se si tiene conto che $\rho$ da informazioni circa la posizione delle cariche nello spazio.
-        Il discorso è analogo per $j_{y}$ e $j_{z}$. Sostituendo nella (\ref{eqn:densitàForza}) si ottiene:
+        Il discorso è analogo per $j_{y}$ e $j_{z}$. Sostituendo nella (\ref{eqn:densitaForza}) si ottiene:
         \begin{equation}
             \underline{f}(\underline{r},t)=\rho(\underline{r},t)\underline{e}(\underline{r},t)+\underline{j}(\underline{r},t)\times \underline{b}(\underline{r},t)
         \end{equation}
@@ -1309,7 +1310,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         da cui si ricava $\sigma \geq 0$, perché se le cariche sono positive devono avere lo stesso verso del campo elettrico e viceversa. \\
         La quantità $\sigma |\underline{e}|^{2}$ è responsabile della forza, ma dalla (\ref{eqn:equazione_che_mi_serve}) risulta che se tale termine è costante si ha velocità costante,
         contrariamente all'aspettativa che questa debba aumentare. Questa relazione però ha pieno senso fisico, perché il campo deve erogare una potenza costante per sostenere
-        le sorgenti indotte, che dissipano potenza in calore tramite gli urti con le vibrazioni reticolari. Nel nostro caso, l'energia fornite alle indotte e non negativa, cioè il 
+        le sorgenti indotte, che dissipano potenza in calore tramite gli urti con le vibrazioni reticolari. Nel nostro caso, l'energia fornite alle indotte è non negativa, cioè il 
         trasferimento di potenza è unidirezionale dal campo verso le indotte, ragion per la quale si può parlare di \textbf{potenza dissipata per effetto Joule}:
         \begin{equation}
             P_{J} = \iiint_{V} \sigma |\underline{e}|^{2}dV
@@ -1317,11 +1318,11 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \\ \\
         Concentriamoci ora sul primo pezzo del membro di sinistra dell'identità di Poynting, ignorando per ora il significato del vettore di Poynting. Riportiamo l'identità:
         \begin{equation}
-            \frac{d}{dt} \iiint_{V} \frac{\mu}{2}|\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}dV+\iiint_{V} + \iiint_{V} \sigma |\underline{e}|^{2}dV = - \iiint_{V}\underline{e}\cdot \underline{j}dV
+            \frac{d}{dt} \iiint_{V} \frac{\mu}{2}|\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}dV+ \iiint_{V} \sigma |\underline{e}|^{2}dV = - \iiint_{V}\underline{e}\cdot \underline{j}dV
         \end{equation}
         Moltiplichiamo ambo membri per $dt$:
         \begin{equation}
-            d \iiint_{V} \frac{\mu}{2}|\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}dV+\iiint_{V} + dt\iiint_{V} \sigma |\underline{e}|^{2}dV = -dt \iiint_{V}\underline{e}\cdot \underline{j}dV
+            d \iiint_{V} \frac{\mu}{2}|\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2}dV+ dt\iiint_{V} \sigma |\underline{e}|^{2}dV = -dt \iiint_{V}\underline{e}\cdot \underline{j}dV
         \end{equation}
         Le potenze trasferite alle indotte e alle impresse, moltiplicate per $dt$, assumono le dimensioni di un energia, dunque il termine:
         \begin{equation}
@@ -1348,7 +1349,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     la sua superficie cade in un intorno dell'infinito, per sorgenti di campo attivate ad istanti finiti\footnote{cioè non accese da $-\infty$, altrimenti
     il ragionamento crolla} il campo si può considerare nullo alla superficie e dunque anche il trasferimento di potenza istantanea su di essa.
     \subsection{Teorema di Poynting nel dominio dei fasori}
-        Nel dominio dei fasori il teorema di Poynting è più generale, perché non è richiesta l'ipotesi di dispersività
+        Nel dominio dei fasori il teorema di Poynting è più generale, perché non è richiesta l'ipotesi di non dispersività
         temporale.\footnote{Se il mezzo è non dispersivo, la relazione costitutiva è una convoluzione temporale, la quale diventa il prodotto
         in frequenza che abbiamo visto nel paragrafo 1.5.3} All'interno di questa sezione, come prima, il nostro interesse
         è ricavare il significato fisico dei pezzi che compongono l'identità di Poynting in frequenza. 
