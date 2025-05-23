@@ -395,7 +395,7 @@ pdfproducer = ''
         \begin{equation}
             \lim_{\delta \to 0} \iint_{S_{\mathcal{C}}} \underline{j} \cdot \underline{i}_{n}dS = \int_{A} ^{B} \underline{j}_{S} \cdot \underline{i}_{t} dl
         \end{equation}
-        Notiamo che l'integrale di linea viene fatto sulla \textit{tangente} ad $AB$ $\underline{i}_{n}$ e non sulla tangente, questo perché l'informazione che interessa a noi è "quanta corrente sta uscendo attraverso la superficie al limite per $\delta \to 0$?". \\
+        Notiamo che l'integrale di linea viene fatto sulla \textit{normale} ad $AB$ $\underline{i}_{n}$ e non sulla tangente, questo perché l'informazione che interessa a noi è "quanta corrente sta uscendo attraverso la superficie al limite per $\delta \to 0$?". \\
         Alla luce di quanto detto possiamo scrivere, per $\delta \to 0$:
         \begin{align}
             \int_{A} ^{B} \underline{h}_{2} \cdot \underline{i}_{t}dl - \int_{A} ^{B} \underline{h}_{1} \cdot \underline{i}_{t}dl = \int_{A} ^{B} \underline{j}_{S} \cdot \underline{i}_{n} dl \\ \implies
@@ -1001,7 +1001,7 @@ pdfproducer = ''
         \end{equation}
         Similmente, per la terza si ricava:
         \begin{equation}
-            \varepsilon \nabla \cdot \underline{e}_{d} = \rho
+            \varepsilon \nabla \cdot \underline{e}_{d} = \rho_{d}
         \end{equation}
         mentre della quarta è inutile discutere. \\
         Otteniamo in definitiva un sistema di equazioni omogenee:
@@ -1120,11 +1120,11 @@ pdfproducer = ''
         \end{equation}
         Sostituiamo le equazioni di Maxwell per levare $\underline{D}$ e $\underline{B}$:
         \begin{equation}
-            \nabla \cdot \underline{S} = j \frac{\omega}{2}(\mu \underline{H}) \cdot \underline{H}^{*}-j \frac{\omega}{2}(\varepsilon \underline{E})^{*}\cdot \underline{E} + \frac{1}{2}\underline{E} \cdot (\sigma \underline{E})^{*} 0 \frac{1}{2}\underline{E} \cdot \underline{J}_{0} 
+            \nabla \cdot \underline{S} = j \frac{\omega}{2}(\mu \underline{H}) \cdot \underline{H}^{*}-j \frac{\omega}{2}(\varepsilon \underline{E})^{*}\cdot \underline{E} + \frac{1}{2}\underline{E} \cdot (\sigma \underline{E})^{*}  \frac{1}{2}\underline{E} \cdot \underline{J}_{0} 
         \end{equation}
         A valle che fatto che $\sigma$ non dipende dal tempo, la sua trasformata in $\omega$ è un numero reale, mentre $\mu$ e $\varepsilon$ sono complessi:
         \begin{equation}
-            \nabla \cdot \underline{S} = j \frac{\omega}{2}\mu\cdot  (\underline{H} \cdot \underline{H}^{*})-j \frac{\omega}{2}\varepsilon^{*} (\underline{E}^{*}\cdot \underline{E}) + \frac{1}{2}\sigma^{*}(\underline{E} \cdot  \underline{E})^{*} = -\frac{1}{2} \underline{E}\cdot \underline{J}_{0}
+            \nabla \cdot \underline{S} = j \frac{\omega}{2}\mu\cdot  (\underline{H} \cdot \underline{H}^{*})-j \frac{\omega}{2}\varepsilon^{*} (\underline{E}^{*}\cdot \underline{E}) + \frac{1}{2}\sigma^{*}(\underline{E} \cdot  \underline{E}^{*}) = -\frac{1}{2} \underline{E}\cdot \underline{J}_{0}
         \end{equation}
         Riconosciamo nell'espressione i moduli di $\underline{H} $ ed $ \underline{E}$\footnote{Vedi appendice A per note sulla norma dei vettori complessi}, potendo dunque scrivere:
         \begin{equation}
@@ -4096,10 +4096,111 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     di riflessione è un numero reale negativo, per cui la fase è proprio $\pi$, ragion per la quale si ha il massimo di corrente. Il minimo
     di corrente si troverà, viceversa, alla fine della linea.
 
-
+    \newpage
     \section{Guide d'onda}
-    \subsection*{TBD: Primo esercizio guide del 12/05/25}
-
+    \subsection*{Primo esercizio guide}
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.65\linewidth]{img/Esercizi/Esercizi5.png}
+    \end{figure}   
+    \begin{tabular}{c c c}
+        $a = 15\textrm{cm}$ & $b = \frac{a}{2}$ & $f=3GHz$ \\
+        $\varepsilon_{1} = 4$ & $\varepsilon_{3}=1$ & $|\underline{E}_{1}|_{max}= 1 \frac{V}{m}$
+    \end{tabular}
+    Assegnata la guida rettangolare in figura, determinare per il modo fondamentale $TE_{10}$ il valore minimo di $D$ diverso da zero e $\varepsilon_{r2}$ per i quali
+    $|\underline{H}_{t}|=\max$ nel tratto tre. Valutare inoltre $|\underline{H}_{3t}|_{x=\frac{a}{4}}$. \\ \\
+    Per risolvere questo esercizio bisogna passare alla linea equivalente:
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{img/Esercizi/Esercizi6.png}
+    \end{figure} \\
+    Occorre calcolare le impedenze caratteristiche e i $k_{z}$ delle sezioni 1 e 3, di cui conosciamo la costante dielettrica relativa. \\
+    Per il modo $TE_{10}$ $k_{t_{10}} = \frac{\pi}{a}$, per cui
+    \begin{equation}
+        k_{z_{i}} = \sqrt{k_{i} ^{2} - k_{t_{10}} ^{2}}= \sqrt{k^{2} - (\frac{\pi}{a})^{2}} \qquad i \in \{1, 2, 3\}
+    \end{equation}
+    \begin{equation}
+        k_{i} = \omega \sqrt{\varepsilon_{0} \mu_{0}} \sqrt{\varepsilon_{i}} = \frac{\omega}{c}\sqrt{\varepsilon_{i}}
+    \end{equation}
+    Possiamo subito determinare $k_{z1}$ e $k_{z3}$ che risultano:
+    \begin{equation}
+        k_{z1} = \sqrt{4 \frac{\omega ^{2}}{c ^{2}} - (\frac{\pi}{a})^{2}} = 124 m^{-1} \qquad k_{z3} = 59,3 m^{-1}
+    \end{equation}
+    le quali sono entrambe reali, quindi le due sezioni sono entrambe in propagazione. Per ricavare le impedenze caratteristiche
+    \begin{equation}
+        Z_{i} = \frac{\omega \mu_{0}}{k_{z,i}} \implies Z_{1} = 192 \Omega , \ \ \ \ Z_{3} = 400 \Omega
+    \end{equation}
+    L'onda incidente sulla linea equivalente $V_{1} ^{+}$ va ricavata dall'informazione su $|\underline{E}|_{max} = 1 V/m$. Poiché $\underline{E}_{1} ^{+} = V_{1} ^{+}(z)\underline{e}$
+    e per il modo $TE_{10}$ risulta
+    \begin{equation}
+        \underline{e}_{10} = \underline{e} = -\sqrt{\frac{2}{ab}}\sin(frac{\pi}{a}) \underline{i}_{y}
+    \end{equation}
+    basta imporre:
+    \begin{equation}
+        |\underline{E}_{1}|_{max} = \max(|-V_{1} ^{+} \sqrt{\frac{2}{ab}}\sin(\frac{\pi}{a}) \underline{i}_{y}| ) = |V^{+}||\sqrt{\frac{2}{ab}}| = 1 \frac{V}{m}
+    \end{equation}
+    perché il massimo del seno è uno. Da tale relazione
+    \begin{equation}
+        |V^{+}| = 0.075V
+    \end{equation}
+    Poiché
+    \begin{equation}
+        |H_{t}| = -\sqrt{\frac{2}{ab}}\sin(\frac{\pi}{a}) \underline{i}_{y} \implies |\underline{H}_{3t}|_{x= a/4} = |I_{3} (z)| |\sqrt{\frac{2}{ab}}| |\sin(\frac{\pi}{4})|_{x = a/4} 
+    \end{equation}
+    \begin{equation}
+        = |I_{3} (z)|\frac{1}{\sqrt{ab}}
+    \end{equation}
+    Dunque occorre massimizzare $|I_{3} (z)| = |I_{AA'} (z)|$, dunque massimizzare la potenza $P_{AA'}$ alla sezione $3$. A questo punto il problema si riduce a quello di un adattamento al generatore.
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.6\linewidth]{img/Esercizi/Esercizi7.png}
+    \end{figure} \\
+    Abbiamo fatto l'equivalente di Thevenin per un'indefinita alla sezione $1$ e sostituito il carico $Z_{3}$ alla sezione $3$. Dobbiamo determinare $k_{z2}$ e dunque $Z_{2}$, inoltre carico e impedenza del generatore 
+    sono reali, per cui possiamo utilizzare un $\lambda/4$. La lunghezza d'onda da utilizzare è quella del mezzo $2$, per cui si pone
+    \begin{equation}
+        D = \frac{\lambda_{2}}{4} = \frac{2 \pi}{k_{z2}}
+    \end{equation} 
+    Poiché vale
+    \begin{equation}
+        k_{z2} = \sqrt{\varepsilon_{2}(\frac{2 \pi}{\lambda_{0}}) ^{2} - (\frac{\pi}{a})^{2}} \qquad \lambda_{0} = \frac{c}{f}     
+    \end{equation}
+    occorre determinare $k_{z2}$ e dunque $\varepsilon_{r2}$. Utilizzando la formuala del $\lambda/4$:
+    \begin{equation}
+        Z_{2} = \sqrt{Z_{1}Z_{3}} = 276,4 \Omega = \frac{\omega \mu_{0}}{k_{z2}} \implies k_{z2} = 85,7 m^{-1}
+    \end{equation}
+    \begin{equation}
+        \implies k_{z2} ^{2} = \varepsilon_{r2} ^{2}(\frac{2\pi}{\lambda_{0}})^{2}-(\frac{\pi}{a})^{2} \implies \varepsilon_{r2} = \sqrt{k_{z2} ^{2} + (\frac{\pi}{a})^{2}} \cdot \frac{\lambda_{0}}{2 \pi} = 1.97
+    \end{equation} \\
+    \textbf{Il secondo punto} chiede di calcolare l'energia elettromagnetica nel tratto di lunghezza $D$. Applicando Poynting è immediato verificare che $\overline{W}_{e}=\overline{W}_{m}$, perché 
+    è un adattatore a $\lambda/4$. Per una guida rettangolare conviene sempre calcolare l'eneria elettrica media, perché il campo elettrico ha solo componente trasversa nel fondamentale $TE_{10}$.
+    Per cui
+    \begin{equation}
+        \overline{W}_{e} = \frac{\varepsilon_{2}}{4} \iiint_{V} |\underline{E}_{t}| ^{2} dV = \frac{\varepsilon_{2}}{4} \int_{0} ^{D} |V_{2}(z)|^{2} dz
+    \end{equation}
+    perché si dimostra che l'integrale alla sezione trasverale fa $1$ e resta da integrare solo la funzione scalare di modo lungo la componente longitudinale $z$.
+    A questo punto si fa nello stesso modo delle linee di trasmissione
+    \begin{equation}
+        V_{2} = V_{BB'}\cos(k_{z2}z)-jI_{BB'}Z_{2}\sin(k_{z2}z)
+    \end{equation}
+    per il quale calcolando l'integrale si ricava il valore dell'energia elettrica, e dunque di quella elettromagnetica $W_{em}=2W_{e}$. \\
+    \textbf{Il terzo punto} richiede di calcolare $|\underline{H}_{3t}|_{x = \frac{a}{4}}$. Questa richiesta è un semplice problema di bilancio di potenza.
+    La componente tangente del campo magnetico dipende dalla corrente alla sezione
+    \begin{equation}
+        |\underline{H}_{3t}|_{x= \frac{a}{4}} = \frac{1}{\sqrt{ab}} |I_{AA'}|
+    \end{equation}
+    basta  imporre:
+    \begin{equation}
+        \overline{P}_{AA'} = \frac{1}{2} Z_{3} |I_{AA'}| ^{2} = P_{disp} \implies |I_{AA'}| = \sqrt{\frac{2P_{AA'}}{Z_{3}}}
+    \end{equation}
+    Se, ipoteticamente, fosse stato richiesto di massimizzare $H_{3z}$ bastava imporre
+    \begin{equation}
+        |H_{3z}| = \frac{|V_{3}(z)|}{j \omega \mu_{0}} \frac{\pi}{a} \sqrt{\frac{2}{ab}} |\cos(\frac{\pi}{a}x)|
+    \end{equation}
+    Poiché nella sezione $3$ c'è solo onda progressiva, si pone $V_{3}(z)=V^{+}$ (cio è vero per una linea indefinita) e si sostituisce $x=a/4$, ripetendo il ragionamento di prima con la tensione. \\ \\
+    
+    \subsection*{Secondo esercizio sulle guide TBD}
+        La struttura guidante di riferimento è la stessa del primo esercizio, con i seguenti dati
+    in virtù dell'adattamento al generatore. Per 
 \chapter*{Appendice A - Note di carattere matematico}
 \section*{Vettori complessi}
         Negli spazi vettoriali definiti su $\mathbb{R}$, è definito il prodotto scalare $(\underline{a}|\underline{b})$ fra $\underline{a}$ e $\underline{b}$ in modo da rispettare le seguenti proprietà:
