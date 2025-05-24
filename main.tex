@@ -3833,7 +3833,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         Aggiustiamo il termine nello slot a destra
         \begin{equation}
-            \frac{v_{y}}{V_{0y}}= \cos(omega_{0}t)\cos(\Delta \varphi)-\sin(\omega_{0}t)\sin(\Delta \varphi)
+            \frac{v_{y}}{V_{0y}}= \cos(\omega_{0}t)\cos(\Delta \varphi)-\sin(\omega_{0}t)\sin(\Delta \varphi)
         \end{equation}
         \begin{equation}
             \implies [\frac{v_{y}}{V_{0y}} - \cos^{2}(\omega_{0}t)\cos(\Delta \varphi)]^{2}=\sin^{2}(\omega_{0}t)+\sin^{2}(\Delta \varphi)
@@ -3843,9 +3843,21 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         Sostituendo le (\ref{eqn:mi_serve7}) otteniamo, riordinando l'espressione
         \begin{equation}
-            \implies (\frac{v_{x}}{V_{0y}})^{2}+(\frac{v_{x}}{V_{0y}})^{2}-2\frac{v_{x}}{V_{0x}}\frac{v_{y}}{V_{0y}}-\cos(\Delta \varphi) = \sin^{2}(\Delta \varphi)
+            \implies (\frac{v_{x}}{V_{0y}})^{2}+(\frac{v_{x}}{V_{0y}})^{2}-2\frac{v_{x}}{V_{0x}}\frac{v_{y}}{V_{0y}}\cdot \cos(\Delta \varphi) = \sin^{2}(\Delta \varphi)
         \end{equation}
-        che è l'equazione di un ellisse dall'estremo libero.
+        che è l'equazione di un ellisse dall'estremo libero. Nel caso generale, la polarizzazione è detta \textbf{ellittica}. \\
+        Un primo caso particolare è quello di \textbf{polarizzazione circolare}, per il quale
+        \begin{equation}
+            \textrm{polarizzazione circolare } \iff 
+            \begin{cases}
+            \Delta \varphi = (n+\frac{1}{2})\pi \qquad n \in \mathbb{Z} \\
+            V_{0y} = V_{0x} = V_{0}
+            \end{cases} \implies V_{x} ^{2}+V_{y} ^{2} = V_{0}^{2}
+        \end{equation}
+        Un'altro caso specifico è quello della \textbf{polarizzazione lineare}, per il quale il vettore polarizzazione evolve lungo una retta 
+        \begin{equation}
+            \textrm{polarizzazione lineare} \iff \Delta \varphi = n\pi \implies (\frac{v_{x}}{V_{0x}})^{2} + (\frac{v_{y}}{V_{0y}})^{2} -2 \frac{v_{x}}{V_{0x}}\frac{v_{y}}{V_{0y}} \cdot (-1)^{n} = 0 
+        \end{equation}
 \chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
