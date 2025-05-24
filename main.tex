@@ -1204,7 +1204,7 @@ Ipotizziamo:
 \end{equation}
 Le trasformate delle funzioni di Green $\mu, \varepsilon$ e $\sigma$ sono trasformate di funzioni reali, dunque il loro spettro è hermitiano. Per simmetria hermitiana, la parte immaginaria è una funzione dispari. Poiché la funzione $y=\omega$ è dispari\footnote{È la bisettrice del primo quadrante} allora le $\omega \varepsilon''$ ed $\omega \mu''$ sono funzioni pari, dunque sono positive per omega positive, zero per omega nulle e negative altrimenti. Consideriamo allora l'equazione per la parte reale:
 \begin{equation}
-    \iiint_{V}\frac{\mu''}{2}|\underline{H}|^{2}+\frac{\varepsilon''}{2}|\underline{E}|dV+\iiint_{V} \frac{\sigma}{2}|\underline{E}_{d}|^{2}dV = 0
+    \iiint_{V}\frac{\mu''}{2}|\underline{H}_{d}|^{2}+\frac{\varepsilon''}{2}|\underline{E} _{d}|^{2} dV+\iiint_{V} \frac{\sigma}{2}|\underline{E}_{d}|^{2}dV = 0
 \end{equation}
 L'integrale  è nullo perché semidefinito nel segno. Si può passare all'integrando nullo perché le quantità sotto segno di integrale sono tutte non negative, per cui vale la legge di annullamento del prodotto. L'unico modo per cui l'espressione è nulla è che:
 \begin{equation}
@@ -1219,8 +1219,7 @@ da cui di nuovo l'unicità della soluzione. Possiamo reiterare lo stesso ragiona
 \begin{equation}
     \iiint_{V} \frac{\mu'}{4}|\underline{H}_{d}|^{2}dV = \iiint_{V} \frac{\varepsilon'}{4}|\underline{E}_{d}|^{2}dV
 \end{equation}
-In tal caso la soluzione non è unica e l'unico costringente che si ha è l'uguaglianza integrale che abbiamo appena scritto: questo è il caso delle \textbf{soluzioni risonanti}. Fisicamente parlando, la parte reale è costituta dai termini del problema elettromagnetico responsabili delle perdite di energia. Nel caso di soluzione risonante, il circuito oscilla in modo indefinito in assenza sia di forzamenti interni, dovuti a $\rho_{0}$ e $\underline{J}_{0}$, che esterni, dovuti alle condizioni al contorno che rappresentano l'influenza dei campi elettromagnetici esterni.
-
+In tal caso la soluzione non è unica e l'unico costringente che si ha è l'uguaglianza integrale che abbiamo appena scritto: questo è il caso delle \textbf{soluzioni risonanti}. Fisicamente parlando, la parte immaginaria è costituta dai termini del problema elettromagnetico responsabili delle perdite di energia. Nel caso di soluzione risonante, il circuito oscilla in modo indefinito in assenza sia di forzamenti interni, dovuti a $\rho_{0}$ e $\underline{J}_{0}$, che esterni, dovuti alle condizioni al contorno che rappresentano l'influenza dei campi elettromagnetici esterni.
 \subsection{Problema omega-esteriore}
     Nel caso temporale, abbiamo considerato soluzioni non a regime, per avvalerci del fatto che esiste sempre un intorno di infinito per il quale il campo è definitivamente nullo. Per le soluzioni in frequenza, che nel nostro caso sono sempre a regime sinusoidale, non possiamo più fare questa cosa senza ipotizzare che valga la seguente:
     \begin{equation}
@@ -3858,6 +3857,173 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             \textrm{polarizzazione lineare} \iff \Delta \varphi = n\pi \implies (\frac{v_{x}}{V_{0x}})^{2} + (\frac{v_{y}}{V_{0y}})^{2} -2 \frac{v_{x}}{V_{0x}}\frac{v_{y}}{V_{0y}} \cdot (-1)^{n} = 0 
         \end{equation}
+        È importante notare che a seconda del verso si possono definire due polarizzazioni diverse. La definizione di polarizzazione lineare può essere generalizzata. Se infatti $V_{0x}=0$ e $V_{0y} \neq 0$,
+        il vettore oscilla lungo $y$ e questa è polarizzazione lineare, viceversa per $V_{0y}=0$. In generale un vettore $v(t)$ è polarizzato linearmente se il vettore trasformato $\underline{V}$ è proporzionale ad un vettore reale
+        \begin{equation}
+            \underline{v} = V \underline{u} \qquad \underline{u} \in \mathbb{R} ^{3} \ \ V \in \mathbb{C}
+        \end{equation}
+        È immediato vedere che i casi specifici citati in precedenza cadono tutti sotto la definizione che abbiamo appena dato.
+        \begin{itemize}
+            \item Se $v_{y} = 0 \implies \underline{v}(t)=\underline{v}_{x}(t) \underline{i}_{x} \implies \underline{V} = \underline{V}_{x} \underline{i}_{x}$
+            \item Se $v_{x}=0$ vedi punto (1)
+            \item Se $\Delta \varphi = n \pi \ \ n \in \mathbb{Z}$ risulta $\underline{V}=V_{x}\underline{i}_{x}+V_{y}\underline{i}_{y}, \ \ V_{x}, V_{y} \in \mathbb{C}$. \\
+            Manipoliamo l'espressione
+            \begin{equation}
+                \underline{V} = |V_{0x}|e^{j \varphi_{x}}\underline{i}_{x}+|V_{0y}|e^{j \varphi_{y}}\underline{i}_{y} = e^{j\varphi_{x}}(|V_{0x}\underline{i}_{x}+|V_{0y}|e^{j \varphi_{y}}\underline{i}_{y})
+            \end{equation}
+            Ma per $\Delta \varphi = n \pi \implies e^{j \varphi} = (-1)^{n}$, per cui
+            \begin{equation}
+                \underline{V} = e^{j \varphi_{x}}(|V_{0x}|\underline{i}_{x}+(-1)^{n}|V_{0y}|\underline{i}_{y})
+            \end{equation}
+            Poiché $|V_{0x}|,|V_{0y}| \in \mathbb{R}$ allora $\underline{V}$ è proporzionale ad un vettore reale con costante $e^{j \varphi_{x}} \in \mathbb{C}$.
+        \end{itemize}
+    \section{Le onde piane}
+    Le onde piane sono le più semplici soluzioni delle equazioni di Maxwell, talmente tanto semplici da essere fisicamente irrealizzabili. Tuttavia, la loro trattazione è di vitale interesse, perché
+    arriveremo a vedere come le soluzioni di campo si possano scrivere come sovrapposizione di onde piane. \\
+    Considerato un mezzo \textbf{normale, omogeneo ed in assenza di sorgenti impresse} (le quali sono fuori dal dominio, altrimenti il campo sarebbe nullo) scriviamo le equazioni di Maxwell per tale mezzo
+    \begin{equation}
+        \begin{cases}
+            \nabla \times \underline{E} = j\omega \mu \underline{H} \\
+            \nabla \times \underline{H} = j\omega \varepsilon \underline{E} \\
+            \nabla \cdot \underline{\varepsilon \underline{E}} = 0 \\
+            \nabla \cdot \underline{\mu \underline{H}} = 0
+        \end{cases}
+    \end{equation}
+    Per arrivare alle onde piane, occorre parlare di \textbf{soluzioni piane} per le quali il campo dipende solo da una delle tre componenti spaziali
+    \begin{equation}
+        \begin{cases}
+            \underline{E}(x,y,z) = \underline{E}(z) \\
+            \underline{H}(x,y,z) = \underline{H}(z)
+        \end{cases}
+    \end{equation}
+    Ciò significa arrivare a dire che i campi sono costanti una volta fissato un piano (cioè fissando $z$) ortogonale all'asse $z$, cosicché le equazioni di Maxwell diventano un sistema di equazioni alle derivate ordinare in $z$.
+    \\ Le equazioni alle divergenze (terza e quarta) sono già contenute in quelle ai rotori, dunque occorre risolvere
+    \begin{equation}
+        \begin{cases}
+            \nabla \times \underline{E} = j\omega \mu \underline{H} \\
+            \nabla \times \underline{H} = j\omega \varepsilon \underline{E}
+        \end{cases}
+    \end{equation}
+    Calcoliamo il rotore di $\underline{E}$ e teniamo conto che tutte le derivate rispetto a $x$ e $y$ per soluzioni piane sono nulle:
+    \begin{equation}
+        \nabla \times \underline{E} = 
+        \begin{vmatrix}
+            \underline{i}_{x} & \underline{i}_{y} & \underline{i}_{z} \\
+            \frac{\partial}{\partial x} & \frac{\partial}{\partial y} & \frac{\partial}{\partial z} \\
+            E_{x} & E_{y} & E_{z} 
+        \end{vmatrix} = 
+    \end{equation}
+    \begin{equation}
+        = \underline{i}_{x} (\frac{\partial}{\partial y}E_{z}-\frac{\partial}{\partial z}E_{y}) + \underline{i}_{y} (\frac{\partial}{\partial z}E_{x}-\frac{\partial}{\partial x}E_{z})
+        + \underline{i}_{z} (\frac{\partial}{\partial x}E_{y}-\frac{\partial}{\partial y}E_{x}) = -\underline{i}_{x} \frac{d}{dz}E_{y} + \underline{i}_{y} \frac{d}{dz}E_{x}
+    \end{equation}
+    Per cui la prima equazione di Maxwell diventa
+    \begin{equation}
+        \begin{cases}
+            -\frac{d}{dz}E_{y} = -j \omega \mu H_{x} \\
+            +\frac{d}{dz}E_{x} = -j \omega \mu H_{y} \\
+            0 = -j \omega \mu H_{z}
+        \end{cases}
+    \end{equation}
+    In modo analogo per la seconda
+    \begin{equation}
+        \begin{cases}
+            -\frac{d}{dz}H_{y} = -j \omega \mu E_{x} \\
+            +\frac{d}{dz}H_{x} = -j \omega \mu E_{y} \\
+            0 = -j \omega \mu E_{z}
+        \end{cases}
+    \end{equation}
+    È immediato $H_{z} = E_{z} = 0$, dunque i campi sono trasversi rispetto a $z$. Le componenti $H_{y}$ ed $E_{x}$ sono accoppiate, così come $H_{x}$ ed $E_{y}$.
+    Risolviamo per $H_{y}$ ed $E_{x}$ sostituendo nel primo sistema
+    \begin{equation}
+        \begin{cases}
+            H_{y} = - \frac{i}{j \omega \mu} \frac{d}{dz} E_{x} \\
+            -\frac{d}{dz} (- \frac{i}{j \omega \mu}\frac{d}{dz}E_{x}) = j \omega \varepsilon E_{x}
+        \end{cases} \implies \frac{1}{j \omega \mu} \frac{d^{2}}{dz^{2}}E_{x} = j \omega \varepsilon E_{x}
+    \end{equation} 
+    \begin{equation}
+        \implies \frac{d^{2}}{dz^{2}} = - \omega^{2} \varepsilon \mu E_{x} = - k^{2}E_{x}
+    \end{equation}
+    che è l'equazione di un oscillatore armonico, per cui la componente $E_{x}$ è somma di un onda progressiva ed una regressiva
+    \begin{equation}
+        E_{x} = E^{+}e^{-j k z} + E^{-}e^{jkz}
+    \end{equation}
+    Per ricavare $H_{y}$
+    \begin{equation}
+        H_{y} = -\frac{1}{j \omega \mu} [-jkE_{x} e^{-jkz}+jkE_{x}e^{-jkz}] = \frac{-jk}{-j\omega \mu} [E^{+}e^{-jkz}-Ee^{jkz}] = \sqrt{\frac{\varepsilon}{\mu}}[E^{+}e^{-jkz}-Ee^{jkz}]
+    \end{equation}
+    Poiché $\sqrt{\frac{\mu}{\varepsilon}} = \zeta$ si può scrive
+    \begin{equation}
+        H_{y} = \frac{1}{\zeta}E_{x} = \frac{1}{\zeta}[E_{x}e^{-jkz}-E_{y}e^{jkz}] = H_{y}^{+}e^{-jkz}+H_{y}^{-}e^{jkz} \qquad H_{y} ^{+} = \frac{1}{\zeta}E_{x} ^{+} \ \ H_{y} ^{-} = - \frac{E^{-} _{x}}{\zeta}
+    \end{equation}
+    Le espressioni di $H_{y}$ ed $E_{x}$ appena ricavate ($H_{x}$ ed $E_{y}$ avranno espressioni analoghe per simmetria) non sono ancora onde piane, perché non è possibile definire una precisa direzione e verso di propagazione: l'onda progressiva va avanti, quella regressiva 
+    all'indietro, dunque la loro somma dove dovrebbe andare? La risposta è che non è possibile determinarlo, in generale la sovrapposizione di onde piane non è un'onda piana. \\
+    Se consideriamo solo la progressiva si ottiene un'onda piana
+    \begin{equation}
+        E_{x} = E_{x} ^{+}e^{-jkz} = \underline{E}_{x} e^{-j \underline{k} \cdot \underline{r}}  \implies \underline{E}(\underline{r}) = \underline{E}_{0}e^{-j \underline{k} \cdot \underline{r}}
+    \end{equation}
+    con  $\underline{E}_{0} = E_{x} \underline{i}_{x} +E_{y} \underline{i}_{y}$ e $\underline{k} = k_{z} \textrm{ perché l'onda si propaga solo lungo } z$.
+    Il vettore $\underline{k}$ prende il nome di \textbf{vettore di propagazione}. Un'onda piana allora sarà una soluzione del tipo
+    \begin{equation}
+        \underline{E} (\underline{r}) = \underline{E}_{0} e^{-j\underline{k} \cdot \underline{r}} \qquad \underline{H} (\underline{r}) = \underline{H}_{0} e^{-j\underline{k} \cdot \underline{r}}
+    \end{equation}
+    le quali soddisfano le equazioni di Maxwell. È chiaro che $\underline{E}_{0}, \underline{H}_{0} \in \mathbb{C} ^{3}$, altrimenti si avrebbero solo campi polarizzati linearmente. Anche il vettore di
+    polarizzazione è in generale complesso e vale $\underline{k} = \underline{\beta} - j \underline{\alpha}$, che in questo contesto \textbf{non sono } $k, \alpha \textrm{ e } \beta $ della costante di propagazione!.
+    \\ Se $f$ è un campo scalare e $\underline{v}$ un campo vettoriale, vale
+    \begin{equation}
+        \nabla \times (f \underline{v}) = \nabla f \times \underline{v}+f \nabla \times \underline{v}
+    \end{equation}
+    Per cui nel nostro caso
+    \begin{equation}
+        \nabla \times (\underline{E}) = \nabla \times (\underline{E}_{0} e^{-j \underline{k} \cdot \underline{r}}) = \nabla(e^{-j\underline{k}\cdot \underline{r}}) \times \underline{E}_{0} +
+        e^{-j\underline{k} \cdot \underline{r}} \nabla \times \underline{E_{0}}
+    \end{equation}
+    Poiché $\nabla \times \underline{E}_{0} = 0$, perché $E_{0}=\textrm{const}$ risulta
+    \begin{equation}
+        \nabla \times \underline{E} = \nabla (e^{-j \underline{k}}\cdot \underline{r})\times \underline{E}_{0} = \nabla (e^{-j(k_{x}r_{x} + k_{y}r_{y} + k_{z}r_{z})}) \times \underline{E}_{0}
+    \end{equation}
+    \begin{equation}
+        = (-jk_{x}e^{-j\underline{k} \cdot \underline{r}}\underline{i}_{x} + -jk_{y}e^{-j\underline{k} \cdot \underline{r}}\underline{i}_{y} +
+        -jk_{z}e^{-j\underline{k} \cdot \underline{r}}\underline{i}_{z}) \times \underline{E}_{0} = -je^{-j \underline{k} \cdot \underline{r}}
+        (k_{x}\underline{i}_{x} + k_{y}\underline{i}_{y} + k_{z}\underline{i}_{z}) \times \underline{E}_{0}
+    \end{equation}
+    \begin{equation}
+        = -j \underline{k} \times \underline{E}_{0} e^{-j \underline{k} \cdot \underline{r}} = \nabla \times (\underline{E}_{0} e^{-j \underline{k} \cdot \underline{r}})
+    \end{equation}
+    Quando c'è il rotore si può sostituire con $-j\underline{k}$. Poiché occorre soddisfare la prima relazione di Maxwell
+    \begin{equation}
+        \nabla \times \underline{E} = -j \omega \mu \underline{H} \implies -j \underline{k} \times \underline{E}_{0}e^{-j \underline{k} \times \underline{r}} = -j \omega \mu \underline{H}_{0}e^{-j \underline{k} \cdot \underline{r}}
+    \end{equation}
+    per cui deve risultare
+    \begin{equation}
+        \underline{k} \times \underline{E}_{0} = \omega \mu \underline{H}_{0}
+    \end{equation}
+    In modo analogo per la seconda relazione di Maxwell
+    \begin{equation}
+        - \underline{k} \times \underline{H}_{0} = \omega \varepsilon \underline{E}_{0} \implies \underline{H}_{0} \times \underline{k} = \omega \varepsilon \underline{E}_{0}
+    \end{equation}
+    Prendiamo la condizione per la prima equazione, premoltiplichiamo per $\underline{k}$ ambo membri e dividiamo per $\omega \mu$:
+    \begin{equation}
+        \underline{k} \cdot \underline{H}_{0} = \underline{k} \cdot \frac{(\underline{k} \times \underline{E}_{0})}{\omega \mu} = 0
+    \end{equation}
+    questo perché c'è un prodotto misto con due vettori uguali. Notiamo che non è detto che $\underline{H}_{0}$ sia ortogonale a $\underline{k}$, perché non compare con il coniugato $\underline{H}_{0} ^{*}$.
+    \\ Similmente per $\underline{E}$:
+    \begin{equation}
+        \underline{k} \cdot \underline{E} = 0
+    \end{equation}
+    Sostituiamo l'espressione $\underline{H}_{0} = \frac{\underline{E}}{\mu \omega}$ nella prima equazione
+    \begin{equation}
+        \underline{E}_{0} = \frac{\underline{k} \times \underline{E}}{\omega ^{2} \mu \varepsilon} \times \underline{k} \stackrel{k^{2} = \omega^{2}\mu \varepsilon}{\implies} k^{2}\underline{E}_{0} = \underline{k} \times \underline{E} \times \underline{E}
+    \end{equation}
+    \begin{equation}
+        \stackrel{\textrm{ doppio prodotto vettoriale}}{\implies} (\underline{k} \cdot \underline{k}) \underline{E}_{0} - (\underline{k} \cdot \underline{E}_{0}) \underline{k} \stackrel{\underline{k} \cdot \underline{E}_{0} = 0}{=} 
+        (\underline{k} \cdot \underline{k}) \underline{E}_{0}
+    \end{equation}
+    In definitiva la relazione fra il \textbf{vettore} di propagazione $\underline{k}$ e la \textbf{costante} di propagazione $k$ è
+    \begin{equation}
+        (\underline{k} \cdot \underline{k} - k^{2})\underline{E}_{0} = 0 \stackrel{\underline{E}_{0} \neq 0 \textrm{ oppure è banale }}{\implies} \underline{k} \cdot \underline{k} = k^{2} = \omega^{2} \varepsilon \mu
+    \end{equation}
+    Di nuovo, $k$ \textbf{non è il modulo di} $\underline{k}$, perché il modulo di un vettore complesso è il prodotto punto fra il vettore e il suo complesso coniugato.
 \chapter{Esercizi}
     \section{Linee di trasmissione}
         \subsection{Adattamento a singolo stub in serie}
