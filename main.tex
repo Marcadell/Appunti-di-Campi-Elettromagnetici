@@ -4,6 +4,7 @@
 \usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage{xr}
+\usepackage{ulem}
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{pxfonts}
@@ -1246,13 +1247,13 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         (\ref{eqn:Poynting_integrale_tempo}) il suo significato fisico. \\
         Partiamo dall'espressione della forza di Lorentz esercitata su di una carica $q$:
         \begin{equation}
-            \underline{F}= q \underline{e}+q \underline{r} \times \underline{b}
+            \underline{F}= q \underline{e}+q \underline{v} \times \underline{b}
         \end{equation}
         La forza di Lorentz è un approccio macroscopico al problema della forza esercitata su di una carica immersa in un campo elettromagnetico, perché compare la densità di carica
         elettrica $\rho$, dunque le cariche vengono immaginate come un continuo nello spazio. Consideriamo allora un volumetto $\Delta V$ con all'interno carica $\Delta q$.
         Calcolando la forza di Lorentz esercitata su tale volumetto di carica:
         \begin{equation}
-            \Delta \underline{F} = \Delta q\underline{e}+\Delta q \underline{r}\times \underline{b}
+            \Delta \underline{F} = \Delta q\underline{e}+\Delta q \underline{v}\times \underline{b}
         \end{equation}
         Passiamo alla densità di forza, (misurata in $N/m^{3}$) dividendo per $\Delta V$ e facendo il limite per $\Delta V \to 0$:
         \begin{equation}
@@ -1397,9 +1398,9 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         linea viene dissipata più potenza. Dunque una potenza reattiva $Q=0$ corrisponde a trasferimento di potenza massimo sulla linea. \\ \\
         Tutto ciò che abbiamo detto per tensione e corrente si può generalizzare per confronto con il prodotto di due quantità sinusodiali
         qualsiasi, nel nostro caso $\underline{e}$ ed $\underline{h}$ e i relativi fasori $\underline{E}$ ed $\underline{H}$.
-        Riprendiamo di nuovo l'identità di Poynting  inetgrale nel tempo per un mezzo normale ma non necessariamente dispersivo:
+        Riprendiamo di nuovo l'identità di Poynting  integrale nel tempo per un mezzo normale ma non necessariamente dispersivo:
         \begin{equation}
-            \oiint_{\partial V} \underline{i}_{n}dS = \iiint_{V} (\underline{h}\cdot \frac{\partial}{\partial t}\underline{b}+\underline{e}\cdot \frac{\partial}{\partial t}\underline{d})dV+
+            \oiint_{\partial V} \underline{s} \cdot \underline{i}_{n}dS = \iiint_{V}  \frac{\mu}{2} |\underline{h}|^{2}+\frac{\varepsilon}{2}|\underline{e}|^{2} dV+
             \iiint_{V} \sigma |\underline{e}|^{2}dV = - \iiint_{V} \underline{e} \cdot \underline{j}_{0}dV
         \end{equation}
         Confrontiamo pezzo per pezzo con la sua controparte fasoriale. Le quantità:
@@ -1445,7 +1446,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         che è la \textbf{potenza media dissipata per isteresi elettrica e magnetica}, la quale è associato alle parti immaginarie 
         $\mu ''$ e $\varepsilon ''$. \\
-        Per la parte immaginaria abbiamo sotto l'ipotesi di non dispersività spaziale, per la quale $\varepsilon=\varepsilon'$ e $\mu = \mu'$:
+        Per l'identità parte immaginaria abbiamo sotto l'ipotesi di non dispersività spaziale, per la quale $\varepsilon=\varepsilon'$ e $\mu = \mu'$:
         \begin{equation}
             \label{eqn:parte_img_poynting}
             2 \omega \iiint_{V} \frac{\mu}{4}|\underline{H}|^{2}-\frac{\varepsilon}{4}|\underline{E}|^{2}dV = -\text{Im}[\iiint_{V} \underline{E} \cdot \underline{J}_{0} ^{*}]
@@ -1462,7 +1463,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         Dunque la quantità:
         \begin{equation}
             \label{eqn:diff_media_magnetica_elettrica}
-            \frac{\mu}{4}|\underline{H}|^{2}-\frac{\varepsilon}{4}|\underline{E}|^{2} = \overline{W}_{M}-\overline{W}_{E}
+            \iiint_{V} \frac{\mu}{4}|\underline{H}|^{2}-\frac{\varepsilon}{4}|\underline{E}|^{2} dV =\overline{W}_{M}-\overline{W}_{E}
         \end{equation}
         è la differenza di energia magnetica media ed energia elettrica media. Allora la (\ref{eqn:parte_img_poynting})
         dice che la differenza (\ref{eqn:diff_media_magnetica_elettrica}), che moltiplicata per $2 \omega$ da la potenza media, è
@@ -3717,6 +3718,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \end{equation}
             In definitiva, occorre risolvere il seguente sistema
             \begin{equation}
+                \label{eqn:mi_servono1}
                 \begin{cases}
                     \underline{H} = \frac{1}{\mu} \nabla \times \underline{A} \\
                     \underline{E} = -j \omega \underline{A}-\nabla \varphi \\
@@ -3736,6 +3738,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \end{equation}
             In pratica, $\underline{A}$ ed $\underline{A'}$ generano gli stessi campi. Scriviamo allora 
             \begin{equation}
+                \label{eqn:mi_serve8}
                 \underline{E'}= -j \omega \underline{A'} - \nabla \varphi' = \underline{E}= -j \omega \underline{A} - \nabla \varphi
             \end{equation}
             Per cui, sostituendo l'espressione di $\underline{A'}$
@@ -3773,8 +3776,152 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
                 \nabla ^{2} \psi + k^{2} \psi = - \chi     
             \end{equation}
             detta \textbf{equazione di Helmholtz}.
-
-
+            I campi $\underline{E}$ ed $\underline{H}$ sono unici per il teorema di unicità, ma sono generati da infinite coppie di potenziali che differiscono a meno di campi irrotazionali nel caso di $\underline{A}$
+            e a meno di campi indivergenti per $\varphi$.\\
+            Ci si chiede ora se è possibile ricavare una coppia di potenziali
+            \begin{equation}
+                \begin{cases}
+                    \underline{A}' = \underline{A}+\nabla \psi \\
+                    \varphi ' = \varphi - j \omega \psi  
+                \end{cases}
+            \end{equation}
+            che soddisfi l'equazione di Helmholtz. Applicando la gauge di Lorentz alla coppia $(\underline{A}, \varphi)$:
+            \begin{equation}
+                j \omega \varepsilon \mu \varphi ' + \nabla \cdot \underline{A}' \implies \varphi ' = - \frac{\nabla \cdot \underline{A} '}{j \omega \varepsilon \mu}
+            \end{equation}
+            Per cui, tenendo conto della (\ref{eqn:mi_serve8})
+            \begin{equation}
+                \underline{E} = -j \omega A' - \frac{\nabla \nabla \cdot \underline{A}'}{j \omega \varepsilon \mu} = -j \omega  [A'+\frac{\nabla \nabla \cdot \underline{A} '}{k^{2}}]
+            \end{equation}
+            che è il valore di $\underline{E}$ "in gauge di Lorentz". A questo punto possiamo scrivere le equazioni in gauge di Lorentz:
+            \begin{equation}
+                \begin{cases}
+                    \displaystyle \underline{H} = \frac{1}{\mu} \nabla \times \underline{A}' \\
+                    \displaystyle \underline{E} = -j \omega [\underline{A}' + \frac{\nabla \nabla \cdot \underline{A}'}{k^{2}}]
+                \end{cases}
+            \end{equation}
+            Risolviamole nel caso particolare per cui $\underline{J}_{0}$ è un impulso di corrente
+            \begin{equation}
+                \underline{J}_{0}(\underline{r}) = I \Delta z \delta(\underline{r}) \underline{i}_{z}
+            \end{equation}
+            dove $[\delta(\underline{r})] = m^{-3}$ serve a centrare l'impulso e $[\Delta z] \underline{i}_{z}= m$ è l'ampiezza lungo l'asse $z$ dell'impulso. \\
+            Sostituendo  nella terza equazione delle (\ref{eqn:mi_servono1})
+            \begin{equation}
+                \label{eqn:mi_servono2}
+                \nabla ^{2} \underline{A}+k^{2}\underline{A} = - \mu \underline{J}_{0}(\underline{r}) \implies
+                \begin{cases}
+                    \nabla ^{2} A_{x}+k^{2}A_{x} = 0 \\
+                    \nabla ^{2} A_{y}+k^{2}A_{y} = 0 \\
+                    \nabla ^{2} A_{z}+k^{2}A_{z} = -\mu I \Delta z \delta (\underline{r})
+                \end{cases}
+            \end{equation}
+            Assumiamo che le soluzioni banali $A_{x} = 0, A_{y}=0$ determinino un campo che soddisfa le condizioni di radiazione all'infinito (Silver-M{\"u}ller) ed esprimiamo $A_{z}$ in coordinate sferiche\footnote{Nota: $r = |\underline{r}|$}
+            \begin{equation}
+                A_{z}(\underline{r}) = A_{z}(\underline{r}, \vartheta, \varphi)
+            \end{equation}
+            In coordinate sferiche il laplaciano si esprime in tal modo
+            \begin{equation}
+                \nabla ^{2} = \frac{1}{r^{2}}\frac{\partial}{\partial r} r^{2} \frac{\partial}{\partial r} + \frac{1}{r^{2}\sin(\vartheta)} \frac{\partial}{\partial \vartheta} \sin(\vartheta) \frac{\partial}{\partial \vartheta} +
+                \frac{1}{r^{2}\sin(\vartheta)} \frac{\partial ^{2}}{\partial \varphi ^{2}} 
+            \end{equation}
+            Per cui $\nabla ^{2} A_{z}$ è  
+            \begin{equation}
+                \frac{1}{r^{2}}\frac{\partial}{\partial r} r^{2} \frac{\partial}{\partial r} A_{z} + \frac{1}{r^{2}\sin(\vartheta)} \frac{\partial}{\partial \vartheta} \sin(\vartheta) \frac{\partial}{\partial \vartheta}A_{z} +
+                \frac{1}{r^{2}\sin(\vartheta)} \frac{\partial ^{2}}{\partial \varphi ^{2}} A_{z} + k^{2}A_{z} = -I\Delta z \mu \delta (\underline{r})
+            \end{equation}
+            Supponiamo che esista soluzione sferica, cioè che $A_{z}(r, \vartheta, \varphi) = A_{z}(r)$, per cui le derivate rispetto a $\varphi$ e $\vartheta$ sono nulle
+            \begin{equation}
+                \frac{1}{r^{2}} \frac{\partial}{\partial r} r^{2} \frac{\partial}{\partial r}A_{z} +k^{2}A_{z}= -I\Delta z \mu \delta(\underline{r})
+            \end{equation}
+            Per $r \neq 0$ l'impuslo va via e si ottiene
+            \begin{equation}
+                \frac{1}{r^{2}}\frac{\partial}{\partial r} r^{2}\frac{\partial}{\partial r} A_{z}+k^{2}A_{z} = 0
+            \end{equation}
+            Ci si aspetta, visto che abbiamo escluso $r = 0$ che $A_{z}$ sia data dal rapporto fra una funzione regolare $f(r)$ ed $r$
+            \begin{equation}
+                A_{z}(r) = \frac{f(r)}{r}
+            \end{equation}
+            cioè c'è una singolarità in zero. Sostituendo tale espressione
+            \begin{equation}
+                \frac{1}{r^{2}}\frac{d}{dr} r^{2} \cdot (\frac{f'(r)r - f(r)}{r^{2}})+\frac{k^{2}}{r}f(r) = 0
+            \end{equation}
+            \begin{equation}
+                \implies \frac{1}{r^{2}}\frac{d}{dr}(f'(r)r-f(r)+\frac{k^{2}}{r}f(r))=\frac{1}{r^{2}}(r f''(r)+f'(r)-f'(r))+\frac{k^{2}}{r}f(r)
+            \end{equation}
+            \begin{equation}
+                = \frac{1}{r^{2}}\frac{d^{2}}{dr^{2}}f(r)+\frac{k^{2}}{r}f(r) = 0
+            \end{equation}
+            \begin{equation}
+                \implies \frac{d^{2}}{dr^{2}}f(r) +k^{2}f(r) = 0
+            \end{equation}
+            che è, come la quasi totalità delle espressioni di questi appunti, l'equazione di un oscillatore armonico. Dunque le soluzioni del problema sono  
+            \begin{equation}
+                 A_{z}(r) = \frac{f(r)}{r} = \frac{c^{+}e^{-jkr}}{r}+\frac{c^{-}e^{jkr}}{r}
+            \end{equation}
+            La sorgente è nell'origine come impulso, dunque all'infinito non possono esserci sorgenti. Allora non c'è onda regressiva e si può affermare che $c^{-}=0$. Allora $A_{z}$ è un'onda sferica 
+            \begin{equation}
+                A_{z}(r) = c^{+}\frac{e^{-jkr}}{r}
+            \end{equation}
+            Per calcolare $c^{+}$ ritorniamo all a terza espressione delle (\ref{eqn:mi_servono2}) e, forti dell'espressione di $A_{z}$, integriamola in una sfera di volume $V_{0}$ centrata nell'origine 
+            \begin{equation}
+                \implies \iiint_{V_{0}} \nabla \nabla \cdot A_{z} dV + k^{2} \iiint_{V_{0}} A_{z}dV = - \mu I \Delta z
+            \end{equation}
+            \begin{equation}
+                \implies \oiint_{\partial V_{0}} \nabla A_{z} \cdot \underline{i}_{r} dS + k^{2} \iiint_{V_{0}}A_{z} dV = -\mu I \Delta z 
+            \end{equation}
+            \begin{equation}
+                \stackrel{A_{z} = c^{+}e^{-jkr}/r}{\implies} \oiint_{\partial V_{0}} c^{+}(\frac{-jke^{-jkr}r - e^{-jkr}}{r ^{2}})dS + k^{2}\iiint_{V_{0}} A_{z} dV = -\mu I \Delta z
+            \end{equation}
+            Sulla superficie sferica (nell'integrale di flusso) $r=R$
+            \begin{equation}
+                \implies c^{+} \oiint_{\partial V_{0}} \frac{jkR +1}{R^{2}} \cdot (-e^{-jkR}) dS + k^{2} \iiint_{V_{0}} c^{+} \frac{e^{-jkr}}{r}dV = -\mu I \Delta z
+            \end{equation}
+            Passando al limite per $R \to 0$
+            \begin{equation}
+                \implies \lim_{R \to 0} \oiint_{\partial V_{0}} \frac{jkR + 1}{R^{2}} \cdot (-e^{-jkR}) dS + k^{2} \iiint_{V_{0}} c^{+} \frac{e^{-jkr}}{r}dV = - \mu I \Delta z
+            \end{equation}
+            In coordinate sferiche $dV = r^{2}\sin(\vartheta)drd\vartheta d \varphi$ per cui
+            \begin{equation}
+                \lim_{R \to 0} \iiint_{\partial V_{0}} - \frac{jkR+1}{R^{2}}e^{-jkR}dS + \lim_{R \to 0} k^{2} \iiint_{V} c^{+} \frac{e^{-jkr}}{r} r^{2} dr \sin(\vartheta) d\vartheta d \varphi
+            \end{equation}
+            Il limite dell'integrale di volume va a zero, perché va come $r^{2}/r = r$ su una superficie che perde una dimensione, per cui si può scrivere
+            \begin{equation}
+                \implies \lim_{R \to 0} \iiint_{\partial V_{0}} - \frac{jkR+1}{R^{2}}e^{-jkR}dS = - \mu I \Delta z
+            \end{equation}
+            Poichè $dS = R^{2}\sin(\vartheta) d \vartheta d \varphi$ si può scrivere
+            \begin{equation}
+                \lim_{R \to 0} c^{+} \oiint_{\partial V_{0}} - \frac{jkR+1}{R^{2}}e^{-jkR}R^{2}\sin(\vartheta)d\vartheta d \varphi = -\mu I \Delta z
+            \end{equation}
+            \begin{equation}
+                \implies \lim_{R \to 0} c^{+} \oiint_{\partial V_{0}} - (jkR+1)\sin(\vartheta) d \vartheta d \varphi = -\mu I \Delta z
+            \end{equation}
+            L'angolo solido $d\Omega = \sin8\vartheta d\vartheta d \varphi$ integrato su una superficie sferica fa $4 \pi$. Passando al limite per $R \to 0$:
+            \begin{equation}
+                \implies c^{+}\oiint_{\partial V_{0}} - d\Omega = -4 \pi c^{+} = - \mu I \Delta z \implies c^{+} = \frac{\mu I \Delta z}{4 \pi}
+            \end{equation}
+            In definitiva per $A_{x}=A_{y}=0$ si ottiene
+            \begin{equation}
+                A(r) = A_{z}(r) \underline{i}_{z} = \frac{\mu_{0}I \Delta z}{4 \pi r} e^{-jkr} \underline{i}_{z}
+            \end{equation}
+            Dunque per ottenere i campi 
+            \begin{equation}
+                \begin{cases}
+                    \underline{H} = \frac{1}{\mu} \nabla \times \underline{A} \\
+                    \underline{E} = -j \omega [\underline{A} + \frac{\nabla \nabla \cdot \underline{A}}{k^{2}}]
+                \end{cases}
+            \end{equation}
+            È arrivato il momento di sfruttare la linerità e l'importanza della soluzione impulsiva. Sappiamo che la corrente indotta totale è data dalla somma degli infiniti contributi impulsivi all'interno
+            del volume $V$ all'interno del quale si sta risolvendo il problema elettromagnetico 
+            \begin{equation}
+                \underline{J}(\underline{r}) = \iiint_{V} \underline{J}(\underline{r})\delta(\underline{r}-\underline{r}_{0})d \underline{r}
+            \end{equation}
+            In particolare, $J(\underline{r})$ è la corrente indotta generata dai campi che soddisfano la gauge di Loretnz. Applicando la sovrapposizione degli effetti si può scrivere $A_{z}$ tramite 
+            sovrapposizione degli effetti. Ponendo $\underline{J}_{0}(\underline{r_{0}})=I\Delta(z)\delta(\underline{r}-\underline{r}_{0}) \hat{a}$ (con $\hat{a}$ versore dell'impulso in $\underline{r}_{0}$)
+            si ottiene 
+            \begin{equation}
+                \underline{A}(\underline{r})=\iiint_{V}d\underline{A}(\underline{r}) = \iiint_{V} \frac{\mu_{0}}{4\pi} \cdot \frac{e^{-jk|\underline{r}-\underline{r}_{0}|}}{|\underline{r}-\underline{r}_{0}|}
+                \underline{J}_{0}(\underline{r}_{0})d\underline{r}_{0}
+            \end{equation}
 \chapter{Propagazione libera}
     \section{Polarizzazione}
         Un generico vettore nel dominio del tempo ha la forma
