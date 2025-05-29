@@ -2127,7 +2127,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         Fissata di nuovo l'origine alla sezione d'uscita, applichiamo semplicemente la formula per 
         ricavare il coefficiente di riflessione all'uscita:
         \begin{equation}
-            \Gamma(0) = \Gamma_{OUT} = \frac{Z_{0}-Z_{C}}{Z_{C}+Z_{0}}
+            \Gamma(0) = \Gamma_{OUT} = \frac{Z_{C}-Z_{0}}{Z_{C}+Z_{0}}
         \end{equation}
         in quanto $Z(0)=Z_{C}$. A questo punto possiamo calcolarlo in un punto generico della linea:
         \begin{equation}
@@ -2205,14 +2205,14 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \\ Consideriamo ora un carico generico $Z_{C}=R_{C}+jX_{C}$. In questo caso c'è il flusso di potenza 
     attiva $\overline{P}_{C}$:
     \begin{equation}
-        \overline{P}_{C}=\overline{P}^{+}(1-|\Gamma_{C}|^{2}) > 0
+        \overline{P}_{C}=\overline{P}^{+}|1-\Gamma_{C}^{2}| > 0
     \end{equation}    
     Normalizziamo perché tanto il concetto vale a meno di una costante:
     \begin{equation}
-        |\frac{\overline{P}}{P^{+}}| = 1-|\Gamma_{C}|^{2}
+        |\frac{\overline{P}}{P^{+}}| = |1-\Gamma_{C}^{2}|
     \end{equation}
     Infatti si può dimostrare che per una linea con carico con parte reale maggiore di zero $\Gamma_{C}<1$.
-    Se ci si mette nel piano complesso e si disegna il vettore $|1+\Gamma_{C}$, ci si rende conto che questo ha modulo 
+    Se ci si mette nel piano complesso e si disegna il vettore $|1+\Gamma_{C}|$, ci si rende conto che questo ha modulo 
     massimo quando $1$ e $\Gamma_{C}$ sono in fase, cioè quando $2\beta d + \phi_{c} = 2 n \pi$.
     \newpage
     \begin{figure}[h!]
@@ -2225,9 +2225,9 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \Re(Z(d)) = Z_{0}\Re[\frac{1+\Gamma(d)}{1-\Gamma(d)}] = Z_{0}\Re[\frac{(1+\Gamma(d)(1-\Gamma(d)^{*}))}{-2\Re(\Gamma(d))+1+|\Gamma|^{2}}]
     \end{equation}
     \begin{equation}
-        = Z_{0}\Re[\frac{2+2\Im(\Gamma(d)-|\Gamma|^{2})}{1+|\Gamma|^{2}-2\Re(\Gamma(d))}] = \frac{(1-|\Gamma|)(1+|\Gamma|)}{1+|\Gamma|^{2}-2\Re(\Gamma(d))} > 0
+        = Z_{0}\Re[\frac{2+2\Im(\Gamma(d))-|\Gamma|^{2}}{1+|\Gamma|^{2}-2\Re(\Gamma(d))}] = \frac{(1-|\Gamma|)(1+|\Gamma|)}{1+|\Gamma|^{2}-2\Re(\Gamma(d))} > 0
     \end{equation}
-    Questo numero è minimo quando il numeratore è massimo, cioè quando la parte reale di $\Re(\Lambda(d))$ è pari all'opposto del suo modulo:
+    Questo numero è minimo quando il numeratore è massimo, cioè quando la parte reale di $\Re(\Gamma(d))$ è pari all'opposto del suo modulo:
     \begin{equation}
         \textrm{Minimo denominatore} = 1+|\Gamma|^{2}-2\Re(\Gamma (d))
     \end{equation}
@@ -2409,8 +2409,12 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{equation}
     Ciò che abbiamo detto non vale, però per il coefficiente di riflessione.  \\
     \textbf{Proof}: \\
-    Per dimostrarlo supponiamo, riferendoci al disegno 
-    di prima, di avere una resistenza $R_{C}<Z_{1}$ come carico al posto del corto. Supponiamo inoltre che $d=\lambda_{1} /4$. Calcolando $Z_{AA'}$ si ricava:
+    Per dimostrarlo supponiamo, riferendoci al disegno sottostante 
+    \begin{figure}[h!]
+        \center  
+        \includegraphics[width=0.5\linewidth]{Chapter_two/Chapter2FIX.png}
+    \end{figure} \\
+    di avere una resistenza $R_{C}<Z_{1}$ come carico al posto del corto. Supponiamo inoltre che $d=\lambda_{1} /4$. Calcolando $Z_{AA'}$ si ricava:
     \begin{equation}
         Z_{AA'} = Z_{1}\frac{R_{C}+jZ_{1}\tan(\beta \frac{\lambda_{1}}{4})}{Z_{1}+jR_{C}\tan(\beta \frac{\lambda_{1}}{4})}
     \end{equation}
@@ -2428,9 +2432,9 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \center  
         \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img16.png}
     \end{figure}
-    Calcoliamo il coefficiente di riflessione in $Z_{BB'}$\footnote{cioè alla fine della seconda linea, ho dimenticato di disegnarlo}:
+    Calcoliamo il coefficiente di riflessione in $BB'$:\footnote{cioè alla fine della seconda linea, ho dimenticato di disegnarlo}:
         \begin{equation}
-            \Gamma_{CC'} = \frac{R_{C}-Z_{1}}{R_{C}+Z_{1}} < 0
+            \Gamma_{BB'} = \frac{R_{C}-Z_{1}}{R_{C}+Z_{1}} < 0
         \end{equation}
     Tenendo conto che il coefficiente alla sezione AA' (inizio della seconda linea) è:
     \begin{equation}
@@ -2445,13 +2449,14 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     non l'impedenza di carico. Quello che si fa è semplicemente calcolare l'impedenza di carico tramite il coefficiente di riflessione è poi applicare il trasporto.
     Se poi si conosce quello della prima, si può direttamente calcolare con la ben nota relazione:
     \begin{equation}
-        Z_{CC'} = Z_{1}\frac{1+\Lambda_{CC'}}{1-\Lambda_{CC'}}
+        Z_{CC'} = Z_{1}\frac{1+\Gamma_{CC'}}{1-\Gamma_{CC'}}
     \end{equation}
     Fisicamente, il fatto che il coefficiente di riflessione non si conservi ma il resto delle grandezze si, significa che la proporzione di onda 
     regressiva ed onda progressiva varia nel tempo, ma la loro somma resta costante:
     \begin{equation}
         V^{+}_{AA'}+V^{-} _{AA'} = V^{+}_{BB'}+V^{-} _{BB'}
     \end{equation}
+    \newpage
     \subsection*{Adattamento}
         Consideriamo una situazione del genere:
         \begin{figure}[h!]
@@ -2467,7 +2472,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         Sia $Z_{BB'}$ l'impedenza trasportata dal carico alla sezione d'ingresso. Affinché il coefficiente di riflessione 
         sia nullo deve risultare:
         \begin{equation}
-            \Lambda_{IN} = \frac{Z_{BB'}-Z_{g}}{Z_{BB'}+Z_{g}} = 0 \implies Z_{g} = Z_{BB'}
+            \Gamma_{IN} = \frac{Z_{BB'}-Z_{g}}{Z_{BB'}+Z_{g}} = 0 \implies Z_{g} = Z_{BB'}
         \end{equation}
         Per fare in modo che l'impedenza trasportata sia uguale a quella del generatore, bisogna inserire una
         \textbf{rete di adattamento} tra il generatore ed la linea. Si può fare la stessa cosa tra linea e carico e in quel caso si 
@@ -2492,7 +2497,6 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             Z_{1} \simeq \sqrt{Z_{0}Z_{C}}
         \end{equation}
         che va sotto il nome di \textbf{formula di adattamento}.
-    \newpage
         \subsubsection*{Adattatore a singolo stub}
         \begin{figure}[h!]
             \center  
@@ -2509,7 +2513,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \center  
             \includegraphics[width=0.6\linewidth]{Chapter_two/Chapt2img20.png}
         \end{figure}
-        Le condizion di adattamento sono, nel nostro caso:
+        Le condizioni di adattamento sono, nel nostro caso:
         \begin{equation}
             Z_{DD'} = Z_{0} ^{*}
         \end{equation}
