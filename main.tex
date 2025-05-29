@@ -1571,7 +1571,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             \underline{i}_{n} \times (\underline{H}_{2}-\underline{H}_{1}) = \underline{J}_{S}
         \end{equation}
-        Non conosciao l'espressione della corrente superficiale perché è indotta dal campo, dunque è un incognita del problema che 
+        Non conosciamo l'espressione della corrente superficiale perché è indotta dal campo, dunque è un incognita del problema che 
         sarà nota solo quando lo saranno le sorgenti. Allora come condizione al raccordo utilizziamo la (\ref{eqn:raccordo_guida}). \\
         Mancano le condizioni alla base, che dipendono dal ricevente e dal trasmittente. Poiché è impensabile risolvere il problema elettromagnetico 
         per ogni possibile sorgente, scegliamo di non considerarle e trovare la soluzione generale del problema, che non avendo ancora informazioni su Rx e Tx ammette più soluzioni.
@@ -1583,10 +1583,10 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
                 \nabla \times \underline{E} = -j \omega \mu \underline{H} \\
                 \nabla \times \underline{H} =j \omega \varepsilon \underline{E} \\
                 \nabla \cdot (\varepsilon \underline{E}) = 0 \\
-                \nabla \cdot (\mu\underline{H})
+                \nabla \cdot (\mu\underline{H}) = 0
             \end{cases}
         \end{equation}
-        Ipotizziamo inoltra che la struttura guidata sia \textbf{invariante per traslazione rispetto ad una direzione dello spazio}, ovvero
+        Ipotizziamo inoltre che la struttura guidata sia \textbf{invariante per traslazione rispetto ad una direzione dello spazio}, ovvero
         che questa abbia \textbf{simmetria cilindrica}:
         \begin{figure}[h!]
             \center  
@@ -1639,8 +1639,8 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \begin{equation}
         \label{eqn:eq_Markuvitz-Schwinger}
         \begin{cases}
-            \displaystyle -\frac{\partial}{\partial t}\underline{E}_{t}=j \omega \mu [\underline{H}_{t}\times \underline{i}_{z}+\displaystyle \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot (\underline{H}_{z}) \times \underline{i}_{z}] \\
-            \displaystyle - \frac{\partial}{\partial t}\underline{H}_{t}=j\omega \varepsilon [\underline{i}_{z} \times \underline{E}_{t}+ \displaystyle \frac{1}{k^{2}}\nabla_{t} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})] \\
+            \displaystyle -\frac{\partial}{\partial z}\underline{E}_{t}=j \omega \mu [\underline{H}_{t}\times \underline{i}_{z}+\displaystyle \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot (\underline{H}_{t} \times \underline{i}_{z})] \\
+            \displaystyle - \frac{\partial}{\partial z}\underline{H}_{t}=j\omega \varepsilon [\underline{i}_{z} \times \underline{E}_{t}+ \displaystyle \frac{1}{k^{2}}\nabla_{t} \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t})] \\
             j \omega \mu H_{z} = \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) \\
             j \omega \varepsilon E_{z}=\nabla_{t}\cdot (\underline{H}_{t} \times \underline{i}_{z})
         \end{cases}
@@ -1659,22 +1659,22 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{equation}
     Sostituendo nella prima e seconda equazione di Markuvitz-Schwinger
     \begin{align}
-        -\frac{\partial}{\partial t} \underline{E}_{t} = j \omega \mu [\underline{H}_{t} \times \underline{i}_{z} - \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot 0] = j \omega \mu(\underline{H}_{t} \times \underline{i}_{z}) \\
-        -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon [\underline{i}_{z}\times \underline{E}_{t}+\frac{1}{k^{2}}\nabla_{t}\nabla_{t} \cdot 0] = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t})
+        -\frac{\partial}{\partial z} \underline{E}_{t} = j \omega \mu [\underline{H}_{t} \times \underline{i}_{z} - \frac{1}{k^{2}}\nabla_{t}\nabla_{t}\cdot 0] = j \omega \mu(\underline{H}_{t} \times \underline{i}_{z}) \\
+        -\frac{\partial}{\partial z} \underline{H}_{t} = j \omega \varepsilon [\underline{i}_{z}\times \underline{E}_{t}+\frac{1}{k^{2}}\nabla_{t}\nabla_{t} \cdot 0] = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t})
     \end{align}
     In sintesi, per i modi TEM, le equazioni di Markuvitz-Schwinger hanno questa forma:
     \begin{equation}
         \label{eqn:MS_TEM}
         \begin{cases}
-            -\frac{\partial}{\partial t}\underline{E}_{t} = j \omega \mu (\underline{H}_{t} \times \underline{i}_{z}) \\
-            -\frac{\partial}{\partial t} \underline{H}_{t} = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t}) \\
+            -\frac{\partial}{\partial z}\underline{E}_{t} = j \omega \mu (\underline{H}_{t} \times \underline{i}_{z}) \\
+            -\frac{\partial}{\partial z} \underline{H}_{t} = j \omega \varepsilon (\underline{i}_{z} \times \underline{E}_{t}) \\
             \nabla_{t} \cdot (\underline{i}_{z} \times \underline{E}_{t}) = 0 \\
             \nabla_{t} \cdot (\underline{H}_{t} \times \underline{i}_{z}) = 0
         \end{cases}
     \end{equation}
     Fatto ciò, sostituiamo le espressioni fattorizzate (\ref{eqn:fattorizzazione_modi}) nella prima equazione delle (\ref{eqn:MS_TEM}):
     \begin{equation}
-        -\frac{\partial}{\partial t}(V(z)\underline{e}(\underline{r}_{t})) = - \underline{e}(\underline{r}_{t})V(z) = j \omega \mu I(z)\underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
+        -\frac{\partial}{\partial z}(V(z)\underline{e}(\underline{r}_{t})) = - \underline{e}(\underline{r}_{t})V(z) = j \omega \mu I(z)\underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
     \end{equation}
     tenendo a mente che nella derivata del prodotto quella di $V(z)$ rispetto a $t$ è nulla, perché indipendente dalle componenti trasversali.
     Manipoliamo l'espressione dividendo per $j \omega \mu$ ottenendo:
@@ -1684,7 +1684,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \end{equation}
     avendo posto:
     \begin{equation}
-         A = -\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}
+         \frac{1}{A} = -\frac{\displaystyle \frac{dV}{dz}}{j \omega \mu I(z)}
     \end{equation}
     Sotto l'ipotesi di mezzo omogeneo $\mu$ non dipende dallo spazio e quindi, apparentemente, $A$ soltanto da $z$. Ma se osserviamo
     la relazione (\ref{eqn:mi_serve}), notiamo che il secondo membro dipende soltanto dalle coordinate trasversali, per cui la relazione per valere deve 
@@ -1693,7 +1693,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     \begin{equation}
         \label{eqn:prima_eq_telegrafisti}
         \begin{cases}
-            \displaystyle \frac{dV}{dz} = \frac{j \omega \mu I}{A} \\
+            \displaystyle - \frac{dV}{dz} = \frac{j \omega \mu I}{A} \\
             \underline{e}(\underline{r}_{t}) = A \underline{h}(\underline{r}_{t}) \times \underline{i}_{z}
         \end{cases}
     \end{equation}
@@ -1726,7 +1726,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
     poiché a noi non interessano le soluzioni banali per $\underline{h} = 0$, l'espressione è nulla se è nullo l'altro termine del prodotto, da
     cui otteniamo la \textbf{seconda equazione dei telegrafisti}:
     \begin{equation}
-        -\frac{d}{dz}I(z) = j \omega A V(z)
+        -\frac{d}{dz}I(z) = j \omega \varepsilon A V(z)
     \end{equation}
 
     Non ci resta che determinare $\underline{e}$ ed $\underline{h}$. Sfruttiamo la terza equazione di Markuvitz-Schwinger
@@ -1897,7 +1897,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \end{equation}
         Notiamo che:
         \begin{align}
-            I(0)=\frac{V^{+}}{Z_{0}}e^{0}-\frac{V^{-}}{Z_{0}e^{0}} \implies V^{+}-V^{-}=Z_{0}I(0) \\
+            I(0)=\frac{V^{+}}{Z_{0}}e^{0}-\frac{V^{-}}{Z_{0}}e^{0} \implies V^{+}-V^{-}=Z_{0}I(0) \\
             V(0)=V^{+}e^{0}+V^{-}e^{0}=V^{+}+V^{-}
         \end{align}
         dunque:
@@ -1925,7 +1925,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         Tensione e corrente sono funzioni periodiche di $\lambda$, dunque ci aspettiamo che l'impedenza lungo la linea sia anch'essa 
         una funzione periodica:
         \begin{equation}
-            Z(z) = \frac{V(z)}{I(z)} = \frac{\displaystyle I(z) = I(0)\cos(kz)-j\frac{V(0)}{Z_{0}}\sin(kz)}{V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)}
+            Z(z) = \frac{V(z)}{I(z)} = \frac{\displaystyle V(z) = V(0)\cos(kz)-jZ_{0}I(0)\sin(kz)}{I(z) = I(0)\cos(kz)-\displaystyle j\frac{V(0)}{Z_{0}}\sin(kz)}
         \end{equation}
         Raccogliendo $I(0)\cos(kz)$ sia a numeratore che denominatore otteniamo:
         \begin{equation}
@@ -1955,14 +1955,14 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         infatti sono legate:
         \begin{equation}
             Z(z)=\frac{V(z)}{I(z)}=\displaystyle \frac{V^{+}(z)+V^{-}(z)}{\displaystyle \frac{V^{+}}{Z_{0}}-\frac{V^{-}}{Z_{0}}}
-            = Z_{0}\frac{V^{+}(z)}{V^{+}(z)}[\frac{1+\Gamma(z)}{1-\Gamma(z)}] = \frac{1+\Gamma(z)}{1-\Gamma(z)} 
+            = Z_{0}\frac{V^{+}(z)}{V^{+}(z)}[\frac{1+\Gamma(z)}{1-\Gamma(z)}] = Z_{0}\frac{1+\Gamma(z)}{1-\Gamma(z)} 
         \end{equation}
         Viceversa:
         \begin{equation}
             \Gamma(z)=\frac{Z(z)-Z_{0}}{Z(z)+Z_{0}} = \frac{Y(0)-Y(z)}{Y(0)+Y(z)}
         \end{equation}
         \begin{equation}
-            Y(z)=\frac{1-\Gamma(z)}{1+\Gamma(z)}
+            Y(z)=Y_{0} \frac{1-\Gamma(z)}{1+\Gamma(z)}
         \end{equation}
         Se la rete è senza perdite e dunque $k=\beta$, il coefficiente di riflessione vale:
         \begin{equation}
@@ -1981,7 +1981,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{align}
             \label{eqn:eq_VI_Gamma}
             V(z)=V^{+}(z)+V^{-}(z)=V^{+}(1+\Gamma (z))  \\
-            I(z)=I^{+}(z)+I^{-}(z)=I^{+}(z)(1-\Gamma (z))
+            I(z)=I^{+}(z)+I^{-}(z)=I^{+}(1-\Gamma (z))
         \end{align}
         \\ Definiamo ora la potenza attraverso una sezione\footnote{Qui per la potenza media $\overline{P}$ ho messo il cappello, che non ho messo in precedenza. Da qua in poi sarà sempre segnata col cappello.}:
         \begin{equation}
@@ -2032,7 +2032,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         cioè per una rete senza perdite e senza sorgenti interne la potenza media si conserva.
         \\ La stessa cosa non vale per la potenza reattiva. Infatti:
         \begin{equation}
-            \textrm{Im}(\Phi(\underline{S})) +2 \omega \textrm{Im}[\iiint_{V} \overline{W}_{m}-\overline{W}_{e}] = - \textrm{Im}(-P_{g}) = 0
+            \textrm{Im}(\Phi(\underline{S})) +2 \omega \overline{W}_{m}-\overline{W}_{e} = - \textrm{Im}(\iint_{V} \underline{E} \cdot \underline{J}_{0} ^{*}) = 0
         \end{equation}
         ovvero:
         \begin{equation}
@@ -2056,7 +2056,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
         \begin{equation}
             \label{eqn:potenza_attiva}
             P(z)=\frac{1}{2}\frac{|V^{+}|^{2}}{Z_{0}}(1+2j\textrm{Im}(\Gamma(z))-|\Gamma|^{2}) =
-            P^{+}(1+2j\Gamma (z)-|\Gamma|^{2})
+            P^{+}(1+2j\textrm{Im}(\Gamma (z))-|\Gamma|^{2})
         \end{equation}
         Per capire il significato dell'espressione di sopra, ipotizziamo di avere solo onda progressiva. La potenza
         sarà:
@@ -2102,7 +2102,7 @@ In tal caso la soluzione non è unica e l'unico costringente che si ha è l'ugua
             \includegraphics[width=0.75\linewidth]{Chapter_two/Chapt2img8.png}
         \end{figure}
         \\ Conosciamo l'impedenza di carico $Z_{C}$, indi per cui è conveniente posizionare l'origine in corrispondenza
-        in corrispondenza della sezione finale, quella "vista" dall'impedenza $Z_{C}$. A questo punto possiamo
+        della sezione finale, quella "vista" dall'impedenza $Z_{C}$. A questo punto possiamo
         applicare la formula del trasporto per calcolare l'impedenza vista all'ingresso, che corrisponderà alla sezione 
         alla longitudine $z=-l$.
         \begin{equation}
